@@ -107,6 +107,13 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 - Logo only on flat color. Never on photos, gradients, or busy patterns.
 - Wordmark: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Never redraw or re-space.
 
+## Photography
+
+- Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" />`, which uses `next/image` with the alt text "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
+- Always place the cutout on a lavender-tint background. Large on /about (max ~420px wide, because the source is only 800px), small and circular in the home "Who we are" intro.
+- No blur placeholder on transparent images (it shows through the transparent areas).
+- A higher-resolution original would sharpen the large version on retina screens.
+
 ## Site map
 
 1. `/` Home

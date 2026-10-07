@@ -48,6 +48,13 @@ export const shift = {
   },
 };
 
+export const founderIntro = {
+  label: "Who we are",
+  title: "Led by Kate Hibbs Davis.",
+  body: "High Definition Advisors is led by Kate Hibbs Davis, whose career runs from grassroots organizing to global institutions. She sees across every part of an organization and turns it into one roadmap built for the long haul.",
+  link: "More about Kate",
+};
+
 export const lensesTeaser = {
   title: "We see the whole organization, then build one plan.",
   link: "See the full approach",

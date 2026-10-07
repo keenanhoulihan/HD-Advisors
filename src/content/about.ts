@@ -8,7 +8,7 @@ export const aboutIntro = {
 export const founder = {
   role: "Founder & Principal",
   name: "Kate Hibbs Davis",
-  headshot: "[headshot]",
+  headshotAlt: "Kate Hibbs Davis, Founder and Principal of High Definition Advisors",
   bio: [
     "Kate Hibbs Davis, known to many as Kate HD, founded High Definition Advisors to help mission-driven organizations find their footing during the most uncertain stretches of growth.",
     "Her career runs from grassroots organizing campaigns to global institutions, across politics, advocacy, the arts, and international development. That range is her superpower. Kate sees across every part of an organization, from programs and revenue to administration and external affairs, and turns what she sees into one actionable roadmap.",

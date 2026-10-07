@@ -6,9 +6,10 @@ import { ResolutionLine } from "@/components/ResolutionLine";
 import { ScrollHero } from "@/components/ScrollHero";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
+import { KateHeadshot } from "@/components/KateHeadshot";
 import { MottoStatement } from "@/components/MottoStatement";
 import { lenses } from "@/content/approach";
-import { challenges, challengesIntro, lensesTeaser, shift } from "@/content/home";
+import { challenges, challengesIntro, founderIntro, lensesTeaser, shift } from "@/content/home";
 import { mottos, pageMottos } from "@/content/mottos";
 import { site } from "@/content/site";
 
@@ -56,6 +57,21 @@ export default function HomePage() {
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             <ShiftPanel {...shift.reactive} className="bg-offwhite" titleClass="text-charcoal" markerClass="bg-slate" />
             <ShiftPanel {...shift.intentional} className="bg-aqua-light" titleClass="text-aqua" markerClass="bg-purple" />
+          </div>
+        </div>
+      </Section>
+
+      <Section bg="offwhite">
+        <div className="page-wrap flex flex-col items-start gap-10 md:flex-row md:items-center md:gap-14">
+          <KateHeadshot size="small" className="shrink-0" />
+          <div className="max-w-2xl">
+            <SectionHeader label={founderIntro.label} title={founderIntro.title} intro={founderIntro.body} />
+            <Link
+              href="/about"
+              className="mt-6 inline-block font-medium text-purple underline-offset-[0.4em] decoration-[1.5px] hover:underline"
+            >
+              {founderIntro.link} <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </div>
       </Section>

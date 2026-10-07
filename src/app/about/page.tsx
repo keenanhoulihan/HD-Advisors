@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
+import { KateHeadshot } from "@/components/KateHeadshot";
 import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
@@ -21,9 +22,7 @@ export default function AboutPage() {
 
       <Section bg="stone">
         <div className="page-wrap grid items-start gap-12 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
-          <div className="flex aspect-[4/5] items-center justify-center bg-lavender-tint text-slate">
-            {founder.headshot}
-          </div>
+          <KateHeadshot size="large" className="mx-auto md:mx-0" />
           <div>
             <SectionHeader label={founder.role} title={founder.name} />
             <div className="mt-8 space-y-5 text-charcoal">
