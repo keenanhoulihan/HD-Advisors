@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHeader } from "@/components/PageHeader";
+import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { aboutIntro, experience, experienceIntro, founder, philosophy, philosophyIntro } from "@/content/about";
 
@@ -16,7 +17,7 @@ export default function AboutPage() {
     <>
       <PageHeader {...aboutIntro} />
 
-      <section className="py-20 sm:py-28">
+      <Section bg="stone">
         <div className="page-wrap grid items-start gap-12 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
           <div className="flex aspect-[4/5] items-center justify-center bg-lavender-tint text-slate">
             {founder.headshot}
@@ -30,9 +31,9 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="bg-lavender-tint py-20 sm:py-28">
+      <Section bg="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...experienceIntro} />
           <ul className="mt-14 grid gap-4 sm:grid-cols-2">
@@ -45,9 +46,9 @@ export default function AboutPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-20 sm:py-28">
+      <Section bg="offwhite">
         <div className="page-wrap">
           <SectionHeader {...philosophyIntro} />
           <div className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-20">
@@ -59,7 +60,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       <CtaBand />
     </>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { Section } from "@/components/Section";
 import { contactIntro, nextSteps } from "@/content/contact";
 import { site } from "@/content/site";
 import { ContactForm } from "./ContactForm";
@@ -16,7 +17,7 @@ export default function ContactPage() {
     <>
       <PageHeader {...contactIntro} />
 
-      <section className="py-20 sm:py-28">
+      <Section bg="stone">
         <div className="page-wrap grid gap-16 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-24">
           <ContactForm />
 
@@ -46,7 +47,7 @@ export default function ContactPage() {
             </div>
           </aside>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

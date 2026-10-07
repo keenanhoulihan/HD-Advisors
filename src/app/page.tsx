@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CtaBand } from "@/components/CtaBand";
 import { ResolutionLine } from "@/components/ResolutionLine";
+import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { lenses } from "@/content/approach";
 import { challenges, challengesIntro, lensesTeaser, shift } from "@/content/home";
@@ -18,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <section className="pt-10 pb-20 sm:pt-16 sm:pb-28">
+      <Section bg="offwhite" padding="pt-10 pb-20 sm:pt-16 sm:pb-28">
         <ResolutionLine variant="full" />
         <div className="page-wrap mt-10 text-center sm:mt-14">
           <p className="eyebrow text-purple">{site.name}</p>
@@ -28,9 +29,9 @@ export default function HomePage() {
             Start a conversation
           </ButtonLink>
         </div>
-      </section>
+      </Section>
 
-      <section className="bg-lavender-tint py-20 sm:py-28">
+      <Section bg="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...challengesIntro} />
           <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -43,22 +44,21 @@ export default function HomePage() {
             ))}
           </ol>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-20 sm:py-28">
+      <Section bg="stone">
         <div className="page-wrap">
           <SectionHeader label={mottos.shift} title={`${mottos.design}.`} />
           <div className="mt-14 grid gap-6 md:grid-cols-2">
-            <ShiftPanel {...shift.reactive} className="bg-stone" titleClass="text-charcoal" markerClass="bg-slate" />
+            <ShiftPanel {...shift.reactive} className="bg-offwhite" titleClass="text-charcoal" markerClass="bg-slate" />
             <ShiftPanel {...shift.intentional} className="bg-aqua-light" titleClass="text-aqua" markerClass="bg-purple" />
           </div>
         </div>
-      </section>
+      </Section>
 
-      <ResolutionLine variant="partial" />
-
-      <section className="py-20 sm:py-28">
-        <div className="page-wrap">
+      <Section bg="aqua-light" padding="pt-16 pb-20 sm:pt-20 sm:pb-28">
+        <ResolutionLine variant="partial" />
+        <div className="page-wrap mt-16 sm:mt-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeader label={mottos.lenses} title={lensesTeaser.title} />
             <Link
@@ -70,7 +70,7 @@ export default function HomePage() {
           </div>
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {lenses.map((lens, i) => (
-              <li key={lens.name} className="border border-lavender-light p-6 sm:p-8">
+              <li key={lens.name} className="bg-offwhite p-6 sm:p-8">
                 <p className="eyebrow text-purple">Lens {String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-3 text-h3 text-charcoal">{lens.name}</h3>
                 <p className="mt-3 text-slate">{lens.summary}</p>
@@ -78,7 +78,7 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
 
       <CtaBand />
     </>

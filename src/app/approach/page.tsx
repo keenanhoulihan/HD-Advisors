@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHeader } from "@/components/PageHeader";
 import { ResolutionLine } from "@/components/ResolutionLine";
+import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   approachIntro,
@@ -30,7 +31,7 @@ export default function ApproachPage() {
     <>
       <PageHeader {...approachIntro} />
 
-      <section className="py-20 sm:py-28">
+      <Section bg="stone">
         <div className="page-wrap">
           <SectionHeader label="The four lenses" title="Every part of the organization, in one view." />
 
@@ -77,9 +78,9 @@ export default function ApproachPage() {
             <p className="mx-auto mt-4 max-w-2xl text-slate">{integratedPlan.body}</p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="bg-lavender-tint py-20 sm:py-28">
+      <Section bg="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...roadmapIntro} />
           <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -103,9 +104,9 @@ export default function ApproachPage() {
             })}
           </ol>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-20 sm:py-28">
+      <Section bg="aqua-light">
         <div className="page-wrap">
           <SectionHeader {...audiencesIntro} />
           <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
@@ -117,7 +118,7 @@ export default function ApproachPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
 
       <CtaBand />
     </>

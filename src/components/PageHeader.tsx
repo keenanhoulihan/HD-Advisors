@@ -8,7 +8,7 @@ type PageHeaderProps = {
 
 export function PageHeader({ label, title, intro }: PageHeaderProps) {
   return (
-    <section className="pt-16 sm:pt-24">
+    <section className="bg-offwhite pt-16 sm:pt-24">
       <div className="page-wrap">
         <div className="max-w-4xl">
           <p className="eyebrow text-purple">{label}</p>
