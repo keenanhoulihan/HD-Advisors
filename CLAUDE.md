@@ -70,6 +70,13 @@ Rules:
 - Let it breathe. Never crowd text against the line stack.
 - Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
 
+### Header
+
+- Logo (`src/components/HeaderLogo.tsx`): a mini version of the full mark, the HD monogram with a 5-line stack (`HEADER_MARK` in `resolution-geometry.ts`) that converges just right of the D. Five lines and 1px non-scaling strokes keep it crisp at 28 to 40px tall; don't add lines.
+- It ripples briefly on load (1.5s) and again on hover or focus (1.2s), then settles. The ripple strength is 0 at both ends, so it starts and ends on the resting mark with no jump. Reduced motion keeps the resting mark.
+- Wordmark beside it from `md` up: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Monogram mark only on mobile.
+- `HeaderShell` is transparent at the top of the page; after scrolling it gets a soft offwhite background (85% opacity, slight blur, lavender-light rule) and the logo scales to 90%.
+
 ### Motion system
 
 - All timing comes from `src/lib/motion.ts`: `EASE_OUT` (soft ease-out), durations 0.4 / 0.6 / 0.8s, 16px travel, `STAGGER` 80ms, `CARD_STAGGER` 120ms, and shared variants (`fadeUp`, `staggerChildren`, `drawLine`, `pageFade`). Never hard-code new timings; extend that file. Nothing bouncy or flashy: 400 to 800ms, ease-out, 12 to 24px.
@@ -135,7 +142,7 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 - Files live in `public/brand/` (SVG preferred, PNG fallback).
 - Approved colorways: Primary (on off-white) and Tint (on lavender tint). Reverse (on purple) and Dark (on charcoal) exist for other media but never appear on the site, because the site has no dark backgrounds.
 - Logo only on flat color. Never on photos, gradients, or busy patterns.
-- Wordmark: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Never redraw or re-space.
+- Wordmark: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Never redraw or re-space. The header sets it as live text to match the logo.
 
 ## Photography
 

@@ -159,6 +159,32 @@ export const HERO_MOBILE_MONOGRAM: MonogramPlacement = {
   x: 400 - (130 * MONOGRAM_WIDTH) / MONOGRAM_HEIGHT / 2,
 };
 
+/**
+ * Header mark: a mini version of the full logo. Five lines (enough gap between
+ * them to stay crisp at ~40px tall) pass through the monogram and resolve just
+ * right of the D.
+ */
+export const HEADER_MARK: StackParams = {
+  width: 132,
+  height: 44,
+  lines: 5,
+  spread: 16,
+  amplitude: 2.2,
+  wavelength: 56,
+  startX: 1,
+  endX: 131,
+  holdX: 80,
+  convergeX: 104,
+  endSpread: 0,
+  endRipple: 0,
+  seed: 0.6,
+  strokeWidth: 1,
+};
+export const HEADER_MARK_MONOGRAM: MonogramPlacement = {
+  height: 28,
+  x: 36,
+};
+
 export function partialParams(resolve: number, compact: boolean): StackParams {
   const calm = 1 - 0.65 * resolve;
   if (compact) {

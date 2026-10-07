@@ -58,6 +58,12 @@ export const HERO = {
   textDelay: 2.7,
 } as const;
 
+/** Header mark: a brief ripple that settles back into the resolved mark. */
+export const HEADER_MARK_RIPPLE = {
+  onLoad: 1.5,
+  onHover: 1.2,
+} as const;
+
 /** Route changes: a quick, soft fade. */
 export const pageFade = {
   initial: { opacity: 0 },
