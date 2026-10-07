@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <>
       <HeroResolve blendTo="lavender-tint">
-        <RevealGroup className="page-wrap text-center">
+        <div className="page-wrap text-center">
           <RevealItem as="p" className="eyebrow text-purple">
             {site.name}
           </RevealItem>
@@ -39,7 +39,7 @@ export default function HomePage() {
           <RevealItem className="mt-8">
             <ButtonLink href="/contact">Start a conversation</ButtonLink>
           </RevealItem>
-        </RevealGroup>
+        </div>
       </HeroResolve>
 
       <Section bg="lavender-tint" blendTo="offwhite">

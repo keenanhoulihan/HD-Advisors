@@ -83,10 +83,10 @@ Rules:
 
 ### Hero animation (home)
 
-- `src/components/HeroResolve.tsx`. On page load, after a short beat (0.8s), the rippling paths slowly converge into one resolved line through the monogram (3.6s, ease-in-out), then stay resolved. It plays once on its own clock.
+- `src/components/HeroResolve.tsx`. On page load the rippling lines calm and converge into one resolved line through the monogram on their own, no scrolling (`HERO` in `src/lib/motion.ts`: 0.3s delay, 3.4s linear clock, each line easing in-out with outer lines lagging up to 22% so they finish last; about 3.5s total). The headline, tagline, and CTA (RevealItems orchestrated by HeroResolve) fade in once the lines are mostly resolved (2.7s). Plays once per page load.
 - Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch (the page seemed to stop). Scrolling must always feel normal.
 - framer-motion `useMotionValue` + `animate` drive a 0..1 resolve value; `useTransform` rebuilds each path. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
-- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and the animation never starts.
+- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and visible text instantly; the animation never starts.
 - Only the visible size (mobile or desktop) animates after hydration.
 - All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `HeroResolve` (client).
 ## Color tokens

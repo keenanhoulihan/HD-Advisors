@@ -1,6 +1,6 @@
 "use client";
 
-import { animate, motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
+import { animate, motion, useMotionValue, useTransform, type MotionValue, type Variants } from "framer-motion";
 import { useEffect, useSyncExternalStore } from "react";
 import {
   buildStackPoints,
@@ -15,6 +15,7 @@ import {
   type Point,
   type StackParams,
 } from "@/lib/resolution-geometry";
+import { HERO, STAGGER } from "@/lib/motion";
 import { MonogramShapes } from "./Monogram";
 import { sectionBackground, type SectionBg } from "./Section";
 
@@ -46,8 +47,29 @@ function useMediaQuery(query: string) {
   );
 }
 
-function AnimatedPath({ points, params, t }: { points: Point[]; params: StackParams; t: MotionValue<number> }) {
-  const d = useTransform(t, (value: number) => toPath(resolvePoints(points, params, value)));
+const easeInOut = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+
+/**
+ * Each line runs its own eased resolve inside the shared clock. Outer lines
+ * start a little later, so they finish last.
+ */
+function AnimatedPath({
+  points,
+  params,
+  t,
+  index,
+}: {
+  points: Point[];
+  params: StackParams;
+  t: MotionValue<number>;
+  index: number;
+}) {
+  const mid = (params.lines - 1) / 2;
+  const lag = HERO.lineLag * (mid ? Math.abs(index - mid) / mid : 0);
+  const d = useTransform(t, (value: number) => {
+    const local = easeInOut(Math.min(1, Math.max(0, (value - lag) / (1 - HERO.lineLag))));
+    return toPath(resolvePoints(points, params, local));
+  });
   return (
     <motion.path
       d={d}
@@ -83,7 +105,7 @@ function HeroSvg({
     >
       {points.map((line, i) =>
         t ? (
-          <AnimatedPath key={i} points={line} params={params} t={t} />
+          <AnimatedPath key={i} index={i} points={line} params={params} t={t} />
         ) : (
           <path
             key={i}
@@ -119,11 +141,18 @@ function HeroLines({ t }: { t?: MotionValue<number> }) {
   );
 }
 
+/** The headline, tagline, and CTA wait until the lines are mostly resolved. */
+const heroText: Variants = {
+  hidden: {},
+  visible: { transition: { delayChildren: HERO.textDelay, staggerChildren: STAGGER } },
+};
+
 /**
- * Home hero (CLAUDE.md "Hero animation"). On load, the rippling stack slowly
- * converges into one resolved line through the monogram. It plays once, on its
- * own clock, so scrolling never feels hijacked. Under prefers-reduced-motion
- * it renders the static resolved state.
+ * Home hero (CLAUDE.md "Hero animation"). On load, the rippling lines calm and
+ * converge into one resolved line on their own clock (no scrolling), outer
+ * lines last, then the text fades in. Plays once per page load. Under
+ * prefers-reduced-motion everything renders resolved and visible instantly.
+ * Children should be RevealItems; this component orchestrates their timing.
  */
 export function HeroResolve({ blendTo, children }: { blendTo: SectionBg; children: React.ReactNode }) {
   const background = sectionBackground("offwhite", blendTo);
@@ -131,8 +160,8 @@ export function HeroResolve({ blendTo, children }: { blendTo: SectionBg; childre
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    // Let the ripple register for a beat, then resolve slowly.
-    const controls = animate(t, 1, { delay: 0.8, duration: 3.6, ease: [0.45, 0, 0.25, 1] });
+    // The shared clock is linear; each line applies its own ease-in-out.
+    const controls = animate(t, 1, { delay: HERO.delay, duration: HERO.duration, ease: "linear" });
     return () => controls.stop();
   }, [t]);
 
@@ -149,7 +178,9 @@ export function HeroResolve({ blendTo, children }: { blendTo: SectionBg; childre
           <HeroLines />
         </div>
       </div>
-      {children}
+      <motion.div initial="hidden" animate="visible" variants={heroText}>
+        {children}
+      </motion.div>
     </section>
   );
 }

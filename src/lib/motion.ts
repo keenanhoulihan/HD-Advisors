@@ -45,6 +45,19 @@ export const drawLine: Variants = {
   visible: { pathLength: 1, transition: { duration: DURATION.slow, ease: EASE_OUT } },
 };
 
+/**
+ * Home hero: the lines resolve over ~3.5s total (ease-in-out per line, outer
+ * lines lagging so they finish last), then the text fades in once the lines
+ * are mostly resolved.
+ */
+export const HERO = {
+  delay: 0.3,
+  duration: 3.4,
+  /** Share of the clock the outermost lines wait before starting. */
+  lineLag: 0.22,
+  textDelay: 2.7,
+} as const;
+
 /** Route changes: a quick, soft fade. */
 export const pageFade = {
   initial: { opacity: 0 },
