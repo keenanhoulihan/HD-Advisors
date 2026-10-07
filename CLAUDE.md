@@ -12,6 +12,22 @@ Stack: Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel from
 - Promise: strategy is never cookie-cutter. It is a custom-built foundation to scale a mission with purpose and precision.
 - NOT a real estate firm. Never describe it that way.
 
+## Kate's background (source of truth)
+
+Use these facts only. Never invent numbers, clients, or results. Content lives in `src/content/about.ts`.
+
+- Kate Hibbs Davis, Founder & Principal. Bilingual in English and Spanish. Education: William & Mary.
+- Experience (most recent first, all past roles):
+  - Director of External Affairs, Griffin Museum of Science and Industry, Chicago (2024 to 2026)
+  - Major Gifts Officer, Smithsonian Tropical Research Institute, Washington DC, Panama, and Chicago (2017 to 2024). Led the integration of revenue generation, program development, and institution-building. Secured over $16 million in support across two capital campaigns and brought in hundreds of new donors for environmental and biodiversity science, much of it supporting the careers of emerging tropical scientists from tropical nations
+  - Fulbright Specialist, Fundraising and NGO Organizational Management, Fulbright Colombia, Bogotá (2020 to 2023). Pro bono consulting for Corporación Manos Visibles: built a comprehensive fundraising strategy, designed a diversified revenue portfolio (individuals, major gifts, corporate, events, foundations), trained staff, and proposed a structural redesign of the organization
+  - Director of Development Partnerships, League of Conservation Voters, Washington DC (2015 to 2017)
+  - Regional Organizer, National Community Reinvestment Coalition, Washington DC (2014 to 2015)
+  - Lead Organizer, IMPACT (Interfaith Movement Promoting Action by Congregations Together), Charlottesville, VA (2010 to 2014)
+- Lens connections: Programs, STRI (integrated program development); Revenue, LCV development partnerships and STRI ($16M+ across two capital campaigns); Administration, Fulbright Colombia (staff training, proposed structural redesign); External Affairs, Griffin Museum.
+
+**Not yet:** no case studies, testimonials, stats strip, or by-the-numbers section. This is a brand new company. Never use bracketed `[Organization]` placeholders for Kate's experience; use the real names above.
+
 ## Mottos and lines to weave through the site
 
 Use these as headlines, section labels, pull quotes, and microcopy. Primary tagline appears on every page.
@@ -117,15 +133,22 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Site map
 
 1. `/` Home
-   - Hero: HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
-   - "What we heard" style strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
-   - From Reactive to Intentional: current state vs future state panels (stone vs aqua-light)
+   - Hero (scroll-driven, see above): HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
+   - "What we hear" strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
+   - Motto statement
+   - From Reactive to Intentional: current state vs future state panels (offwhite vs aqua-light, on a stone section)
+   - "Who we are" founder intro: small circular headshot, short intro, link to /about
    - Four Lenses, One Roadmap teaser
+   - Motto statement
    - Closing CTA band on lavender-tint (Tint colorway: purple monogram and lines). Light background, never purple
 2. `/about` Background
-   - Kate Hibbs Davis, Founder & Principal: bio, headshot placeholder
-   - Selected experience: politics, advocacy, the arts, international development
-   - Philosophy: never cookie-cutter, built for the long haul
+   - Kate Hibbs Davis, Founder & Principal: headshot on lavender tint, bio (deck bio as the base plus a few concrete proof points from "Kate's background"), languages and education
+   - Motto statement
+   - Experience timeline styled like the phased roadmap: six roles, earliest (organizing roots) to most recent, line stacks calming left to right, most recent in aqua. Each entry: role, organization, years, one short line
+   - "Where she's worked" row: organization names as text, no logos
+   - "Her experience spans all four lenses": each lens connected to a role where she did that work, with the lens illustrations
+   - Motto statement
+   - Philosophy ("How Kate works"): never cookie-cutter, structure that lasts
 3. `/approach` Scope of work
    - Four Lenses: Programs (what you deliver and for whom), Revenue (funding mix and paths to growth), Administration (people, systems, governance), External Affairs (partners, policy, reputation). Diagram: four cards whose lines converge into "One integrated plan" panel (aqua-light background, purple outline)
    - Interactive lenses (`src/components/LensDiagram.tsx`): each card has an original thin-line illustration (`LensIllustrations.tsx`) showing the lens in action: Programs, people around a table working; Revenue, one hand passing a coin to another; Administration, blocks assembling into an org structure; External Affairs, a figure speaking to a small group. Illustration rules: flat, no fills or shading, one 1.5px non-scaling stroke matching the resolution line, purple with at most one aqua accent, each on a resolved baseline so they read as one line family. Hover (mouse pointer only), tap, or keyboard focus on a card highlights its line flowing into the plan panel (others dim to lavender-light, dots flow along the active line unless reduced motion) and reveals the lens detail. The trigger is a real `<button>` with `aria-expanded`; the panel announces the active lens via `aria-live`.
@@ -147,5 +170,5 @@ Global: sticky minimal header (HD monogram left, nav right), footer with fully r
 - Accessibility: semantic landmarks, visible focus states in purple, aqua never for small text, AA contrast.
 - Responsive down to 360px. On mobile the line stack shortens but still resolves.
 - Env vars: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`. Never commit `.env.local`.
-- Placeholders stay bracketed: [email], [phone], [website], [headshot], [Organization].
+- Placeholders stay bracketed: [email], [phone], [website]. (The headshot and Kate's organizations are real now.)
 - No em dashes in any site copy.
