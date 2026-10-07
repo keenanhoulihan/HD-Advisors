@@ -46,7 +46,7 @@ How the lines are built (important, avoid the "audio waveform" look):
 Rules:
 - Flat vector SVG only. No gradients, shadows, glows, or 3D.
 - Thin, consistent stroke: about 2px at 1920px wide; use `vector-effect="non-scaling-stroke"`.
-- Lines in Deep Purple. Lavender when on purple or charcoal backgrounds.
+- Lines in Deep Purple. Aqua only as the single accent where noted. (No lavender-on-dark treatment: the site has no dark backgrounds.)
 - Let it breathe. Never crowd text against the line stack.
 - Motion (optional): on load or scroll, ripples ease toward the resolved line. Subtle and slow. Fully respect `prefers-reduced-motion` (render the static state).
 
@@ -54,14 +54,16 @@ Rules:
 
 Define as CSS variables in `globals.css` and map into Tailwind theme.
 
+**Background rule: backgrounds are always light and pastel.** Section and panel backgrounds may only be offwhite, lavender-tint, stone, aqua-light, or lavender-light. Never use purple, charcoal, or any dark color as a section, band, or panel background. Purple is for text, labels, lines, buttons, and the monogram only. Charcoal is for text only.
+
 | Token | Hex | Use |
 | --- | --- | --- |
-| purple | #4B2E83 | Monogram, labels, rules, resolution line |
+| purple | #4B2E83 | Monogram, labels, rules, resolution line, buttons, text. Never a background |
 | aqua | #4F8F7C | One accent per section max. Large text (24px+) and graphics only |
-| lavender | #B8A9D6 | Lines and labels on purple |
-| lavender-light | #E6E0F0 | Dividers, borders |
+| lavender | #B8A9D6 | Form borders and subtle rules on tinted backgrounds |
+| lavender-light | #E6E0F0 | Dividers, borders, occasional light background |
 | aqua-light | #DCEBE5 | Highlight panels |
-| charcoal | #2B2A2E | Body text, headlines |
+| charcoal | #2B2A2E | Body text, headlines. Never a background |
 | slate | #5E5A63 | Secondary text, captions |
 | offwhite | #FBF9F6 | Primary background |
 | lavender-tint | #F1EDF6 | Section backgrounds |
@@ -86,7 +88,7 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Logo usage
 
 - Files live in `public/brand/` (SVG preferred, PNG fallback).
-- Approved colorways only: Primary (on off-white), Reverse (on purple, white monogram, lavender lines), Tint (on lavender tint), Dark (on charcoal).
+- Approved colorways: Primary (on off-white) and Tint (on lavender tint). Reverse (on purple) and Dark (on charcoal) exist for other media but never appear on the site, because the site has no dark backgrounds.
 - Logo only on flat color. Never on photos, gradients, or busy patterns.
 - Wordmark: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Never redraw or re-space.
 
@@ -97,13 +99,13 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
    - "What we heard" style strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
    - From Reactive to Intentional: current state vs future state panels (stone vs aqua-light)
    - Four Lenses, One Roadmap teaser
-   - Closing CTA band on purple (Reverse colorway)
+   - Closing CTA band on lavender-tint (Tint colorway: purple monogram and lines). Light background, never purple
 2. `/about` Background
    - Kate Hibbs Davis, Founder & Principal: bio, headshot placeholder
    - Selected experience: politics, advocacy, the arts, international development
    - Philosophy: never cookie-cutter, built for the long haul
 3. `/approach` Scope of work
-   - Four Lenses: Programs (what you deliver and for whom), Revenue (funding mix and paths to growth), Administration (people, systems, governance), External Affairs (partners, policy, reputation). Diagram: four cards whose lines converge into "One integrated plan" panel
+   - Four Lenses: Programs (what you deliver and for whom), Revenue (funding mix and paths to growth), Administration (people, systems, governance), External Affairs (partners, policy, reputation). Diagram: four cards whose lines converge into "One integrated plan" panel (aqua-light background, purple outline)
    - Phased roadmap: 01 Listen and Assess (months 1 to 3), 02 Align and Prioritize (4 to 6), 03 Build the Structure (7 to 12), 04 Launch and Sustain (year 2+). Line stack above each phase gets calmer left to right, phase 04 in aqua
    - Who we work with: mission-driven orgs, nonprofits, foundations
 4. `/contact`

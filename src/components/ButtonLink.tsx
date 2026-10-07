@@ -4,18 +4,15 @@ import { cn } from "@/lib/cn";
 type ButtonLinkProps = {
   href: string;
   children: React.ReactNode;
-  /** "light" for use on purple backgrounds. */
-  variant?: "primary" | "light";
   className?: string;
 };
 
-export function ButtonLink({ href, children, variant = "primary", className }: ButtonLinkProps) {
+export function ButtonLink({ href, children, className }: ButtonLinkProps) {
   return (
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-3 rounded-sm px-7 py-3.5 text-base font-medium transition-colors",
-        variant === "primary" ? "bg-purple text-white hover:bg-charcoal" : "bg-offwhite text-purple hover:bg-lavender-light",
+        "inline-flex items-center gap-3 rounded-sm bg-purple px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-purple/85",
         className,
       )}
     >

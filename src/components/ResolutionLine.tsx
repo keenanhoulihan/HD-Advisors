@@ -8,18 +8,12 @@ import { MONOGRAM_HEIGHT, MONOGRAM_WIDTH, MonogramShapes } from "./Monogram";
  * Left to right, the ripple calms and the spread converges into a single line.
  */
 
-type Tone = "purple" | "lavender" | "aqua";
-type MonogramTone = "purple" | "white";
+// Lines are purple; aqua is the one allowed accent. Backgrounds are always light.
+type Tone = "purple" | "aqua";
 
 const toneClass: Record<Tone, string> = {
   purple: "text-purple",
-  lavender: "text-lavender",
   aqua: "text-aqua",
-};
-
-const monogramClass: Record<MonogramTone, string> = {
-  purple: "text-purple",
-  white: "text-white",
 };
 
 type StackParams = {
@@ -118,12 +112,10 @@ function buildStack(p: StackParams) {
 function StackSvg({
   params,
   monogram,
-  monogramTone = "purple",
   className,
 }: {
   params: StackParams;
   monogram?: MonogramPlacement;
-  monogramTone?: MonogramTone;
   className?: string;
 }) {
   const paths = buildStack(params);
@@ -149,7 +141,7 @@ function StackSvg({
       ))}
       {monogram && (
         <g
-          className={monogramClass[monogramTone]}
+          className="text-purple"
           fill="currentColor"
           transform={`translate(${monogram.x} ${(params.height - monogram.height) / 2}) scale(${scale})`}
         >
@@ -248,7 +240,6 @@ type ResolutionLineProps = {
    */
   variant: "full" | "partial" | "rule" | "monogram";
   tone?: Tone;
-  monogramTone?: MonogramTone;
   /** partial only: 0 is a calm ripple, 1 converges fully at the right edge. */
   resolve?: number;
   /** partial only: a small stack sized for cards. */
@@ -259,7 +250,6 @@ type ResolutionLineProps = {
 export function ResolutionLine({
   variant,
   tone = "purple",
-  monogramTone = "purple",
   resolve = 0.6,
   compact = false,
   className,
@@ -277,7 +267,7 @@ export function ResolutionLine({
         <svg
           viewBox={`0 0 ${MONOGRAM_WIDTH} ${MONOGRAM_HEIGHT}`}
           fill="currentColor"
-          className={cn("relative h-12 w-auto sm:h-14", monogramClass[monogramTone])}
+          className={cn("relative h-12 w-auto text-purple sm:h-14")}
           focusable="false"
         >
           <MonogramShapes />
@@ -294,11 +284,10 @@ export function ResolutionLine({
 
   return (
     <div className={cn(toneClass[tone], className)}>
-      <StackSvg params={HERO_MOBILE} monogram={HERO_MOBILE_MONOGRAM} monogramTone={monogramTone} className="block sm:hidden" />
+      <StackSvg params={HERO_MOBILE} monogram={HERO_MOBILE_MONOGRAM} className="block sm:hidden" />
       <StackSvg
         params={HERO_DESKTOP}
         monogram={HERO_DESKTOP_MONOGRAM}
-        monogramTone={monogramTone}
         className="hidden sm:block"
       />
     </div>

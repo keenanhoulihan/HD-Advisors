@@ -80,7 +80,7 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
         <label htmlFor={HONEYPOT_FIELD}>Leave this field empty</label>
         <input id={HONEYPOT_FIELD} name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" />
       </div>
@@ -88,7 +88,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center gap-3 rounded-sm bg-purple px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-charcoal disabled:cursor-wait disabled:opacity-70"
+        className="inline-flex items-center gap-3 rounded-sm bg-purple px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-purple/85 disabled:cursor-wait disabled:opacity-70"
       >
         {pending ? "Sending..." : "Send message"}
         {!pending && <span aria-hidden="true">&rarr;</span>}

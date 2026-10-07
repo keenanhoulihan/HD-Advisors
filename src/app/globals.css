@@ -90,10 +90,6 @@
     border-radius: 2px;
   }
 
-  .on-dark :focus-visible {
-    outline-color: var(--lavender);
-  }
-
   ::selection {
     background: var(--lavender-light);
     color: var(--charcoal);

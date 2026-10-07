@@ -71,10 +71,10 @@ export default function ApproachPage() {
             <span className="h-14 w-[1.5px] bg-purple" />
           </div>
 
-          <div className="on-dark bg-purple px-8 py-10 text-center sm:px-12 sm:py-12">
-            <p className="eyebrow text-lavender">{integratedPlan.label}</p>
-            <h3 className="mt-3 text-h3 text-white">{integratedPlan.title}</h3>
-            <p className="mx-auto mt-4 max-w-2xl text-lavender-light">{integratedPlan.body}</p>
+          <div className="border-[1.5px] border-purple bg-aqua-light px-8 py-10 text-center sm:px-12 sm:py-12">
+            <p className="eyebrow text-purple">{integratedPlan.label}</p>
+            <h3 className="mt-3 text-h3 text-charcoal">{integratedPlan.title}</h3>
+            <p className="mx-auto mt-4 max-w-2xl text-slate">{integratedPlan.body}</p>
           </div>
         </div>
       </section>
