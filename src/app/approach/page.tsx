@@ -27,9 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ApproachPage() {
   return (
     <>
-      <PageHeader {...approachIntro} />
+      <PageHeader {...approachIntro} blendTo="stone" />
 
-      <Section bg="stone">
+      <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader label="The four lenses" title="Every part of the organization, in one view." />
 
@@ -41,9 +41,9 @@ export default function ApproachPage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.approach[0]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.approach[0]} bg="offwhite" blendTo="lavender-tint" />
 
-      <Section bg="lavender-tint">
+      <Section bg="lavender-tint" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...roadmapIntro} />
           <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -69,9 +69,9 @@ export default function ApproachPage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.approach[1]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.approach[1]} bg="offwhite" blendTo="aqua-light" />
 
-      <Section bg="aqua-light">
+      <Section bg="aqua-light" blendTo="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...audiencesIntro} />
           <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">

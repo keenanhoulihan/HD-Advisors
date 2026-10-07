@@ -1,14 +1,17 @@
 import { ResolutionLine } from "./ResolutionLine";
+import { Section, type SectionBg } from "./Section";
 
 type PageHeaderProps = {
   label: string;
   title: string;
   intro: string;
+  /** Background of the first section below. */
+  blendTo: SectionBg;
 };
 
-export function PageHeader({ label, title, intro }: PageHeaderProps) {
+export function PageHeader({ label, title, intro, blendTo }: PageHeaderProps) {
   return (
-    <section className="bg-offwhite pt-16 sm:pt-24">
+    <Section bg="offwhite" blendTo={blendTo} padding="pt-16 sm:pt-24">
       <div className="page-wrap">
         <div className="max-w-4xl">
           <p className="eyebrow text-purple">{label}</p>
@@ -18,6 +21,6 @@ export function PageHeader({ label, title, intro }: PageHeaderProps) {
         </div>
       </div>
       <ResolutionLine variant="partial" resolve={0.45} className="mt-14 sm:mt-20" />
-    </section>
+    </Section>
   );
 }

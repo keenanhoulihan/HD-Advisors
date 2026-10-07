@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ContactPage() {
   return (
     <>
-      <PageHeader {...contactIntro} />
+      <PageHeader {...contactIntro} blendTo="stone" />
 
-      <Section bg="stone">
+      <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap grid gap-16 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-24">
           <ContactForm />
 

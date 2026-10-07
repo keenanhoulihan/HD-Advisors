@@ -16,6 +16,7 @@ import {
   type StackParams,
 } from "@/lib/resolution-geometry";
 import { MonogramShapes } from "./Monogram";
+import { sectionBackground, type SectionBg } from "./Section";
 
 type HeroGeometry = { params: StackParams; monogram: MonogramPlacement; points: Point[][] };
 
@@ -124,7 +125,8 @@ function HeroLines({ t }: { t?: MotionValue<number> }) {
  * own clock, so scrolling never feels hijacked. Under prefers-reduced-motion
  * it renders the static resolved state.
  */
-export function HeroResolve({ children }: { children: React.ReactNode }) {
+export function HeroResolve({ blendTo, children }: { blendTo: SectionBg; children: React.ReactNode }) {
+  const background = sectionBackground("offwhite", blendTo);
   const t = useMotionValue(0);
 
   useEffect(() => {
@@ -135,7 +137,10 @@ export function HeroResolve({ children }: { children: React.ReactNode }) {
   }, [t]);
 
   return (
-    <section className="flex flex-col gap-10 bg-offwhite pt-10 pb-20 sm:gap-12 sm:pt-16 sm:pb-28">
+    <section
+      className={`flex flex-col gap-10 pt-10 pb-20 sm:gap-12 sm:pt-16 sm:pb-28 ${background.className}`}
+      style={background.style}
+    >
       <div className="text-purple">
         <div className="motion-reduce:hidden">
           <HeroLines t={t} />

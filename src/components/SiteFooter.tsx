@@ -5,7 +5,7 @@ import { ResolutionLine } from "./ResolutionLine";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-lavender-light bg-offwhite">
+    <footer className="bg-offwhite">
       <ResolutionLine variant="monogram" className="pt-16 sm:pt-20" />
 
       <div className="page-wrap grid gap-12 py-14 sm:grid-cols-2 sm:py-16 lg:grid-cols-[2fr_1fr_1fr]">

@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <HeroResolve>
+      <HeroResolve blendTo="lavender-tint">
         <div className="page-wrap text-center">
           <p className="eyebrow text-purple">{site.name}</p>
           <h1 className="mx-auto mt-5 max-w-6xl text-display text-charcoal">{site.tagline}</h1>
@@ -34,7 +34,7 @@ export default function HomePage() {
         </div>
       </HeroResolve>
 
-      <Section bg="lavender-tint">
+      <Section bg="lavender-tint" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...challengesIntro} />
           <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -49,9 +49,9 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.home[0]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.home[0]} bg="offwhite" blendTo="stone" />
 
-      <Section bg="stone">
+      <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader label={mottos.shift} title={shift.title} />
           <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -61,7 +61,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section bg="offwhite">
+      <Section bg="offwhite" blendTo="aqua-light">
         <div className="page-wrap flex flex-col items-start gap-10 md:flex-row md:items-center md:gap-14">
           <KateHeadshot size="small" className="shrink-0" />
           <div className="max-w-2xl">
@@ -76,7 +76,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section bg="aqua-light" padding="pt-16 pb-20 sm:pt-20 sm:pb-28">
+      <Section bg="aqua-light" blendTo="offwhite" padding="pt-16 pb-20 sm:pt-20 sm:pb-28">
         <ResolutionLine variant="partial" />
         <div className="page-wrap mt-16 sm:mt-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -100,7 +100,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.home[1]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.home[1]} bg="offwhite" blendTo="lavender-tint" />
 
       <CtaBand />
     </>

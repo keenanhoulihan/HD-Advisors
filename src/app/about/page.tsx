@@ -27,9 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader {...aboutIntro} />
+      <PageHeader {...aboutIntro} blendTo="stone" />
 
-      <Section bg="stone">
+      <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap grid items-start gap-12 md:grid-cols-[18rem_minmax(0,1fr)] lg:gap-20">
           <KateHeadshot size="large" className="md:mt-2" />
           <div>
@@ -51,9 +51,9 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.about[0]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.about[0]} bg="offwhite" blendTo="lavender-tint" />
 
-      <Section bg="lavender-tint">
+      <Section bg="lavender-tint" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...careerIntro} />
           <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -107,9 +107,9 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <MottoStatement motto={pageMottos.about[1]} bg="offwhite" />
+      <MottoStatement motto={pageMottos.about[1]} bg="offwhite" blendTo="stone" />
 
-      <Section bg="stone">
+      <Section bg="stone" blendTo="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...philosophyIntro} />
           <div className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-20">

@@ -86,6 +86,10 @@ Define as CSS variables in `globals.css` and map into Tailwind theme.
 
 **Color blocking.** Alternate section backgrounds through offwhite, lavender-tint, stone, and aqua-light so every page has rhythm. Never put two identical backgrounds back to back (the footer is offwhite, so the last section is never offwhite; page headers are offwhite, so the first section after one is never offwhite). Use the `<Section bg="...">` component so each page's sequence is explicit, and check the full order whenever a section is added or moved. Cards and panels inside a section use a different light color from the section itself.
 
+Soft gradient blends are allowed only between section backgrounds. The logo, monogram, and resolution lines stay flat, no gradients.
+
+**Section blends.** Neighboring sections melt into each other instead of meeting at a hard edge. Every full-width band (`<Section>`, `PageHeader`, `HeroResolve`, `MottoStatement`, `CtaBand`) takes `blendTo`, the next band's background: its bottom `min(11rem, 45%)` fades from its own color to that color with a plain `linear-gradient`, so the next band starts on its own flat color with no seam. Set `blendTo` on every band and update it whenever the order changes. `CtaBand` always blends into the offwhite footer, and the footer has no top border. Only pastel tokens blend (offwhite, lavender-tint, lavender-light, stone, aqua-light). Keep it subtle: light shifting across a wall, never a rainbow. AA holds across every blend for charcoal, slate, and purple text; aqua large text passes on all blends in use but not on lavender-light, so never set aqua text on lavender-light.
+
 | Token | Hex | Use |
 | --- | --- | --- |
 | purple | #4B2E83 | Monogram, labels, rules, resolution line, buttons, text. Never a background |
