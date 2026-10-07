@@ -63,7 +63,8 @@ export default function AboutPage() {
 
       <MottoStatement motto={pageMottos.about[0]} bg="offwhite" blendTo="lavender-tint" />
 
-      <Section bg="lavender-tint" blendTo="offwhite">
+      {/* Extra bottom padding keeps the blend below "Where she's worked", so it reads as part of this area. */}
+      <Section bg="lavender-tint" blendTo="offwhite" padding="pt-20 pb-36 sm:pt-28 sm:pb-44">
         <div className="page-wrap">
           <SectionHeader {...careerIntro} />
           <RevealGroup as="ol" stagger={CARD_STAGGER} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -100,17 +101,17 @@ export default function AboutPage() {
             })}
           </RevealGroup>
 
-          {/* The grid fades in as one piece: its rules come from the list background. */}
+          {/* Same background as the timeline: transparent cells, inner rules only. */}
           <RevealGroup className="mt-20">
             <RevealItem as="h3" className="eyebrow text-center text-purple">
               {workedAt.label}
             </RevealItem>
             <DrawRule className="mx-auto mt-5 text-purple" />
-            <RevealItem as="ul" className="mt-10 grid gap-px bg-lavender sm:grid-cols-2 lg:grid-cols-3">
+            <RevealItem as="ul" className="mt-10 grid overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
               {workedAt.organizations.map((name) => (
                 <li
                   key={name}
-                  className="flex min-h-28 items-center justify-center bg-lavender-tint px-6 py-8 text-center text-xl leading-snug font-semibold text-charcoal"
+                  className="-mt-px -ml-px flex min-h-28 items-center justify-center border-t border-l border-lavender px-6 py-8 text-center text-xl leading-snug font-semibold text-charcoal"
                 >
                   {name}
                 </li>

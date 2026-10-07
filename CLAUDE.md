@@ -85,7 +85,7 @@ Rules:
 - Route changes: `src/app/template.tsx` fades each new page in (400ms). The first page load is never hidden.
 - Buttons share `buttonClass` (`ButtonLink.tsx`): 200ms color ease and a 2px lift on hover. Text links use the `link-underline` utility: color and underline ease in over 200ms.
 - Reduced motion: no movement, content just appears. `globals.css` forces `[data-reveal]` to full opacity with no transform and `[data-draw]` to fully drawn, overriding framer-motion's inline styles. Mark any new animated element with one of those attributes.
-- A grid whose rules come from its own background (like "Where she's worked") must reveal as one piece, or the empty grid flashes as a solid block.
+- Never give grid cells a solid fill that matches the section: inside a blending section they show a hard edge. Use transparent cells with border rules.
 - Testing tip: headless Chrome screenshots freeze these animations (virtual time stalls IntersectionObserver, real-time mode stalls animation frames), so verify reveals by scrolling with Playwright in real Chrome instead.
 
 ### Hero animation (home)
@@ -167,7 +167,7 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
    - Motto statement
    - Experience timeline styled like the phased roadmap: six roles, earliest (organizing roots) to most recent, line stacks calming left to right, most recent in aqua. Each entry: role, organization, years, one short line
    - Each timeline card is tagged with the lenses that role put to work (together they span all four). This replaces a separate lens section, which repeated the Approach page
-   - "Where she's worked": organization names set large as text in a ruled grid. No logos: they need each organization's permission and would read as HD Advisors clients
+   - "Where she's worked": organization names set large as text in a ruled grid, inside the same lavender-tint section as the timeline so they read as one continuous area. Cells are transparent (inner rules only) and the section has extra bottom padding so the blend starts below the grid. No logos: they need each organization's permission and would read as HD Advisors clients
    - Motto statement
    - Philosophy ("How Kate works"): never cookie-cutter, structure that lasts
 3. `/approach` Scope of work
