@@ -33,7 +33,7 @@ Inspired by Jeanne Gang's Aqua Tower in Chicago. The rippling slab edges of the 
 
 | Where | Line treatment |
 | --- | --- |
-| Home hero | Full rippling stack (9 lines) bleeding off the left edge, passing through the HD monogram, resolving into one line on the right |
+| Home hero | Full rippling stack (9 lines; 7 on mobile) bleeding off the left edge, passing through the HD monogram, resolving into one line on the right. Scroll-driven: pins and converges into one line (see below) |
 | Section dividers | Calmer lines, only partly converged |
 | Content headers | Just the resolved single line, used as a thin rule under every H2 |
 | Footer | Fully resolved. One line runs through the HD monogram |
@@ -48,7 +48,16 @@ Rules:
 - Thin, consistent stroke: about 2px at 1920px wide; use `vector-effect="non-scaling-stroke"`.
 - Lines in Deep Purple. Aqua only as the single accent where noted. (No lavender-on-dark treatment: the site has no dark backgrounds.)
 - Let it breathe. Never crowd text against the line stack.
-- Motion (optional): on load or scroll, ripples ease toward the resolved line. Subtle and slow. Fully respect `prefers-reduced-motion` (render the static state).
+- Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
+
+### Scroll-driven hero (home)
+
+- `src/components/ScrollHero.tsx`. The hero pins (CSS `position: sticky`, not JS pinning, so mobile scroll stays smooth) while the rippling paths gradually converge into one resolved line through the monogram, then the pin releases.
+- framer-motion `useScroll({ target, offset: ["start start", "end end"] })` → light `useSpring` smoothing → `useTransform` to a 0..1 resolve value. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
+- Pin length: 170svh tall on mobile, 210svh from `sm` up. Use `svh` units so mobile address bars don't cause jumps.
+- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state with no pin. No JS needed.
+- Only the visible size (mobile or desktop) animates after hydration.
+- All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `ScrollHero` (client).
 
 ## Color tokens
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CtaBand } from "@/components/CtaBand";
 import { ResolutionLine } from "@/components/ResolutionLine";
+import { ScrollHero } from "@/components/ScrollHero";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { lenses } from "@/content/approach";
@@ -19,17 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <Section bg="offwhite" padding="pt-10 pb-20 sm:pt-16 sm:pb-28">
-        <ResolutionLine variant="full" />
-        <div className="page-wrap mt-10 text-center sm:mt-14">
+      <ScrollHero>
+        <div className="page-wrap text-center">
           <p className="eyebrow text-purple">{site.name}</p>
-          <h1 className="mx-auto mt-5 max-w-4xl text-display text-charcoal">{site.tagline}</h1>
-          <p className="mx-auto mt-7 max-w-2xl text-slate">{site.positioning}</p>
-          <ButtonLink href="/contact" className="mt-10">
+          <h1 className="mx-auto mt-5 max-w-6xl text-display text-charcoal">{site.tagline}</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-slate">{site.positioning}</p>
+          <ButtonLink href="/contact" className="mt-8">
             Start a conversation
           </ButtonLink>
         </div>
-      </Section>
+      </ScrollHero>
 
       <Section bg="lavender-tint">
         <div className="page-wrap">
