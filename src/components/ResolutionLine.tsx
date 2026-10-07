@@ -63,7 +63,7 @@ function StackSvg({
 type ResolutionLineProps = {
   /**
    * full: hero stack bleeding off the left, through the monogram, resolving right
-   *   (static; the home hero animates it with ScrollHero).
+   *   (static; the home hero animates it with HeroResolve).
    * partial: calmer, partly converged section divider.
    * rule: the resolved single line, used under every H2.
    * monogram: fully resolved, one line through the monogram (footer).

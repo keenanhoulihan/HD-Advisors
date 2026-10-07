@@ -33,8 +33,8 @@ export default function AboutPage() {
       <PageHeader {...aboutIntro} />
 
       <Section bg="stone">
-        <div className="page-wrap grid items-start gap-12 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
-          <KateHeadshot size="large" className="mx-auto md:sticky md:top-28 md:mx-0" />
+        <div className="page-wrap grid items-start gap-12 md:grid-cols-[18rem_minmax(0,1fr)] lg:gap-20">
+          <KateHeadshot size="large" className="md:mt-2" />
           <div>
             <SectionHeader label={founder.role} title={founder.name} />
             <div className="mt-8 space-y-5 text-charcoal">

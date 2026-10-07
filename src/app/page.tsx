@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CtaBand } from "@/components/CtaBand";
 import { ResolutionLine } from "@/components/ResolutionLine";
-import { ScrollHero } from "@/components/ScrollHero";
+import { HeroResolve } from "@/components/HeroResolve";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { KateHeadshot } from "@/components/KateHeadshot";
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <ScrollHero>
+      <HeroResolve>
         <div className="page-wrap text-center">
           <p className="eyebrow text-purple">{site.name}</p>
           <h1 className="mx-auto mt-5 max-w-6xl text-display text-charcoal">{site.tagline}</h1>
@@ -32,7 +32,7 @@ export default function HomePage() {
             Start a conversation
           </ButtonLink>
         </div>
-      </ScrollHero>
+      </HeroResolve>
 
       <Section bg="lavender-tint">
         <div className="page-wrap">

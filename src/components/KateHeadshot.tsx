@@ -5,7 +5,7 @@ import headshot from "../../public/images/kate-headshot.png";
 
 /*
  * Kate's transparent cutout always sits on lavender tint. The source is
- * 800x800, so keep the large version at or under ~420px wide. No blur
+ * 800x800, so keep the large version small (18rem). No blur
  * placeholder: it would show through the transparent areas.
  */
 export function KateHeadshot({ size, className }: { size: "large" | "small"; className?: string }) {
@@ -18,12 +18,12 @@ export function KateHeadshot({ size, className }: { size: "large" | "small"; cla
   }
 
   return (
-    <div className={cn("relative aspect-[4/5] w-full max-w-[26rem] overflow-hidden bg-lavender-tint", className)}>
+    <div className={cn("relative aspect-[4/5] w-full max-w-[18rem] overflow-hidden bg-lavender-tint", className)}>
       <Image
         src={headshot}
         alt={founder.headshotAlt}
         fill
-        sizes="(min-width: 768px) 26rem, 100vw"
+        sizes="18rem"
         className="object-cover object-bottom"
       />
     </div>

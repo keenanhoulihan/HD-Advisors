@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
-import { useRef, useSyncExternalStore } from "react";
-import { cn } from "@/lib/cn";
+import { animate, motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
+import { useEffect, useSyncExternalStore } from "react";
 import {
   buildStackPoints,
   HERO_DESKTOP,
@@ -120,37 +119,32 @@ function HeroLines({ t }: { t?: MotionValue<number> }) {
 }
 
 /**
- * Home hero (CLAUDE.md "Scroll-driven hero"). The section pins while the
- * rippling stack slowly converges into one resolved line, then releases.
- * Under prefers-reduced-motion it renders the static resolved state, unpinned.
+ * Home hero (CLAUDE.md "Hero animation"). On load, the rippling stack slowly
+ * converges into one resolved line through the monogram. It plays once, on its
+ * own clock, so scrolling never feels hijacked. Under prefers-reduced-motion
+ * it renders the static resolved state.
  */
-export function ScrollHero({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  // Light smoothing so wheel steps glide instead of jumping.
-  const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 30, restDelta: 0.0005 });
-  // Hold the ripple briefly at the start and the resolved line before release.
-  const t = useTransform(progress, [0.08, 0.85], [0, 1], { clamp: true });
+export function HeroResolve({ children }: { children: React.ReactNode }) {
+  const t = useMotionValue(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Let the ripple register for a beat, then resolve slowly.
+    const controls = animate(t, 1, { delay: 0.8, duration: 3.6, ease: [0.45, 0, 0.25, 1] });
+    return () => controls.stop();
+  }, [t]);
 
   return (
-    <div ref={ref} className="relative h-[170svh] bg-offwhite sm:h-[210svh] motion-reduce:h-auto">
-      <div
-        className={cn(
-          "sticky top-16 flex min-h-[calc(100svh-4rem)] flex-col justify-center gap-10 py-8",
-          "sm:top-20 sm:min-h-[calc(100svh-5rem)] sm:gap-12",
-          "motion-reduce:static motion-reduce:min-h-0 motion-reduce:py-16 sm:motion-reduce:py-20",
-        )}
-      >
-        <div className="text-purple">
-          <div className="motion-reduce:hidden">
-            <HeroLines t={t} />
-          </div>
-          <div className="hidden motion-reduce:block">
-            <HeroLines />
-          </div>
+    <section className="flex flex-col gap-10 bg-offwhite pt-10 pb-20 sm:gap-12 sm:pt-16 sm:pb-28">
+      <div className="text-purple">
+        <div className="motion-reduce:hidden">
+          <HeroLines t={t} />
         </div>
-        {children}
+        <div className="hidden motion-reduce:block">
+          <HeroLines />
+        </div>
       </div>
-    </div>
+      {children}
+    </section>
   );
 }

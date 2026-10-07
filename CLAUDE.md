@@ -53,7 +53,7 @@ Inspired by Jeanne Gang's Aqua Tower in Chicago. The rippling slab edges of the 
 
 | Where | Line treatment |
 | --- | --- |
-| Home hero | Full rippling stack (9 lines; 7 on mobile) bleeding off the left edge, passing through the HD monogram, resolving into one line on the right. Scroll-driven: pins and converges into one line (see below) |
+| Home hero | Full rippling stack (9 lines; 7 on mobile) bleeding off the left edge, passing through the HD monogram, resolving into one line on the right. Animates on load: converges into one line (see below) |
 | Section dividers | Calmer lines, only partly converged |
 | Content headers | Just the resolved single line, used as a thin rule under every H2 |
 | Footer | Fully resolved. One line runs through the HD monogram |
@@ -70,15 +70,14 @@ Rules:
 - Let it breathe. Never crowd text against the line stack.
 - Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
 
-### Scroll-driven hero (home)
+### Hero animation (home)
 
-- `src/components/ScrollHero.tsx`. The hero pins (CSS `position: sticky`, not JS pinning, so mobile scroll stays smooth) while the rippling paths gradually converge into one resolved line through the monogram, then the pin releases.
-- framer-motion `useScroll({ target, offset: ["start start", "end end"] })` → light `useSpring` smoothing → `useTransform` to a 0..1 resolve value. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
-- Pin length: 170svh tall on mobile, 210svh from `sm` up. Use `svh` units so mobile address bars don't cause jumps.
-- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state with no pin. No JS needed.
+- `src/components/HeroResolve.tsx`. On page load, after a short beat (0.8s), the rippling paths slowly converge into one resolved line through the monogram (3.6s, ease-in-out), then stay resolved. It plays once on its own clock.
+- Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch (the page seemed to stop). Scrolling must always feel normal.
+- framer-motion `useMotionValue` + `animate` drive a 0..1 resolve value; `useTransform` rebuilds each path. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
+- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and the animation never starts.
 - Only the visible size (mobile or desktop) animates after hydration.
-- All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `ScrollHero` (client).
-
+- All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `HeroResolve` (client).
 ## Color tokens
 
 Define as CSS variables in `globals.css` and map into Tailwind theme.
@@ -126,14 +125,14 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Photography
 
 - Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" />`, which uses `next/image` with the alt text "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
-- Always place the cutout on a lavender-tint background. Large on /about (max ~420px wide, because the source is only 800px), small and circular in the home "Who we are" intro.
+- Always place the cutout on a lavender-tint background. On /about as a small static rectangle (18rem wide, not sticky; only a circular crop may follow the scroll), small and circular in the home "Who we are" intro.
 - No blur placeholder on transparent images (it shows through the transparent areas).
 - A higher-resolution original would sharpen the large version on retina screens.
 
 ## Site map
 
 1. `/` Home
-   - Hero (scroll-driven, see above): HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
+   - Hero (animates on load, see above): HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
    - "What we hear" strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
    - Motto statement
    - From Reactive to Intentional: current state vs future state panels (offwhite vs aqua-light, on a stone section)
