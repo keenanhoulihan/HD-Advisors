@@ -45,9 +45,10 @@ function MarkLine({ points, index, p }: { points: Point[]; index: number; p: Mot
 }
 
 /**
- * Header logo (CLAUDE.md "Header"): a mini version of the full mark with the
- * wordmark beside it from md up. The lines ripple briefly on load and again on
- * hover or focus, then settle. Reduced motion keeps the resting mark.
+ * Compact header mark for phones (CLAUDE.md "Header"): a mini version of the
+ * full mark. From sm up the header shows the HeaderWordmark lockup instead.
+ * The lines ripple briefly on load and again on hover or focus, then settle.
+ * Reduced motion keeps the resting mark.
  */
 export function HeaderLogo() {
   // 1 is the resting mark, so the server render and no-JS view are the final state.
@@ -82,7 +83,7 @@ export function HeaderLogo() {
       aria-label={`${site.name}, home`}
       onPointerEnter={(e) => e.pointerType === "mouse" && replay()}
       onFocus={replay}
-      className="-m-2 flex items-center gap-3 p-2"
+      className="-m-2 flex items-center p-2"
     >
       <svg
         viewBox={`0 0 ${HEADER_MARK.width} ${HEADER_MARK.height}`}
@@ -98,10 +99,6 @@ export function HeaderLogo() {
           <MonogramShapes />
         </g>
       </svg>
-      <span aria-hidden="true" className="hidden flex-col leading-none md:flex">
-        <span className="text-[1.05rem] font-medium text-charcoal">High Definition</span>
-        <span className="mt-1.5 text-[0.6rem] font-medium tracking-[0.62em] text-purple">ADVISORS</span>
-      </span>
     </Link>
   );
 }

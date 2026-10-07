@@ -72,10 +72,11 @@ Rules:
 
 ### Header
 
-- Logo (`src/components/HeaderLogo.tsx`): a mini version of the full mark, the HD monogram with a 5-line stack (`HEADER_MARK` in `resolution-geometry.ts`) that converges just right of the D. Five lines and 1px non-scaling strokes keep it crisp at 28 to 40px tall; don't add lines.
-- It ripples briefly on load (1.5s) and again on hover or focus (1.2s), then settles. The ripple strength is 0 at both ends, so it starts and ends on the resting mark with no jump. Reduced motion keeps the resting mark.
-- Wordmark beside it from `md` up: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Monogram mark only on mobile.
+- From `sm` (640px) up, the logo is the "Lead-in waves" wordmark lockup (`src/components/brand/HeaderWordmark.tsx`, 40px tall): a short stack of five slightly rippled lines on the left converges into one line pointing into "High Definition" (Poppins Medium, charcoal), with "ADVISORS" (Poppins Medium, caps, tracked wide, purple) underneath, like the business card. Text is live HTML so it stays crisp; the lines are 1px non-scaling purple strokes. Keep the waves slight (Aqua Tower floor plates, never an audio waveform).
+- On phones (below `sm`) the lockup is too wide beside the nav, so the header shows the compact mark (`src/components/HeaderLogo.tsx`): the HD monogram with a 5-line stack (`HEADER_MARK` in `resolution-geometry.ts`) that converges just right of the D. Five lines and 1px strokes keep it crisp at 28px; don't add lines.
+- Both ripple briefly on load (1.5s) and again on hover or focus (1.2s), then settle (`HEADER_MARK_RIPPLE` in `src/lib/motion.ts`). The ripple strength is 0 at both ends, so it starts and ends on the resting lines with no jump. Reduced motion keeps the resting lines.
 - `HeaderShell` is transparent at the top of the page; after scrolling it gets a soft offwhite background (85% opacity, slight blur, lavender-light rule) and the logo scales to 90%.
+- The other explored wordmark lockups (underline resolve, waves between, run-through) are in git history (commit 9d19989).
 
 ### Motion system
 
