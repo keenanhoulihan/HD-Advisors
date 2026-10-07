@@ -167,7 +167,7 @@ export function HeroResolve({ blendTo, children }: { blendTo: SectionBg; childre
 
   return (
     <section
-      className={`flex flex-col gap-10 pt-10 pb-20 sm:gap-12 sm:pt-16 sm:pb-28 ${background.className}`}
+      className={`flex w-full flex-col gap-10 overflow-x-clip pt-10 pb-20 sm:gap-12 sm:pt-16 sm:pb-28 ${background.className}`}
       style={background.style}
     >
       <div className="text-purple">

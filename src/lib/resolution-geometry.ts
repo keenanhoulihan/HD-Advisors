@@ -128,7 +128,8 @@ export const HERO_DESKTOP: StackParams = {
   amplitude: 20,
   wavelength: 640,
   startX: 0,
-  endX: 1500,
+  // Full bleed: lines run from the left edge of the screen to the right edge.
+  endX: 1600,
   holdX: 950,
   convergeX: 1230,
   endSpread: 0,
@@ -149,7 +150,7 @@ export const HERO_MOBILE: StackParams = {
   spread: 72,
   amplitude: 14,
   wavelength: 380,
-  endX: 770,
+  endX: 800,
   holdX: 505,
   convergeX: 640,
   strokeWidth: 1.25,

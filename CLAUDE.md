@@ -95,6 +95,7 @@ Rules:
 - framer-motion `useMotionValue` + `animate` drive a 0..1 resolve value; `useTransform` rebuilds each path. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
 - `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and visible text instantly; the animation never starts.
 - Only the visible size (mobile or desktop) animates after hydration.
+- Full bleed: the hero lines and monogram span the full viewport width. The section is a direct full-width child of `main` (never inside `page-wrap`), the stacks run from x=0 to the viewBox's full width, and the section clips horizontal overflow. Use `w-full`, not `100vw` (100vw includes the scrollbar and causes horizontal scroll on Windows). Text below stays in `page-wrap`. Verified with no horizontal overflow at 360, 768, 1440, and 1920px.
 - All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `HeroResolve` (client).
 ## Color tokens
 
