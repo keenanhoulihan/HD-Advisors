@@ -46,8 +46,15 @@
   --text-motto: clamp(1.75rem, 3vw, 2.75rem);
   --text-motto--line-height: 1.2;
   --text-motto--font-weight: 600;
+  --animate-lens-flow: lens-flow 1.6s linear infinite;
   --text-body: 1.125rem;
   --text-body--line-height: 1.5;
+}
+
+@keyframes lens-flow {
+  to {
+    stroke-dashoffset: -33;
+  }
 }
 
 /* Purple tracked label that sits above every H2. Color is set per use. */
