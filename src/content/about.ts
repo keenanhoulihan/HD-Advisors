@@ -29,11 +29,20 @@ export const founder = {
 export const careerIntro = {
   label: "Experience",
   title: "From grassroots campaigns to global institutions.",
-  intro: "Read left to right, her career looks a lot like the work: complex at the start, clearer with every step.",
+  intro:
+    "Read left to right, her career looks a lot like the work: complex at the start, clearer with every step. The tags show which of the four lenses each role put to work. Together they span all four.",
 };
 
 /** Earliest first, so the line stacks calm from organizing roots to the most recent role. */
-export const career = [
+export const career: Array<{
+  role: string;
+  organization: string;
+  location: string;
+  years: string;
+  line: string;
+  /** Which of the four lenses the role put to work. Facts only. */
+  lenses?: string[];
+}> = [
   {
     role: "Lead Organizer",
     organization: "IMPACT (Interfaith Movement Promoting Action by Congregations Together)",
@@ -54,13 +63,15 @@ export const career = [
     location: "Washington DC",
     years: "2015 to 2017",
     line: "Development partnerships for environmental advocacy.",
+    lenses: ["Revenue"],
   },
   {
     role: "Major Gifts Officer",
     organization: "Smithsonian Tropical Research Institute",
     location: "Washington DC, Panama, and Chicago",
     years: "2017 to 2024",
-    line: "Over $16 million secured across two capital campaigns for tropical science.",
+    line: "Integrated revenue, program development, and institution-building, securing over $16 million across two capital campaigns.",
+    lenses: ["Programs", "Revenue"],
   },
   {
     role: "Fulbright Specialist, Fundraising and NGO Organizational Management",
@@ -68,6 +79,7 @@ export const career = [
     location: "Bogotá",
     years: "2020 to 2023",
     line: "Pro bono fundraising strategy, revenue design, staff training, and a proposed structural redesign for Corporación Manos Visibles.",
+    lenses: ["Revenue", "Administration"],
   },
   {
     role: "Director of External Affairs",
@@ -75,6 +87,7 @@ export const career = [
     location: "Chicago",
     years: "2024 to 2026",
     line: "Led external affairs for the Chicago museum.",
+    lenses: ["External Affairs"],
   },
 ];
 
@@ -90,35 +103,6 @@ export const workedAt = {
   ],
 };
 
-export const lensProofIntro = {
-  label: "Four lenses, lived",
-  title: "Her experience spans all four lenses.",
-  intro: "The four lenses are not theory. Kate has done the work in each one.",
-};
-
-/** Same order as the lenses in src/content/approach.ts. */
-export const lensProof = [
-  {
-    lens: "Programs",
-    where: "Major Gifts Officer, Smithsonian Tropical Research Institute",
-    line: "Integrated program development with revenue and institution-building, much of it supporting the careers of emerging tropical scientists from tropical nations.",
-  },
-  {
-    lens: "Revenue",
-    where: "League of Conservation Voters and Smithsonian Tropical Research Institute",
-    line: "From development partnerships at LCV to over $16 million across two capital campaigns and hundreds of new donors at STRI.",
-  },
-  {
-    lens: "Administration",
-    where: "Fulbright Specialist, Fulbright Colombia",
-    line: "Trained staff and proposed a structural redesign of Corporación Manos Visibles.",
-  },
-  {
-    lens: "External Affairs",
-    where: "Director of External Affairs, Griffin Museum of Science and Industry",
-    line: "Led the museum's external affairs in Chicago.",
-  },
-];
 
 export const philosophyIntro = {
   label: "Philosophy",

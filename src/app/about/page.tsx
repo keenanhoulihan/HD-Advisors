@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
 import { KateHeadshot } from "@/components/KateHeadshot";
-import { lensIllustrations } from "@/components/LensIllustrations";
 import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { ResolutionLine } from "@/components/ResolutionLine";
@@ -12,8 +11,6 @@ import {
   career,
   careerIntro,
   founder,
-  lensProof,
-  lensProofIntro,
   philosophy,
   philosophyIntro,
   workedAt,
@@ -76,41 +73,37 @@ export default function AboutPage() {
                   <p className="mt-2 font-medium text-charcoal">{item.organization}</p>
                   <p className="mt-1 text-sm text-slate">{item.location}</p>
                   <p className="mt-4 text-slate">{item.line}</p>
+                  {item.lenses && (
+                    <ul aria-label="Lenses" className="mt-auto flex flex-wrap gap-2 pt-6">
+                      {item.lenses.map((lens) => (
+                        <li
+                          key={lens}
+                          className="rounded-full border border-purple px-3 py-1 text-xs font-medium tracking-wide text-purple"
+                        >
+                          {lens}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               );
             })}
           </ol>
 
-          <div className="mt-16 border-t border-lavender pt-10">
-            <h3 className="eyebrow text-purple">{workedAt.label}</h3>
-            <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+          <div className="mt-20">
+            <h3 className="eyebrow text-center text-purple">{workedAt.label}</h3>
+            <ResolutionLine variant="rule" className="mx-auto mt-5" />
+            <ul className="mt-10 grid gap-px bg-lavender sm:grid-cols-2 lg:grid-cols-3">
               {workedAt.organizations.map((name) => (
-                <li key={name} className="font-medium text-charcoal">
+                <li
+                  key={name}
+                  className="flex min-h-28 items-center justify-center bg-lavender-tint px-6 py-8 text-center text-xl leading-snug font-semibold text-charcoal"
+                >
                   {name}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </Section>
-
-      <Section bg="aqua-light">
-        <div className="page-wrap">
-          <SectionHeader {...lensProofIntro} />
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {lensProof.map((item, i) => {
-              const Illustration = lensIllustrations[i];
-              return (
-                <li key={item.lens} className="flex flex-col bg-offwhite p-6 sm:p-8">
-                  <Illustration className="h-auto w-full" />
-                  <p className="eyebrow mt-6 text-purple">Lens {String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="mt-3 text-h3 text-charcoal">{item.lens}</h3>
-                  <p className="mt-3 text-sm font-medium text-charcoal">{item.where}</p>
-                  <p className="mt-3 text-slate">{item.line}</p>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </Section>
 

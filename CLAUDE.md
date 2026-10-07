@@ -24,7 +24,7 @@ Use these facts only. Never invent numbers, clients, or results. Content lives i
   - Director of Development Partnerships, League of Conservation Voters, Washington DC (2015 to 2017)
   - Regional Organizer, National Community Reinvestment Coalition, Washington DC (2014 to 2015)
   - Lead Organizer, IMPACT (Interfaith Movement Promoting Action by Congregations Together), Charlottesville, VA (2010 to 2014)
-- Lens connections: Programs, STRI (integrated program development); Revenue, LCV development partnerships and STRI ($16M+ across two capital campaigns); Administration, Fulbright Colombia (staff training, proposed structural redesign); External Affairs, Griffin Museum.
+- Lens tags on the timeline: LCV, Revenue; STRI, Programs and Revenue; Fulbright Colombia, Revenue and Administration; Griffin Museum, External Affairs. The two organizing roles carry no tag.
 
 **Not yet:** no case studies, testimonials, stats strip, or by-the-numbers section. This is a brand new company. Never use bracketed `[Organization]` placeholders for Kate's experience; use the real names above.
 
@@ -144,8 +144,8 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
    - Kate Hibbs Davis, Founder & Principal: headshot on lavender tint, bio (deck bio as the base plus a few concrete proof points from "Kate's background"), languages and education
    - Motto statement
    - Experience timeline styled like the phased roadmap: six roles, earliest (organizing roots) to most recent, line stacks calming left to right, most recent in aqua. Each entry: role, organization, years, one short line
-   - "Where she's worked" row: organization names as text, no logos
-   - "Her experience spans all four lenses": each lens connected to a role where she did that work, with the lens illustrations
+   - Each timeline card is tagged with the lenses that role put to work (together they span all four). This replaces a separate lens section, which repeated the Approach page
+   - "Where she's worked": organization names set large as text in a ruled grid. No logos: they need each organization's permission and would read as HD Advisors clients
    - Motto statement
    - Philosophy ("How Kate works"): never cookie-cutter, structure that lasts
 3. `/approach` Scope of work
