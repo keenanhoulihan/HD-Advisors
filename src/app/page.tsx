@@ -6,9 +6,11 @@ import { ResolutionLine } from "@/components/ResolutionLine";
 import { ScrollHero } from "@/components/ScrollHero";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
+import { MottoStatement } from "@/components/MottoStatement";
 import { lenses } from "@/content/approach";
 import { challenges, challengesIntro, lensesTeaser, shift } from "@/content/home";
-import { mottos, site } from "@/content/site";
+import { mottos, pageMottos } from "@/content/mottos";
+import { site } from "@/content/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -46,9 +48,11 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <MottoStatement motto={pageMottos.home[0]} bg="offwhite" />
+
       <Section bg="stone">
         <div className="page-wrap">
-          <SectionHeader label={mottos.shift} title={`${mottos.design}.`} />
+          <SectionHeader label={mottos.shift} title={shift.title} />
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             <ShiftPanel {...shift.reactive} className="bg-offwhite" titleClass="text-charcoal" markerClass="bg-slate" />
             <ShiftPanel {...shift.intentional} className="bg-aqua-light" titleClass="text-aqua" markerClass="bg-purple" />
@@ -79,6 +83,8 @@ export default function HomePage() {
           </ul>
         </div>
       </Section>
+
+      <MottoStatement motto={pageMottos.home[1]} bg="offwhite" />
 
       <CtaBand />
     </>

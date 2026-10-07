@@ -36,7 +36,7 @@ export const integratedPlan = {
 
 export const roadmapIntro = {
   label: "Phased roadmap",
-  title: "From Reactive to Intentional, one phase at a time.",
+  title: "One phase at a time.",
   intro: "Each phase builds on the last. By the end, the plan is not a document on a shelf. It is how the organization runs.",
 };
 

@@ -46,7 +46,7 @@ export const experience = [
 
 export const philosophyIntro = {
   label: "Philosophy",
-  title: "Clear Strategy. Sustainable Impact.",
+  title: "How Kate works",
 };
 
 export const philosophy = [
@@ -55,7 +55,7 @@ export const philosophy = [
     body: "No two organizations grow the same way. Every engagement starts with listening, and every roadmap is a custom-built foundation to scale a mission with purpose and precision.",
   },
   {
-    title: "Built for the long haul, not the quick win",
+    title: "Structure that lasts",
     body: "Quick wins fade. We focus on the structure underneath: the roles, systems, funding, and governance that let an organization keep growing without losing its footing.",
   },
 ];

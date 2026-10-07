@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
+import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { aboutIntro, experience, experienceIntro, founder, philosophy, philosophyIntro } from "@/content/about";
+import { pageMottos } from "@/content/mottos";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -33,6 +35,8 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <MottoStatement motto={pageMottos.about[0]} bg="offwhite" />
+
       <Section bg="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...experienceIntro} />
@@ -48,7 +52,9 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section bg="offwhite">
+      <MottoStatement motto={pageMottos.about[1]} bg="offwhite" />
+
+      <Section bg="stone">
         <div className="page-wrap">
           <SectionHeader {...philosophyIntro} />
           <div className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-20">

@@ -25,6 +25,10 @@ Use these as headlines, section labels, pull quotes, and microcopy. Primary tagl
 - Clear Strategy. Sustainable Impact. (secondary)
 - Scaling Missions, Sustainably. (secondary)
 
+Mottos live in `src/content/mottos.ts`.
+
+**Motto statements.** Between major sections, set a motto on its own with `<MottoStatement motto bg />`: `text-motto` (clamp(1.75rem, 3vw, 2.75rem), SemiBold 600, charcoal), centered, with a thin resolution line rule below. Amplified, not giant. Each page uses different mottos (assigned in `pageMottos`), and a motto never repeats elsewhere on the same page (headings and labels included). Current assignment: Home: Growing by design / Never cookie-cutter. About: Built for the long haul / Clear Strategy. Sustainable Impact. Approach: From Reactive to Intentional / Scaling Missions, Sustainably. Contact has none (single section).
+
 ## Design concept: the Resolution Line
 
 Inspired by Jeanne Gang's Aqua Tower in Chicago. The rippling slab edges of the facade become thin parallel lines that ripple, calm, and converge into one crisp line. Complexity resolving into clarity.

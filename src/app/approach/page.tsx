@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
+import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { ResolutionLine } from "@/components/ResolutionLine";
 import { Section } from "@/components/Section";
@@ -13,6 +14,7 @@ import {
   phases,
   roadmapIntro,
 } from "@/content/approach";
+import { pageMottos } from "@/content/mottos";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -80,6 +82,8 @@ export default function ApproachPage() {
         </div>
       </Section>
 
+      <MottoStatement motto={pageMottos.approach[0]} bg="offwhite" />
+
       <Section bg="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...roadmapIntro} />
@@ -105,6 +109,8 @@ export default function ApproachPage() {
           </ol>
         </div>
       </Section>
+
+      <MottoStatement motto={pageMottos.approach[1]} bg="offwhite" />
 
       <Section bg="aqua-light">
         <div className="page-wrap">

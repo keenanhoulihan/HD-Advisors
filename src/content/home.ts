@@ -25,6 +25,7 @@ export const challenges = [
 ];
 
 export const shift = {
+  title: "What changes when there is a plan.",
   reactive: {
     label: "Today",
     title: "Reactive",

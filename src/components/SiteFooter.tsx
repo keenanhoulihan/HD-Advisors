@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { mottos, nav, site } from "@/content/site";
+import { mottos } from "@/content/mottos";
+import { nav, site } from "@/content/site";
 import { ResolutionLine } from "./ResolutionLine";
 
 export function SiteFooter() {

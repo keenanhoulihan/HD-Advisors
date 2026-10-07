@@ -43,6 +43,9 @@
   --text-h3: 1.5rem;
   --text-h3--line-height: 1.25;
   --text-h3--font-weight: 600;
+  --text-motto: clamp(1.75rem, 3vw, 2.75rem);
+  --text-motto--line-height: 1.2;
+  --text-motto--font-weight: 600;
   --text-body: 1.125rem;
   --text-body--line-height: 1.5;
 }
