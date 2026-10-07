@@ -1,69 +1,117 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ButtonLink } from "@/components/ButtonLink";
+import { CtaBand } from "@/components/CtaBand";
+import { ResolutionLine } from "@/components/ResolutionLine";
+import { SectionHeader } from "@/components/SectionHeader";
+import { lenses } from "@/content/approach";
+import { challenges, challengesIntro, lensesTeaser, shift } from "@/content/home";
+import { mottos, site } from "@/content/site";
 
-export default function Home() {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: { absolute: `${site.name} | ${site.tagline}` },
+    description: site.description,
+  };
+}
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="pt-10 pb-20 sm:pt-16 sm:pb-28">
+        <ResolutionLine variant="full" />
+        <div className="page-wrap mt-10 text-center sm:mt-14">
+          <p className="eyebrow text-purple">{site.name}</p>
+          <h1 className="mx-auto mt-5 max-w-4xl text-display text-charcoal">{site.tagline}</h1>
+          <p className="mx-auto mt-7 max-w-2xl text-slate">{site.positioning}</p>
+          <ButtonLink href="/contact" className="mt-10">
+            Start a conversation
+          </ButtonLink>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="bg-lavender-tint py-20 sm:py-28">
+        <div className="page-wrap">
+          <SectionHeader {...challengesIntro} />
+          <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {challenges.map((item, i) => (
+              <li key={item.title} className="border-t border-lavender pt-6">
+                <p className="eyebrow text-purple">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-3 text-h3 text-charcoal">{item.title}</h3>
+                <p className="mt-3 text-slate">{item.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </main>
+      </section>
+
+      <section className="py-20 sm:py-28">
+        <div className="page-wrap">
+          <SectionHeader label={mottos.shift} title={`${mottos.design}.`} />
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            <ShiftPanel {...shift.reactive} className="bg-stone" titleClass="text-charcoal" markerClass="bg-slate" />
+            <ShiftPanel {...shift.intentional} className="bg-aqua-light" titleClass="text-aqua" markerClass="bg-purple" />
+          </div>
+        </div>
+      </section>
+
+      <ResolutionLine variant="partial" />
+
+      <section className="py-20 sm:py-28">
+        <div className="page-wrap">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <SectionHeader label={mottos.lenses} title={lensesTeaser.title} />
+            <Link
+              href="/approach"
+              className="shrink-0 font-medium text-purple underline-offset-[0.4em] decoration-[1.5px] hover:underline"
+            >
+              {lensesTeaser.link} <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {lenses.map((lens, i) => (
+              <li key={lens.name} className="border border-lavender-light p-6 sm:p-8">
+                <p className="eyebrow text-purple">Lens {String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-3 text-h3 text-charcoal">{lens.name}</h3>
+                <p className="mt-3 text-slate">{lens.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
+  );
+}
+
+function ShiftPanel({
+  label,
+  title,
+  points,
+  className,
+  titleClass,
+  markerClass,
+}: {
+  label: string;
+  title: string;
+  points: string[];
+  className: string;
+  titleClass: string;
+  markerClass: string;
+}) {
+  return (
+    <div className={`p-8 sm:p-10 ${className}`}>
+      <p className="eyebrow text-slate">{label}</p>
+      <h3 className={`mt-3 text-h3 ${titleClass}`}>{title}</h3>
+      <ul className="mt-6 space-y-4">
+        {points.map((point) => (
+          <li key={point} className="flex gap-4 text-charcoal">
+            <span aria-hidden="true" className={`mt-[0.75em] h-[1.5px] w-4 shrink-0 ${markerClass}`} />
+            {point}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

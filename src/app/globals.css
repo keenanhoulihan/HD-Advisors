@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+/* Brand tokens (CLAUDE.md "Color tokens"). Change colors here only. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --purple: #4b2e83;
+  --aqua: #4f8f7c;
+  --lavender: #b8a9d6;
+  --lavender-light: #e6e0f0;
+  --aqua-light: #dcebe5;
+  --charcoal: #2b2a2e;
+  --slate: #5e5a63;
+  --offwhite: #fbf9f6;
+  --lavender-tint: #f1edf6;
+  --stone: #f3efe8;
 }
 
+/* Only brand colors exist as utilities, so off-palette classes fail loudly. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-purple: var(--purple);
+  --color-aqua: var(--aqua);
+  --color-lavender: var(--lavender);
+  --color-lavender-light: var(--lavender-light);
+  --color-aqua-light: var(--aqua-light);
+  --color-charcoal: var(--charcoal);
+  --color-slate: var(--slate);
+  --color-offwhite: var(--offwhite);
+  --color-lavender-tint: var(--lavender-tint);
+  --color-stone: var(--stone);
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Type scale (CLAUDE.md "Typography"). */
+@theme {
+  --text-display: clamp(2.5rem, 5vw, 5rem);
+  --text-display--line-height: 1.1;
+  --text-display--font-weight: 600;
+  --text-h2: clamp(2rem, 3.5vw, 3.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--font-weight: 600;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--font-weight: 600;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.5;
+}
+
+/* Purple tracked label that sits above every H2. Color is set per use. */
+@utility eyebrow {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+@utility page-wrap {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    background: var(--offwhite);
+    color: var(--charcoal);
+  }
+
+  body {
+    @apply font-sans text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--lavender);
+  }
+
+  ::selection {
+    background: var(--lavender-light);
+    color: var(--charcoal);
+  }
 }
