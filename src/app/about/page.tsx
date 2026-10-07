@@ -4,6 +4,7 @@ import { KateHeadshot } from "@/components/KateHeadshot";
 import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { ResolutionLine } from "@/components/ResolutionLine";
+import { DrawRule, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
@@ -16,6 +17,7 @@ import {
   workedAt,
 } from "@/content/about";
 import { pageMottos } from "@/content/mottos";
+import { CARD_STAGGER } from "@/lib/motion";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -30,25 +32,31 @@ export default function AboutPage() {
       <PageHeader {...aboutIntro} blendTo="stone" />
 
       <Section bg="stone" blendTo="offwhite">
-        <div className="page-wrap grid items-start gap-12 md:grid-cols-[18rem_minmax(0,1fr)] lg:gap-20">
-          <KateHeadshot size="large" className="md:mt-2" />
+        <RevealGroup className="page-wrap grid items-start gap-12 md:grid-cols-[18rem_minmax(0,1fr)] lg:gap-20">
+          <RevealItem className="md:mt-2">
+            <KateHeadshot size="large" />
+          </RevealItem>
           <div>
             <SectionHeader label={founder.role} title={founder.name} />
-            <div className="mt-8 space-y-5 text-charcoal">
+            <RevealGroup className="mt-8 space-y-5 text-charcoal">
               {founder.bio.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <RevealItem as="p" key={paragraph}>
+                  {paragraph}
+                </RevealItem>
               ))}
-            </div>
-            <dl className="mt-10 grid gap-6 border-t border-lavender pt-8 sm:grid-cols-2">
-              {founder.facts.map((fact) => (
-                <div key={fact.label}>
-                  <dt className="eyebrow text-purple">{fact.label}</dt>
-                  <dd className="mt-2 text-charcoal">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
+            </RevealGroup>
+            <RevealItem className="mt-10">
+              <dl className="grid gap-6 border-t border-lavender pt-8 sm:grid-cols-2">
+                {founder.facts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt className="eyebrow text-purple">{fact.label}</dt>
+                    <dd className="mt-2 text-charcoal">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </RevealItem>
           </div>
-        </div>
+        </RevealGroup>
       </Section>
 
       <MottoStatement motto={pageMottos.about[0]} bg="offwhite" blendTo="lavender-tint" />
@@ -56,11 +64,11 @@ export default function AboutPage() {
       <Section bg="lavender-tint" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...careerIntro} />
-          <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <RevealGroup as="ol" stagger={CARD_STAGGER} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {career.map((item, i) => {
               const latest = i === career.length - 1;
               return (
-                <li key={item.organization} className="flex flex-col bg-offwhite p-6 sm:p-8">
+                <RevealItem as="li" key={item.organization} className="flex flex-col bg-offwhite p-6 sm:p-8">
                   {/* Calmer left to right: organizing roots ripple, the latest role resolves. */}
                   <ResolutionLine
                     variant="partial"
@@ -85,15 +93,18 @@ export default function AboutPage() {
                       ))}
                     </ul>
                   )}
-                </li>
+                </RevealItem>
               );
             })}
-          </ol>
+          </RevealGroup>
 
-          <div className="mt-20">
-            <h3 className="eyebrow text-center text-purple">{workedAt.label}</h3>
-            <ResolutionLine variant="rule" className="mx-auto mt-5" />
-            <ul className="mt-10 grid gap-px bg-lavender sm:grid-cols-2 lg:grid-cols-3">
+          {/* The grid fades in as one piece: its rules come from the list background. */}
+          <RevealGroup className="mt-20">
+            <RevealItem as="h3" className="eyebrow text-center text-purple">
+              {workedAt.label}
+            </RevealItem>
+            <DrawRule className="mx-auto mt-5 text-purple" />
+            <RevealItem as="ul" className="mt-10 grid gap-px bg-lavender sm:grid-cols-2 lg:grid-cols-3">
               {workedAt.organizations.map((name) => (
                 <li
                   key={name}
@@ -102,8 +113,8 @@ export default function AboutPage() {
                   {name}
                 </li>
               ))}
-            </ul>
-          </div>
+            </RevealItem>
+          </RevealGroup>
         </div>
       </Section>
 
@@ -112,14 +123,14 @@ export default function AboutPage() {
       <Section bg="stone" blendTo="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...philosophyIntro} />
-          <div className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-20">
+          <RevealGroup stagger={CARD_STAGGER} className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-20">
             {philosophy.map((item) => (
-              <div key={item.title} className="border-l-[1.5px] border-purple pl-6 sm:pl-8">
+              <RevealItem key={item.title} className="border-l-[1.5px] border-purple pl-6 sm:pl-8">
                 <h3 className="text-h3 text-charcoal">{item.title}</h3>
                 <p className="mt-4 text-slate">{item.body}</p>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </Section>
 

@@ -4,6 +4,7 @@ import { LensDiagram } from "@/components/LensDiagram";
 import { MottoStatement } from "@/components/MottoStatement";
 import { PageHeader } from "@/components/PageHeader";
 import { ResolutionLine } from "@/components/ResolutionLine";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
@@ -14,6 +15,7 @@ import {
   roadmapIntro,
 } from "@/content/approach";
 import { pageMottos } from "@/content/mottos";
+import { CARD_STAGGER } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -46,11 +48,11 @@ export default function ApproachPage() {
       <Section bg="lavender-tint" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...roadmapIntro} />
-          <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <RevealGroup as="ol" stagger={CARD_STAGGER} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {phases.map((phase, i) => {
               const final = i === phases.length - 1;
               return (
-                <li key={phase.number} className="flex flex-col bg-offwhite p-6 sm:p-8">
+                <RevealItem as="li" key={phase.number} className="flex flex-col bg-offwhite p-6 sm:p-8">
                   {/* Calmer left to right: phase 01 ripples, phase 04 resolves. */}
                   <ResolutionLine
                     variant="partial"
@@ -62,10 +64,10 @@ export default function ApproachPage() {
                   <h3 className="mt-2 text-h3 text-charcoal">{phase.title}</h3>
                   <p className="eyebrow mt-3 text-purple">{phase.timeframe}</p>
                   <p className="mt-4 text-slate">{phase.body}</p>
-                </li>
+                </RevealItem>
               );
             })}
-          </ol>
+          </RevealGroup>
         </div>
       </Section>
 
@@ -74,14 +76,14 @@ export default function ApproachPage() {
       <Section bg="aqua-light" blendTo="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...audiencesIntro} />
-          <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+          <RevealGroup as="ul" className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
             {audiences.map((audience) => (
-              <li key={audience.name} className="border-t border-lavender-light pt-6">
+              <RevealItem as="li" key={audience.name} className="border-t border-lavender-light pt-6">
                 <h3 className="text-h3 text-charcoal">{audience.name}</h3>
                 <p className="mt-3 text-slate">{audience.body}</p>
-              </li>
+              </RevealItem>
             ))}
-          </ul>
+          </RevealGroup>
         </div>
       </Section>
 

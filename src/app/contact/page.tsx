@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { contactIntro, nextSteps } from "@/content/contact";
 import { site } from "@/content/site";
@@ -24,17 +25,17 @@ export default function ContactPage() {
           <aside className="space-y-12">
             <div>
               <p className="eyebrow text-purple">What happens next</p>
-              <ol className="mt-6 space-y-6">
+              <RevealGroup as="ol" className="mt-6 space-y-6">
                 {nextSteps.map((step, i) => (
-                  <li key={step.title} className="flex gap-4">
+                  <RevealItem as="li" key={step.title} className="flex gap-4">
                     <span className="font-semibold text-purple">{String(i + 1).padStart(2, "0")}</span>
                     <div>
                       <p className="font-medium text-charcoal">{step.title}</p>
                       <p className="mt-1 text-slate">{step.body}</p>
                     </div>
-                  </li>
+                  </RevealItem>
                 ))}
-              </ol>
+              </RevealGroup>
             </div>
 
             <div className="border-t border-lavender-light pt-10">

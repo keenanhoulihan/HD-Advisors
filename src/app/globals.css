@@ -66,6 +66,22 @@
   text-transform: uppercase;
 }
 
+/* Links: color and underline ease in over 200ms (CLAUDE.md "Motion"). */
+@utility link-underline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.4em;
+  text-decoration-color: transparent;
+  transition:
+    color 200ms ease-out,
+    text-decoration-color 200ms ease-out;
+
+  &:hover,
+  &[aria-current="page"] {
+    text-decoration-color: currentColor;
+  }
+}
+
 @utility page-wrap {
   width: 100%;
   max-width: 76rem;
@@ -103,5 +119,21 @@
   ::selection {
     background: var(--lavender-light);
     color: var(--charcoal);
+  }
+}
+
+/*
+ * Reduced motion: no movement, content just appears. Reveals and drawn rules
+ * are forced to their final state over framer-motion's inline styles.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-draw] {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }

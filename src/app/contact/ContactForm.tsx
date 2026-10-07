@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { buttonClass } from "@/components/ButtonLink";
 import { ResolutionLine } from "@/components/ResolutionLine";
 import { budgetOptions, contactCopy, timelineOptions } from "@/content/contact";
 import { cn } from "@/lib/cn";
@@ -88,7 +89,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center gap-3 rounded-sm bg-purple px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-purple/85 disabled:cursor-wait disabled:opacity-70"
+        className={cn(buttonClass, "disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0")}
       >
         {pending ? "Sending..." : "Send message"}
         {!pending && <span aria-hidden="true">&rarr;</span>}

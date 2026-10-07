@@ -70,6 +70,17 @@ Rules:
 - Let it breathe. Never crowd text against the line stack.
 - Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
 
+### Motion system
+
+- All timing comes from `src/lib/motion.ts`: `EASE_OUT` (soft ease-out), durations 0.4 / 0.6 / 0.8s, 16px travel, `STAGGER` 80ms, `CARD_STAGGER` 120ms, and shared variants (`fadeUp`, `staggerChildren`, `drawLine`, `pageFade`). Never hard-code new timings; extend that file. Nothing bouncy or flashy: 400 to 800ms, ease-out, 12 to 24px.
+- Scroll reveals: `RevealGroup` (triggers once on entering view, staggers children) and `RevealItem` (fades up) in `src/components/Reveal.tsx`. `SectionHeader`, `PageHeader`, and `MottoStatement` reveal label, heading, rule, and body in turn. Card grids and timeline entries use `CARD_STAGGER` so they ease in one after another.
+- Heading rules (`DrawRule`) draw themselves left to right via `pathLength` (stroke-dashoffset).
+- Route changes: `src/app/template.tsx` fades each new page in (400ms). The first page load is never hidden.
+- Buttons share `buttonClass` (`ButtonLink.tsx`): 200ms color ease and a 2px lift on hover. Text links use the `link-underline` utility: color and underline ease in over 200ms.
+- Reduced motion: no movement, content just appears. `globals.css` forces `[data-reveal]` to full opacity with no transform and `[data-draw]` to fully drawn, overriding framer-motion's inline styles. Mark any new animated element with one of those attributes.
+- A grid whose rules come from its own background (like "Where she's worked") must reveal as one piece, or the empty grid flashes as a solid block.
+- Testing tip: headless Chrome screenshots freeze these animations (virtual time stalls IntersectionObserver, real-time mode stalls animation frames), so verify reveals by scrolling with Playwright in real Chrome instead.
+
 ### Hero animation (home)
 
 - `src/components/HeroResolve.tsx`. On page load, after a short beat (0.8s), the rippling paths slowly converge into one resolved line through the monogram (3.6s, ease-in-out), then stay resolved. It plays once on its own clock.

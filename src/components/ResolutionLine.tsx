@@ -13,6 +13,7 @@ import {
   type StackParams,
 } from "@/lib/resolution-geometry";
 import { MONOGRAM_HEIGHT, MONOGRAM_WIDTH, MonogramShapes } from "./Monogram";
+import { DrawRule } from "./Reveal";
 
 // Lines are purple; aqua is the one allowed accent. Backgrounds are always light.
 export type Tone = "purple" | "aqua";
@@ -65,7 +66,7 @@ type ResolutionLineProps = {
    * full: hero stack bleeding off the left, through the monogram, resolving right
    *   (static; the home hero animates it with HeroResolve).
    * partial: calmer, partly converged section divider.
-   * rule: the resolved single line, used under every H2.
+   * rule: the resolved single line, used under every H2. Draws itself in on view.
    * monogram: fully resolved, one line through the monogram (footer).
    */
   variant: "full" | "partial" | "rule" | "monogram";
@@ -85,9 +86,7 @@ export function ResolutionLine({
   className,
 }: ResolutionLineProps) {
   if (variant === "rule") {
-    return (
-      <span aria-hidden="true" className={cn("block h-[1.5px] w-20 bg-current", toneClass[tone], className)} />
-    );
+    return <DrawRule standalone className={cn(toneClass[tone], className)} />;
   }
 
   if (variant === "monogram") {

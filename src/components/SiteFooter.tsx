@@ -19,7 +19,7 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3">
             {[{ href: "/", label: "Home" }, ...nav].map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-charcoal transition-colors hover:text-purple">
+                <Link href={item.href} className="link-underline text-charcoal hover:text-purple">
                   {item.label}
                 </Link>
               </li>

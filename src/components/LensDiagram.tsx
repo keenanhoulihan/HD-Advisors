@@ -1,8 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { integratedPlan, lenses } from "@/content/approach";
 import { cn } from "@/lib/cn";
+import { CARD_STAGGER, fadeUp, staggerChildren, VIEWPORT } from "@/lib/motion";
 import { lensIllustrations } from "./LensIllustrations";
 
 // Card centers in a four-column row, as fractions of the diagram width.
@@ -23,14 +25,22 @@ export function LensDiagram() {
 
   return (
     <div>
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <motion.ul
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT}
+        variants={staggerChildren(CARD_STAGGER)}
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+      >
         {lenses.map((lens, i) => {
           const isActive = active === i;
           const Illustration = lensIllustrations[i];
           const detailId = `lens-detail-${i}`;
           return (
-            <li
+            <motion.li
               key={lens.name}
+              data-reveal=""
+              variants={fadeUp}
               onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
               onPointerLeave={(e) => e.pointerType === "mouse" && release(i)}
               className={cn(
@@ -66,10 +76,10 @@ export function LensDiagram() {
                   <span className="block pt-3">{lens.detail}</span>
                 </p>
               </div>
-            </li>
+            </motion.li>
           );
         })}
-      </ul>
+      </motion.ul>
 
       {/* The four lenses converge into one plan. */}
       <svg

@@ -19,8 +19,8 @@ export function NavLinks() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-[0.95rem] font-medium decoration-[1.5px] underline-offset-[0.6em] transition-colors sm:text-base",
-                  active ? "text-purple underline" : "text-charcoal hover:text-purple",
+                  "link-underline text-[0.95rem] font-medium sm:text-base",
+                  active ? "text-purple" : "text-charcoal hover:text-purple",
                 )}
               >
                 {item.label}
