@@ -147,7 +147,7 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Photography
 
 - Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" />`, which uses `next/image` with the alt text "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
-- Always place the cutout on a lavender-tint background. On /about as a small static rectangle (18rem wide, not sticky; only a circular crop may follow the scroll), small and circular in the home "Who we are" intro.
+- Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below. Not sticky, small and circular in the home "Who we are" intro.
 - No blur placeholder on transparent images (it shows through the transparent areas).
 - A higher-resolution original would sharpen the large version on retina screens.
 

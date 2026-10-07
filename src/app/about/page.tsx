@@ -32,13 +32,15 @@ export default function AboutPage() {
       <PageHeader {...aboutIntro} blendTo="stone" />
 
       <Section bg="stone" blendTo="offwhite">
-        <RevealGroup className="page-wrap grid items-start gap-12 md:grid-cols-[18rem_minmax(0,1fr)] lg:gap-20">
-          <RevealItem className="md:mt-2">
-            <KateHeadshot size="large" />
-          </RevealItem>
-          <div>
+        <div className="page-wrap">
+          <RevealGroup className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
+            <RevealItem className="shrink-0">
+              <KateHeadshot size="large" />
+            </RevealItem>
             <SectionHeader label={founder.role} title={founder.name} />
-            <RevealGroup className="mt-8 space-y-5 text-charcoal">
+          </RevealGroup>
+          <RevealGroup className="mt-12 max-w-3xl">
+            <RevealGroup className="space-y-5 text-charcoal">
               {founder.bio.map((paragraph) => (
                 <RevealItem as="p" key={paragraph}>
                   {paragraph}
@@ -55,8 +57,8 @@ export default function AboutPage() {
                 ))}
               </dl>
             </RevealItem>
-          </div>
-        </RevealGroup>
+          </RevealGroup>
+        </div>
       </Section>
 
       <MottoStatement motto={pageMottos.about[0]} bg="offwhite" blendTo="lavender-tint" />
