@@ -72,11 +72,10 @@ Rules:
 
 ### Header
 
-- From `sm` (640px) up, the logo is the "Lead-in waves" wordmark lockup (`src/components/brand/HeaderWordmark.tsx`, 40px tall): a short stack of five slightly rippled lines on the left converges into one line pointing into "High Definition" (Poppins Medium, charcoal), with "ADVISORS" (Poppins Medium, caps, tracked wide, purple) underneath, like the business card. Text is live HTML so it stays crisp; the lines are 1px non-scaling purple strokes. Keep the waves slight (Aqua Tower floor plates, never an audio waveform).
-- On phones (below `sm`) the lockup is too wide beside the nav, so the header shows the compact mark (`src/components/HeaderLogo.tsx`): the HD monogram with a 5-line stack (`HEADER_MARK` in `resolution-geometry.ts`) that converges just right of the D. Five lines and 1px strokes keep it crisp at 28px; don't add lines.
-- Both ripple briefly on load (1.5s) and again on hover or focus (1.2s), then settle (`HEADER_MARK_RIPPLE` in `src/lib/motion.ts`). The ripple strength is 0 at both ends, so it starts and ends on the resting lines with no jump. Reduced motion keeps the resting lines.
+- The header logo is static and clean, like the deck header (`src/components/HeaderLogo.tsx`): the HD monogram (SVG, purple, 24px on phones, 28px from sm), a short 1px resolved line, then "HIGH DEFINITION ADVISORS" in Poppins Medium caps, 0.75rem, tracking 0.25em, purple, as live text. Below `md` only the monogram shows, so it fits beside the nav.
+- No line stack and no animation in the header. A converging stack at header size read as a broom, and the motion felt busy. Clean and fluid is the priority here; the line stack lives in the hero and footer.
 - `HeaderShell` is transparent at the top of the page; after scrolling it gets a soft offwhite background (85% opacity, slight blur, lavender-light rule) and the logo scales to 90%.
-- The other explored wordmark lockups (underline resolve, waves between, run-through) are in git history (commit 9d19989).
+- The earlier animated lockups (lead-in waves wordmark, rippling compact mark) are in git history (commit 81757fe and earlier, plus 9d19989).
 
 ### Motion system
 
@@ -91,7 +90,7 @@ Rules:
 
 ### Hero animation (home)
 
-- `src/components/HeroResolve.tsx`. On page load the rippling lines calm and converge into one resolved line through the monogram on their own, no scrolling (`HERO` in `src/lib/motion.ts`: 0.3s delay, 3.4s linear clock, each line easing in-out with outer lines lagging up to 22% so they finish last; about 3.5s total). The headline, tagline, and CTA (RevealItems orchestrated by HeroResolve) fade in once the lines are mostly resolved (2.7s). Plays once per page load.
+- `src/components/HeroResolve.tsx`. On page load the rippling lines calm and converge into one resolved line through the monogram on their own, no scrolling (`HERO` in `src/lib/motion.ts`: 0.225s delay, 2.55s linear clock, each line easing in-out with outer lines lagging up to 22% so they finish last; about 2.8s total). The headline, tagline, and CTA (RevealItems orchestrated by HeroResolve) fade in once the lines are mostly resolved (2.025s). Sped up about 25% from the original 0.3 / 3.4 / 2.7 in Oct 2026. Plays once per page load.
 - Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch (the page seemed to stop). Scrolling must always feel normal.
 - framer-motion `useMotionValue` + `animate` drive a 0..1 resolve value; `useTransform` rebuilds each path. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
 - `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and visible text instantly; the animation never starts.

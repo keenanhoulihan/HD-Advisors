@@ -46,22 +46,16 @@ export const drawLine: Variants = {
 };
 
 /**
- * Home hero: the lines resolve over ~3.5s total (ease-in-out per line, outer
+ * Home hero: the lines resolve over ~2.8s total (ease-in-out per line, outer
  * lines lagging so they finish last), then the text fades in once the lines
- * are mostly resolved.
+ * are mostly resolved. About 25% faster than the original 0.3 / 3.4 / 2.7.
  */
 export const HERO = {
-  delay: 0.3,
-  duration: 3.4,
+  delay: 0.225,
+  duration: 2.55,
   /** Share of the clock the outermost lines wait before starting. */
   lineLag: 0.22,
-  textDelay: 2.7,
-} as const;
-
-/** Header mark: a brief ripple that settles back into the resolved mark. */
-export const HEADER_MARK_RIPPLE = {
-  onLoad: 1.5,
-  onHover: 1.2,
+  textDelay: 2.025,
 } as const;
 
 /** Route changes: a quick, soft fade. */
