@@ -97,6 +97,18 @@ Rules:
 - Only the visible size (mobile or desktop) animates after hydration.
 - Full bleed: the hero lines and monogram span the full viewport width. The section is a direct full-width child of `main` (never inside `page-wrap`), the stacks run from x=0 to the viewBox's full width, and the section clips horizontal overflow. Use `w-full`, not `100vw` (100vw includes the scrollbar and causes horizontal scroll on Windows). Text below stays in `page-wrap`. Verified with no horizontal overflow at 360, 768, 1440, and 1920px.
 - All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `HeroResolve` (client).
+## Editing with Tina (Kate's editor)
+
+Kate edits the site herself at `/admin` (TinaCMS + Tina Cloud). She logs in, sees the real page with a sidebar, edits, previews live, and saves. Saving commits to GitHub and Vercel redeploys.
+
+- **Words live in `content/*.json`**: `home`, `about`, `approach`, `contact`, and `site` ("Every page": hero sentence, search description, contact details, closing CTA). `src/content/*.ts` are thin typed loaders over that JSON, so components keep importing from `@/content/...`.
+- **Locked in code (not editable):** layout, colors, fonts, line art, section order and backgrounds, nav, the brand name and tagline, and the motto labels used as section eyebrows (`src/content/mottos.ts`). Kate can edit each page's two motto statements (`mottos` in each page JSON).
+- **Schema:** `tina/config.ts`. One document per collection; `allowedActions` blocks creating or deleting pages. Friendly labels and descriptions are written for a non-technical editor. Adding a new editable field means adding it to the JSON, the schema, and the view.
+- **Live preview:** each page is a thin server `page.tsx` (metadata + JSON import) that renders a client view in `src/views/*View.tsx`. Views call `useLive(liveQueries.<page>, data)` (`src/lib/tina-live.ts`), which wraps Tina's `useTina`. Outside the editor it returns the JSON unchanged, so visitors never depend on Tina. List keys use the index so typing doesn't remount items.
+- **Images:** uploads go to `public/images` (repo-based media). `KateHeadshot`, `CtaBand`, and `LensDiagram` take optional props so views can pass live values.
+- **Scripts:** `npm run dev` runs Tina locally (`tinacms dev -c "next dev"`, saves to local files, no login). `npm run dev:site` runs Next alone. `npm run build` is `tinacms build && next build` and needs `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` (read-only) in Vercel. `tina/__generated__` and `public/admin` are generated and gitignored; commit `tina/tina-lock.json`.
+- Kate's how-to guide: `docs/editing-guide.md`.
+
 ## Color tokens
 
 Define as CSS variables in `globals.css` and map into Tailwind theme.
@@ -187,7 +199,7 @@ Global: sticky minimal header (HD monogram left, nav right), footer with fully r
 
 - App Router, Server Components by default; `"use client"` only for animation and the form UI.
 - Reusable `<ResolutionLine variant="full" | "partial" | "rule" | "monogram" />` component that generates SVG paths from parameters (line count, master curve, per-line lag/amplitude, convergence x).
-- Content (bio, lenses, phases, mottos) in `src/content/*.ts` so copy edits never touch layout.
+- Copy lives in `content/*.json` (edited in Tina) and is read through `src/content/*.ts`, so copy edits never touch layout.
 - Metadata per page via `generateMetadata`; OG image using the Primary colorway.
 - Accessibility: semantic landmarks, visible focus states in purple, aqua never for small text, AA contrast.
 - Responsive down to 360px. On mobile the line stack shortens but still resolves.

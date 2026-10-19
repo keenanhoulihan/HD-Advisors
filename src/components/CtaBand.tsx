@@ -1,4 +1,4 @@
-import { cta } from "@/content/site";
+import { cta as defaultCta, type SiteContent } from "@/content/site";
 import { ButtonLink } from "./ButtonLink";
 import { Monogram } from "./Monogram";
 import { RevealGroup, RevealItem } from "./Reveal";
@@ -10,7 +10,7 @@ import { SectionHeader } from "./SectionHeader";
  * Closing call to action on lavender tint (Tint colorway). Backgrounds stay
  * light. Always the last band, so it blends into the offwhite footer.
  */
-export function CtaBand() {
+export function CtaBand({ cta = defaultCta }: { cta?: SiteContent["cta"] }) {
   return (
     <Section bg="lavender-tint" blendTo="offwhite" padding="pt-16 sm:pt-20">
       <ResolutionLine variant="partial" resolve={0.85} />
