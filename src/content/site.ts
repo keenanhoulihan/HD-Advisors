@@ -1,18 +1,18 @@
+import data from "../../content/site.json";
 import { mottos } from "./mottos";
 
+/*
+ * Name and tagline are the brand and stay in code. The description, hero
+ * sentence, contact details, and closing CTA live in content/site.json so
+ * Kate can edit them in Tina.
+ */
 export const site = {
   name: "High Definition Advisors",
   tagline: mottos.primary,
-  description:
-    "High Definition Advisors helps mission-driven organizations move past uncertain phases of growth into real clarity, with one actionable roadmap built for sustainability.",
-  positioning:
-    "We help mission-driven organizations move past the fuzzy, uncertain phases of growth and into real clarity, with one roadmap built for the long haul.",
-  contact: {
-    email: "[email]",
-    phone: "[phone]",
-    website: "[website]",
-  },
-} as const;
+  description: data.description,
+  positioning: data.positioning,
+  contact: data.contact,
+};
 
 export const nav = [
   { href: "/about", label: "About" },
@@ -20,9 +20,5 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export const cta = {
-  label: "Next step",
-  title: "Clarity starts with a conversation.",
-  body: "Every engagement starts with listening. Tell us where things feel fuzzy, and we will take it from there.",
-  button: "Start a conversation",
-} as const;
+export const cta = data.cta;
+export type SiteContent = typeof data;

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { integratedPlan, lenses } from "@/content/approach";
+import { type ApproachContent, integratedPlan as defaultPlan, lenses as defaultLenses } from "@/content/approach";
 import { cn } from "@/lib/cn";
 import { CARD_STAGGER, fadeUp, staggerChildren, VIEWPORT } from "@/lib/motion";
 import { lensIllustrations } from "./LensIllustrations";
@@ -19,7 +19,14 @@ const lensPath = (center: number) => {
  * Four Lenses, One Roadmap. Hover (mouse), tap, or keyboard focus on a lens
  * highlights its line flowing into the integrated plan and reveals its detail.
  */
-export function LensDiagram() {
+export function LensDiagram({
+  lenses = defaultLenses,
+  integratedPlan = defaultPlan,
+}: {
+  /** Live values from the editor preview; default to the saved content. */
+  lenses?: ApproachContent["lenses"];
+  integratedPlan?: ApproachContent["integratedPlan"];
+} = {}) {
   const [active, setActive] = useState<number | null>(null);
   const release = (i: number) => setActive((current) => (current === i ? null : current));
 

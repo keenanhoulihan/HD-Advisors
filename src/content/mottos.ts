@@ -1,3 +1,7 @@
+import about from "../../content/about.json";
+import approach from "../../content/approach.json";
+import home from "../../content/home.json";
+
 export const mottos = {
   primary: "Clarity for Complex Growth",
   lenses: "Four Lenses, One Roadmap",
@@ -9,15 +13,13 @@ export const mottos = {
   scaling: "Scaling Missions, Sustainably.",
 } as const;
 
-/** Adds a period unless the motto already ends with punctuation. */
-const statement = (motto: string) => (/[.!?]$/.test(motto) ? motto : `${motto}.`);
-
 /*
- * Motto statements shown between major sections. Each page uses different
- * mottos; check the page's other headings so a motto never repeats on a page.
+ * The two motto statements on each page are edited per page in Tina (the
+ * "mottos" field in content/<page>.json). Each page uses different mottos.
  */
+
 export const pageMottos = {
-  home: [statement(mottos.design), statement(mottos.custom)],
-  about: [statement(mottos.longHaul), statement(mottos.secondary)],
-  approach: [statement(mottos.shift), statement(mottos.scaling)],
-} as const;
+  home: home.mottos,
+  about: about.mottos,
+  approach: approach.mottos,
+};
