@@ -6,6 +6,7 @@ import type { resume as resumeContent } from "@/content/about";
 import { cn } from "@/lib/cn";
 import { fadeUp } from "@/lib/motion";
 import { toParagraphs } from "@/lib/text";
+import { edit, list } from "@/lib/tina-live";
 import { ResumeMap } from "./ResumeMap";
 import { ResumeTimeline } from "./ResumeTimeline";
 
@@ -23,9 +24,9 @@ export function ResumeTabs({ resume }: { resume: Resume }) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const tabs = [
-    { label: resume.whoIAm.tabLabel, panel: <WhoIAm content={resume.whoIAm} /> },
-    { label: resume.places.tabLabel, panel: <ResumeMap content={resume.places} /> },
-    { label: resume.timeline.tabLabel, panel: <ResumeTimeline content={resume.timeline} /> },
+    { source: resume.whoIAm, panel: <WhoIAm content={resume.whoIAm} /> },
+    { source: resume.places, panel: <ResumeMap content={resume.places} /> },
+    { source: resume.timeline, panel: <ResumeTimeline content={resume.timeline} /> },
   ];
 
   const select = (i: number) => {
@@ -49,7 +50,7 @@ export function ResumeTabs({ resume }: { resume: Resume }) {
           const selected = i === active;
           return (
             <button
-              key={tab.label}
+              key={i}
               ref={(node) => {
                 tabRefs.current[i] = node;
               }}
@@ -65,7 +66,7 @@ export function ResumeTabs({ resume }: { resume: Resume }) {
                 selected ? "text-purple" : "text-slate hover:text-purple",
               )}
             >
-              {tab.label}
+              <span {...edit(tab.source, "tabLabel")}>{tab.source.tabLabel}</span>
               <span
                 aria-hidden="true"
                 className={cn(
@@ -80,7 +81,7 @@ export function ResumeTabs({ resume }: { resume: Resume }) {
 
       {tabs.map((tab, i) => (
         <div
-          key={tab.label}
+          key={i}
           role="tabpanel"
           id={`${baseId}-panel-${i}`}
           aria-labelledby={`${baseId}-tab-${i}`}
@@ -105,18 +106,24 @@ function WhoIAm({ content }: { content: Resume["whoIAm"] }) {
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-16">
       <div>
-        <h3 className="text-h3 text-charcoal">{content.title}</h3>
-        <div className="mt-5 space-y-5 text-charcoal">
-          {toParagraphs(content.body).map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+        <h3 className="text-h3 text-charcoal" {...edit(content, "title")}>
+          {content.title}
+        </h3>
+        <div className="mt-5 space-y-5 text-charcoal" {...edit(content, "body")}>
+          {toParagraphs(content.body).map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
           ))}
         </div>
       </div>
       <ul className="space-y-6">
-        {content.values.map((value) => (
-          <li key={value.title} className="border-t border-lavender pt-5">
-            <p className="font-semibold text-purple">{value.title}</p>
-            <p className="mt-1 text-slate">{value.body}</p>
+        {list(content.values).map((value, i) => (
+          <li key={i} className="border-t border-lavender pt-5">
+            <p className="font-semibold text-purple" {...edit(value, "title")}>
+              {value.title}
+            </p>
+            <p className="mt-1 text-slate" {...edit(value, "body")}>
+              {value.body}
+            </p>
           </li>
         ))}
       </ul>

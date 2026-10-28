@@ -4,14 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { cn } from "@/lib/cn";
+import { edit } from "@/lib/tina-live";
+import { navItems, useSite } from "./SiteLive";
 
-type NavItem = { href: string; label: string };
+type NavItem = ReturnType<typeof navItems>[number];
 
 /**
  * Inline links from md up. Below md there isn't room beside the monogram, so a
  * Menu button opens the same links in a simple panel under the header.
  */
-export function NavLinks({ items }: { items: NavItem[] }) {
+export function NavLinks() {
+  const siteData = useSite();
+  const items = navItems(siteData);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [openedAt, setOpenedAt] = useState(pathname);
@@ -33,6 +37,7 @@ export function NavLinks({ items }: { items: NavItem[] }) {
       <Link
         href={item.href}
         aria-current={active ? "page" : undefined}
+        {...edit(siteData.site.nav, item.field)}
         className={cn("link-underline font-medium", active ? "text-purple" : "text-charcoal hover:text-purple", className)}
       >
         {item.label}

@@ -30,6 +30,8 @@ type RevealProps = {
   className?: string;
   id?: string;
   "aria-label"?: string;
+  /** Click-to-edit target in Tina (see `edit` in src/lib/tina-live.ts). */
+  "data-tina-field"?: string;
   children: React.ReactNode;
 };
 

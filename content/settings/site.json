@@ -13,5 +13,17 @@
     "title": "Clarity starts with a conversation.",
     "body": "Every engagement starts with listening. Tell us where things feel fuzzy, and we will take it from there.",
     "button": "Start a conversation"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "approach": "Approach",
+    "offerings": "Offerings",
+    "endorsements": "Endorsements",
+    "contact": "Contact"
+  },
+  "footer": {
+    "exploreLabel": "Explore",
+    "contactLabel": "Get in touch"
   }
 }

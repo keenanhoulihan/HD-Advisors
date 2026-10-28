@@ -6,14 +6,17 @@ Kate, this is everything you need to update the High Definition Advisors site yo
 
 1. Go to your website and add `/admin` to the end of the address (for example `yoursite.com/admin`).
 2. Log in with your email. The first time, use the invite email Tina sends you to set your password.
-3. You'll see a list of pages on the left.
+3. You'll see your actual website on the right and an editing panel on the left.
 
 ## Making a change
 
-1. Pick a page from the list: **Home Page**, **About Kate**, **Approach Page**, **Consulting Offerings**, **Endorsements Page**, **Contact Page**, **Site Settings**, or **Mottos**.
-2. Click the section you want to change, like "Who we are" or "Interactive bio."
-3. Click into any box and type.
-4. Happy with it? Click **Save**. Your site updates on its own in about a minute or two.
+1. Browse your site on the right just like a visitor: click the menu links to move between pages.
+2. **Click the words you want to change.** Anything you can edit gets a dotted outline, and clicking it opens the right box on the left.
+3. Type. The page on the right updates as you type, so you can see exactly how it will look.
+4. Happy with it? Click **Save** at the bottom left. Your site updates on its own in about a minute or two.
+5. Changed your mind before saving? Click **Reset** and everything goes back.
+
+You can also pick a page from the menu (top left): **Home Page**, **About Kate**, **Approach Page**, **Consulting Offerings**, **Endorsements Page**, **Contact Page**, **Site Settings**, or **Mottos**. The menu link names, footer, contact details, and the "Start a conversation" band are in **Site Settings**. The big statements between sections are in **Mottos**. If the panel shows Site Settings when you wanted the page itself, use the arrow at the top of the panel to switch.
 
 Some boxes hold several paragraphs. Leave a blank line between paragraphs.
 
@@ -35,7 +38,7 @@ Two pieces were drafted for you to rewrite in your own words: the "Why HD?" call
 
 Your photo appears in two places: **Home Page > Who we are** and **About Kate > Kate's bio**. Both are labeled "Replace with new photo."
 
-1. Click the photo, then upload a new one or pick one you've uploaded before.
+1. Click your photo on the page, then upload a new one or pick one you've uploaded before.
 2. Update **Photo description for screen readers** so it still describes the photo.
 3. Save.
 
@@ -49,7 +52,7 @@ Open **Consulting Offerings**. Each offering has a title, a description, and an 
 
 The Endorsements page stays hidden until you're ready.
 
-1. Add each endorsement under **Endorsements** (quote, name, title, organization, optional photo) and each client under **Clients** (name, optional logo and website). Only add people and organizations who have said yes.
+1. From the menu (top left), add each endorsement under **Endorsements** (quote, name, title, organization, optional photo) and each client under **Clients** (name, optional logo and website). Only add people and organizations who have said yes.
 2. When you're ready to show it, open **Site Settings** and turn on **Show the Endorsements page in the menu**.
 
 ## What's where
@@ -58,6 +61,8 @@ The Endorsements page stays hidden until you're ready.
 | --- | --- |
 | The sentence under "Clarity for Complex Growth" | Site Settings > Home page hero sentence |
 | Your email, phone, or website | Site Settings > Contact details |
+| The menu and footer link names | Site Settings > Menu link names |
+| The contact form's labels and button | Contact Page > Form labels and button |
 | The "Start a conversation" band at the bottom of pages | Site Settings > Closing "Start a conversation" band |
 | Your intro on the home page | Home Page > Who we are |
 | Your bio, title, or photo | About Kate > Kate's bio |
@@ -70,7 +75,7 @@ The Endorsements page stays hidden until you're ready.
 
 ## What you can't break
 
-Colors, fonts, the line artwork, and the layout are locked. You can only change words, lists, switches, and photos, so the site always looks on brand. If something ever looks off after saving, just change it back and save again.
+Colors, fonts, the line artwork, the layout, and the company name are locked. You can only change words, lists, switches, and photos, so the site always looks on brand. If something ever looks off after saving, just change it back and save again.
 
 ## Good to know
 

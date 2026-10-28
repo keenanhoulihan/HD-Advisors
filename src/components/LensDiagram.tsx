@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { integratedPlan, lenses } from "@/content/approach";
+import type approachJson from "../../content/pages/approach.json";
 import { cn } from "@/lib/cn";
+import { edit, list } from "@/lib/tina-live";
 import { CARD_STAGGER, fadeUp, staggerChildren, VIEWPORT } from "@/lib/motion";
 import { lensIllustrations } from "./LensIllustrations";
 
@@ -19,7 +20,14 @@ const lensPath = (center: number) => {
  * Four Lenses, One Roadmap. Hover (mouse), tap, or keyboard focus on a lens
  * highlights its line flowing into the integrated plan and reveals its detail.
  */
-export function LensDiagram() {
+export function LensDiagram({
+  lenses: lensItems,
+  integratedPlan,
+}: {
+  lenses: (typeof approachJson)["lenses"];
+  integratedPlan: (typeof approachJson)["integratedPlan"];
+}) {
+  const lenses = list(lensItems);
   const [active, setActive] = useState<number | null>(null);
   const release = (i: number) => setActive((current) => (current === i ? null : current));
 
@@ -38,7 +46,7 @@ export function LensDiagram() {
           const detailId = `lens-detail-${i}`;
           return (
             <motion.li
-              key={lens.name}
+              key={i}
               data-reveal=""
               variants={fadeUp}
               onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
@@ -60,8 +68,12 @@ export function LensDiagram() {
                 className="mt-6 text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-purple"
               >
                 <span className="eyebrow block text-purple">Lens {String(i + 1).padStart(2, "0")}</span>
-                <span className="mt-3 block text-h3 text-charcoal">{lens.name}</span>
-                <span className="mt-3 block font-medium text-charcoal">{lens.summary}</span>
+                <span className="mt-3 block text-h3 text-charcoal" {...edit(lens, "name")}>
+                  {lens.name}
+                </span>
+                <span className="mt-3 block font-medium text-charcoal" {...edit(lens, "summary")}>
+                  {lens.summary}
+                </span>
               </button>
               <div
                 id={detailId}
@@ -73,7 +85,9 @@ export function LensDiagram() {
                 )}
               >
                 <p className="overflow-hidden text-slate">
-                  <span className="block pt-3">{lens.detail}</span>
+                  <span className="block pt-3" {...edit(lens, "detail")}>
+                    {lens.detail}
+                  </span>
                 </p>
               </div>
             </motion.li>
@@ -138,11 +152,17 @@ export function LensDiagram() {
       </svg>
 
       <div className="border-[1.5px] border-purple bg-aqua-light px-8 py-10 text-center sm:px-12 sm:py-12">
-        <p className="eyebrow text-purple">{integratedPlan.label}</p>
-        <h3 className="mt-3 text-h3 text-charcoal">{integratedPlan.title}</h3>
-        <p className="mx-auto mt-4 max-w-2xl text-slate">{integratedPlan.body}</p>
+        <p className="eyebrow text-purple" {...edit(integratedPlan, "label")}>
+          {integratedPlan.label}
+        </p>
+        <h3 className="mt-3 text-h3 text-charcoal" {...edit(integratedPlan, "title")}>
+          {integratedPlan.title}
+        </h3>
+        <p className="mx-auto mt-4 max-w-2xl text-slate" {...edit(integratedPlan, "body")}>
+          {integratedPlan.body}
+        </p>
         <p aria-live="polite" className="mt-4 min-h-[1.5em] text-sm font-medium text-purple">
-          {active !== null && `${lenses[active].name} flows into the plan.`}
+          {active !== null && lenses[active] && `${lenses[active].name} flows into the plan.`}
         </p>
       </div>
     </div>

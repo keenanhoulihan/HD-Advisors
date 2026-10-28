@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteLive } from "@/components/SiteLive";
 import { site } from "@/content/site";
+import mottosJson from "../../content/settings/mottos.json";
+import siteJson from "../../content/settings/site.json";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -40,11 +43,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        <SiteLive data={{ site: siteJson, mottos: mottosJson }}>
+          <SiteHeader />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+        </SiteLive>
       </body>
     </html>
   );

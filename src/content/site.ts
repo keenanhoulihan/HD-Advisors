@@ -12,14 +12,4 @@ export const site = {
   showEndorsements: data.showEndorsements,
 };
 
-const allNav = [
-  { href: "/about", label: "About" },
-  { href: "/approach", label: "Approach" },
-  { href: "/offerings", label: "Offerings" },
-  { href: "/endorsements", label: "Endorsements" },
-  { href: "/contact", label: "Contact" },
-];
-
-export const nav = allNav.filter((item) => item.href !== "/endorsements" || site.showEndorsements);
-
 export const cta = data.cta;

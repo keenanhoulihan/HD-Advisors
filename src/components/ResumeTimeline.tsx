@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import type { resume } from "@/content/about";
 import { cn } from "@/lib/cn";
+import { edit, list } from "@/lib/tina-live";
 import { ResolutionLine } from "./ResolutionLine";
 
 /**
@@ -13,12 +14,14 @@ import { ResolutionLine } from "./ResolutionLine";
  */
 export function ResumeTimeline({ content }: { content: (typeof resume)["timeline"] }) {
   const baseId = useId();
-  const { entries } = content;
+  const entries = list(content.entries);
   const [open, setOpen] = useState<number | null>(entries.length - 1);
 
   return (
     <div>
-      <p className="text-slate">{content.intro}</p>
+      <p className="text-slate" {...edit(content, "intro")}>
+        {content.intro}
+      </p>
 
       <ol className="relative mt-8 border-l-[1.5px] border-lavender pl-6 sm:pl-10">
         {entries.map((entry, i) => {
@@ -26,7 +29,7 @@ export function ResumeTimeline({ content }: { content: (typeof resume)["timeline
           const latest = i === entries.length - 1;
           const panelId = `${baseId}-entry-${i}`;
           return (
-            <li key={`${entry.role}-${entry.organization}`} className="relative pb-2 last:pb-0">
+            <li key={i} className="relative pb-2 last:pb-0">
               <span
                 aria-hidden="true"
                 className={cn(
@@ -43,11 +46,18 @@ export function ResumeTimeline({ content }: { content: (typeof resume)["timeline
                   className="group flex w-full items-start justify-between gap-6 py-4 text-left"
                 >
                   <span>
-                    <span className="eyebrow block text-purple">{entry.years}</span>
-                    <span className="mt-2 block text-lg leading-snug font-semibold text-charcoal transition-colors duration-200 ease-out group-hover:text-purple sm:text-xl">
+                    <span className="eyebrow block text-purple" {...edit(entry, "years")}>
+                      {entry.years}
+                    </span>
+                    <span
+                      {...edit(entry, "role")}
+                      className="mt-2 block text-lg leading-snug font-semibold text-charcoal transition-colors duration-200 ease-out group-hover:text-purple sm:text-xl"
+                    >
                       {entry.role}
                     </span>
-                    <span className="mt-1 block text-slate">{entry.organization}</span>
+                    <span className="mt-1 block text-slate" {...edit(entry, "organization")}>
+                      {entry.organization}
+                    </span>
                   </span>
                   <span
                     aria-hidden="true"
@@ -64,16 +74,20 @@ export function ResumeTimeline({ content }: { content: (typeof resume)["timeline
               <div id={panelId} hidden={!expanded} className="pb-6">
                 <div className="max-w-xl bg-lavender-tint p-6">
                   <ResolutionLine variant="partial" compact resolve={(i + 1) / entries.length} tone={latest ? "aqua" : "purple"} />
-                  <p className="mt-5 text-sm text-slate">{entry.location}</p>
-                  <p className="mt-2 text-charcoal">{entry.description}</p>
-                  {(entry.isBoard || entry.lenses.length > 0) && (
+                  <p className="mt-5 text-sm text-slate" {...edit(entry, "location")}>
+                    {entry.location}
+                  </p>
+                  <p className="mt-2 text-charcoal" {...edit(entry, "description")}>
+                    {entry.description}
+                  </p>
+                  {(entry.isBoard || list(entry.lenses).length > 0) && (
                     <ul aria-label="Tags" className="mt-5 flex flex-wrap gap-2">
                       {entry.isBoard && (
                         <li className="rounded-full bg-purple px-3 py-1 text-xs font-medium tracking-wide text-white">
                           Board and civic
                         </li>
                       )}
-                      {entry.lenses.map((lens) => (
+                      {list(entry.lenses).map((lens) => (
                         <li
                           key={lens}
                           className="rounded-full border border-purple px-3 py-1 text-xs font-medium tracking-wide text-purple"

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { MapPin, resume } from "@/content/about";
 import { cn } from "@/lib/cn";
+import { edit, list } from "@/lib/tina-live";
 import { AMERICAS_MAP, MID_ATLANTIC_INSET, type MapFrame } from "@/lib/map-geometry";
 
 /*
@@ -37,7 +38,8 @@ export function ResumeMap({ content }: { content: (typeof resume)["places"] }) {
   const [active, setActive] = useState(0);
   const { width, height } = AMERICAS_MAP;
 
-  const placed: Placed[] = content.pins.map((pin, index) => {
+  const pins = list(content.pins);
+  const placed: Placed[] = pins.map((pin, index) => {
     if (inBounds(MID_ATLANTIC_INSET, pin)) {
       const p = project(MID_ATLANTIC_INSET, pin);
       return { pin, index, x: INSET_X + p.x * INSET_SCALE, y: INSET_Y + p.y * INSET_SCALE };
@@ -50,11 +52,14 @@ export function ResumeMap({ content }: { content: (typeof resume)["places"] }) {
   const nw = project(AMERICAS_MAP, { lat: north, lng: west } as MapPin);
   const se = project(AMERICAS_MAP, { lat: south, lng: east } as MapPin);
 
-  const current = content.pins[active];
+  // Kate may remove pins while editing: never point past the end of the list.
+  const current = pins[Math.min(active, pins.length - 1)];
 
   return (
     <div>
-      <p className="text-slate">{content.intro}</p>
+      <p className="text-slate" {...edit(content, "intro")}>
+        {content.intro}
+      </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-12">
         <div className="relative mx-auto w-full max-w-136">
@@ -102,7 +107,7 @@ export function ResumeMap({ content }: { content: (typeof resume)["places"] }) {
             const selected = index === active;
             return (
               <button
-                key={pin.place}
+                key={index}
                 type="button"
                 aria-pressed={selected}
                 aria-label={pin.place}
@@ -134,16 +139,24 @@ export function ResumeMap({ content }: { content: (typeof resume)["places"] }) {
         </div>
 
         <div>
-          <div aria-live="polite" className="border-l-[1.5px] border-purple bg-lavender-tint p-6 sm:p-8">
-            <p className="eyebrow text-purple">{current.place}</p>
-            <h3 className="mt-3 text-h3 text-charcoal">{current.title}</h3>
-            <p className="mt-3 text-slate">{current.body}</p>
-          </div>
+          {current && (
+            <div aria-live="polite" className="border-l-[1.5px] border-purple bg-lavender-tint p-6 sm:p-8">
+              <p className="eyebrow text-purple" {...edit(current, "place")}>
+                {current.place}
+              </p>
+              <h3 className="mt-3 text-h3 text-charcoal" {...edit(current, "title")}>
+                {current.title}
+              </h3>
+              <p className="mt-3 text-slate" {...edit(current, "body")}>
+                {current.body}
+              </p>
+            </div>
+          )}
 
           {/* The same places as a list: easier on small screens and for keyboard users. */}
           <ul className="mt-6 flex flex-wrap gap-2">
-            {content.pins.map((pin, index) => (
-              <li key={pin.place}>
+            {pins.map((pin, index) => (
+              <li key={index}>
                 <button
                   type="button"
                   aria-pressed={index === active}

@@ -7,6 +7,8 @@ import { cn } from "@/lib/cn";
  * Large: a 160px circle (220px from md) with a thin purple ring. No blur
  * placeholder: it would show through transparent areas.
  */
+const DEFAULT_PHOTO = "/images/kate-headshot.png";
+
 export function KateHeadshot({
   size,
   src,
@@ -14,10 +16,13 @@ export function KateHeadshot({
   className,
 }: {
   size: "large" | "small";
-  src: string;
-  alt: string;
+  src: string | null | undefined;
+  alt: string | null | undefined;
   className?: string;
 }) {
+  // While Kate swaps the photo in Tina the field can be briefly empty.
+  src ||= DEFAULT_PHOTO;
+  alt ??= "";
   if (size === "small") {
     return (
       <div className={cn("relative aspect-square w-36 overflow-hidden rounded-full bg-lavender-tint sm:w-44", className)}>

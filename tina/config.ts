@@ -103,7 +103,11 @@ const page = (name: string, label: string, file: string, fields: TinaField[], ro
 
 // ---- Collections -----------------------------------------------------------
 
-const siteSettings = page("site", "Site Settings", "settings/site", [
+const siteSettings = page(
+  "site",
+  "Site Settings",
+  "settings/site",
+  [
   text("name", "Company name"),
   longText("description", "Search engine description", "Shown in Google results and link previews."),
   longText("positioning", "Home page hero sentence", "The one sentence under “Clarity for Complex Growth.”"),
@@ -128,9 +132,32 @@ const siteSettings = page("site", "Site Settings", "settings/site", [
     ],
     "Appears at the bottom of every page.",
   ),
-]);
+  group(
+    "nav",
+    "Menu link names",
+    [
+      text("home", "Home (footer only)"),
+      text("about", "About"),
+      text("approach", "Approach"),
+      text("offerings", "Offerings"),
+      text("endorsements", "Endorsements"),
+      text("contact", "Contact"),
+    ],
+    "The words in the top menu and the footer. Each one always links to the same page.",
+  ),
+  group("footer", "Footer", [
+    text("exploreLabel", "Heading above the page links"),
+    text("contactLabel", "Heading above the contact details"),
+  ]),
+  ],
+  "/",
+);
 
-const mottos = page("mottos", "Mottos", "settings/mottos", [
+const mottos = page(
+  "mottos",
+  "Mottos",
+  "settings/mottos",
+  [
   text("primary", "Main tagline", "Appears on every page."),
   text("lenses", "Four Lenses, One Roadmap"),
   text("shift", "From Reactive to Intentional"),
@@ -139,13 +166,16 @@ const mottos = page("mottos", "Mottos", "settings/mottos", [
   text("custom", "Never cookie-cutter"),
   text("secondary", "Clear Strategy. Sustainable Impact."),
   text("scaling", "Scaling Missions, Sustainably."),
-]);
+  ],
+  "/",
+);
 
 const home = page(
   "home",
   "Home Page",
   "pages/home",
   [
+    text("heroButton", "Hero button text", "The button under the big headline at the top of the home page."),
     group("founderIntro", "Who we are (Kate's intro, right under the hero)", [
       text("label", "Small label above the heading"),
       text("title", "Heading"),
@@ -329,6 +359,28 @@ const contact = page(
       longText("unavailable", "Message if the form cannot send"),
     ]),
     itemList("nextSteps", "What happens next", "title", [text("title", "Step"), longText("body", "Text")]),
+    group("asideCopy", "Side column headings", [
+      text("nextStepsLabel", "Heading above the steps"),
+      text("otherWaysLabel", "Heading above the contact details"),
+    ]),
+    group(
+      "formLabels",
+      "Form labels and button",
+      [
+        text("name", "Name box label"),
+        text("email", "Email box label"),
+        text("organization", "Organization box label"),
+        text("message", "Message box label"),
+        text("timeline", "Timeline menu label"),
+        text("budget", "Budget menu label"),
+        text("optional", "Word shown next to optional boxes"),
+        text("timelinePlaceholder", "Timeline menu: text before a choice"),
+        text("budgetPlaceholder", "Budget menu: text before a choice"),
+        text("submit", "Send button"),
+        text("sending", "Send button while sending"),
+      ],
+      "The words on the contact form itself.",
+    ),
   ],
   "/contact",
 );
@@ -388,7 +440,6 @@ const endorsement: Collection = {
   label: "Endorsements",
   path: "content/endorsements",
   format: "json",
-  ui: { router: () => "/endorsements" },
   fields: [
     { type: "string", name: "quote", label: "Quote", required: true, ui: { component: "textarea" } },
     { type: "string", name: "name", label: "Name", required: true, isTitle: true },
@@ -404,7 +455,6 @@ const client: Collection = {
   label: "Clients",
   path: "content/clients",
   format: "json",
-  ui: { router: () => "/endorsements" },
   fields: [
     { type: "string", name: "name", label: "Organization name", required: true, isTitle: true },
     photo("logo", "Logo", "Only add a logo with the organization's permission. SVG or PNG on a transparent background works best."),

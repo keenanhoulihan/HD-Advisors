@@ -36,5 +36,22 @@
     "In the next 3 months",
     "In the next 6 months",
     "Just exploring for now"
-  ]
+  ],
+  "asideCopy": {
+    "nextStepsLabel": "What happens next",
+    "otherWaysLabel": "Other ways to reach us"
+  },
+  "formLabels": {
+    "name": "Name",
+    "email": "Email",
+    "organization": "Organization",
+    "message": "What's going on?",
+    "timeline": "Timeline",
+    "budget": "Budget",
+    "optional": "Optional",
+    "timelinePlaceholder": "Select a timeline",
+    "budgetPlaceholder": "Select a range",
+    "submit": "Send message",
+    "sending": "Sending..."
+  }
 }
