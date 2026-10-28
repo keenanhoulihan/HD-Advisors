@@ -13,6 +13,7 @@ import { drawLine, fadeUp, staggerChildren, STAGGER, VIEWPORT } from "@/lib/moti
 const tags = {
   div: motion.div,
   header: motion.header,
+  aside: motion.aside,
   ul: motion.ul,
   ol: motion.ol,
   li: motion.li,

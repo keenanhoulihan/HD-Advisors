@@ -14,6 +14,7 @@ import { challenges, challengesIntro, founderIntro, lensesTeaser, shift } from "
 import { mottos, pageMottos } from "@/content/mottos";
 import { site } from "@/content/site";
 import { CARD_STAGGER } from "@/lib/motion";
+import { toParagraphs } from "@/lib/text";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -42,7 +43,40 @@ export default function HomePage() {
         </div>
       </HeroResolve>
 
-      <Section bg="lavender-tint" blendTo="offwhite">
+      {/* Kate first: right after the hero, so the first look is the person behind the work. */}
+      <Section bg="lavender-tint" blendTo="stone">
+        <RevealGroup className="page-wrap flex flex-col items-start gap-10 md:flex-row md:items-start md:gap-16">
+          <RevealItem className="shrink-0">
+            <KateHeadshot
+              size="small"
+              src={founderIntro.photo}
+              alt={founderIntro.photoAlt}
+              className="border-[1.5px] border-purple"
+            />
+          </RevealItem>
+          <div className="max-w-2xl">
+            <SectionHeader label={founderIntro.label} title={founderIntro.title} />
+            <div className="mt-6 space-y-5 text-charcoal">
+              {toParagraphs(founderIntro.body).map((paragraph) => (
+                <RevealItem as="p" key={paragraph}>
+                  {paragraph}
+                </RevealItem>
+              ))}
+            </div>
+            <RevealItem as="aside" aria-label={founderIntro.hdCallout.label} className="mt-8 border-l-[1.5px] border-purple bg-offwhite p-6 sm:p-7">
+              <p className="eyebrow text-purple">{founderIntro.hdCallout.label}</p>
+              <p className="mt-3 text-charcoal">{founderIntro.hdCallout.body}</p>
+            </RevealItem>
+            <RevealItem className="mt-8">
+              <Link href="/about" className="link-underline inline-block font-medium text-purple">
+                {founderIntro.link} <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </RevealItem>
+          </div>
+        </RevealGroup>
+      </Section>
+
+      <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap">
           <SectionHeader {...challengesIntro} />
           <RevealGroup as="ol" className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -59,7 +93,7 @@ export default function HomePage() {
 
       <MottoStatement motto={pageMottos.home[0]} bg="offwhite" blendTo="stone" />
 
-      <Section bg="stone" blendTo="offwhite">
+      <Section bg="stone" blendTo="aqua-light">
         <div className="page-wrap">
           <SectionHeader label={mottos.shift} title={shift.title} />
           <RevealGroup stagger={CARD_STAGGER} className="mt-14 grid gap-6 md:grid-cols-2">
@@ -71,22 +105,6 @@ export default function HomePage() {
             </RevealItem>
           </RevealGroup>
         </div>
-      </Section>
-
-      <Section bg="offwhite" blendTo="aqua-light">
-        <RevealGroup className="page-wrap flex flex-col items-start gap-10 md:flex-row md:items-center md:gap-14">
-          <RevealItem className="shrink-0">
-            <KateHeadshot size="small" />
-          </RevealItem>
-          <div className="max-w-2xl">
-            <SectionHeader label={founderIntro.label} title={founderIntro.title} intro={founderIntro.body} />
-            <RevealItem className="mt-6">
-              <Link href="/about" className="link-underline inline-block font-medium text-purple">
-                {founderIntro.link} <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </RevealItem>
-          </div>
-        </RevealGroup>
       </Section>
 
       <Section bg="aqua-light" blendTo="offwhite" padding="pt-16 pb-20 sm:pt-20 sm:pb-28">

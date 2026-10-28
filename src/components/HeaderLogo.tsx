@@ -9,7 +9,8 @@ import { Monogram } from "./Monogram";
  * header size a converging stack reads as a broom.
  *
  * The monogram is SVG and the name is live text, so both stay crisp on retina
- * screens. Below md there isn't room beside the nav, so only the monogram shows.
+ * screens. Below lg there isn't room beside the five nav links, so only the
+ * monogram shows.
  */
 export function HeaderLogo() {
   return (
@@ -19,10 +20,10 @@ export function HeaderLogo() {
       className="-m-2 flex items-center gap-3 p-2 text-purple"
     >
       <Monogram className="block h-6 w-auto sm:h-7" />
-      <span aria-hidden="true" className="hidden h-px w-8 shrink-0 bg-current md:block" />
+      <span aria-hidden="true" className="hidden h-px w-8 shrink-0 bg-current lg:block" />
       <span
         aria-hidden="true"
-        className="hidden text-[0.75rem] leading-none font-medium tracking-[0.25em] whitespace-nowrap uppercase md:block"
+        className="hidden text-[0.75rem] leading-none font-medium tracking-[0.25em] whitespace-nowrap uppercase lg:block"
       >
         High Definition Advisors
       </span>

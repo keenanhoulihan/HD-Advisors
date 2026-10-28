@@ -1,7 +1,7 @@
 # High Definition Advisors: Website
 
 Marketing site for High Definition Advisors, a strategy consultancy founded by Kate Hibbs Davis ("Kate HD").
-Stack: Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel from GitHub.
+Stack: Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel from GitHub. Copy is edited by Kate in TinaCMS (see "Content editing").
 
 ## The company (source of truth for copy)
 
@@ -14,19 +14,26 @@ Stack: Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel from
 
 ## Kate's background (source of truth)
 
-Use these facts only. Never invent numbers, clients, or results. Content lives in `src/content/about.ts`.
+Use these facts only. Never invent numbers, clients, or results. Content lives in `content/pages/about.json` (typed by `src/content/about.ts`). Kate's own draft bio (Oct 2026) is the base for the /about bio.
 
-- Kate Hibbs Davis, Founder & Principal. Bilingual in English and Spanish. Education: William & Mary.
+- Kate Hibbs Davis, Founder & Principal. More than 15 years in organizational growth, philanthropic strategy, and external relations across cultural, scientific, and civic institutions. Issues: climate resilience, access to STE(A)M education, democracy, fair banking, affordable housing, human rights. Fluent in Spanish; works in English and Spanish.
+- Education: Bachelor of Arts degrees in Immigration Studies and Hispanic Studies, The College of William & Mary (Williamsburg, VA), magna cum laude and Phi Beta Kappa.
+- Lives in her hometown of Chicago with her spouse, their two daughters, and their 90-pound doodle, Timber.
 - Experience (most recent first, all past roles):
-  - Director of External Affairs, Griffin Museum of Science and Industry, Chicago (2024 to 2026)
+  - Director of External Affairs for Major and Planned Gifts, Griffin Museum of Science and Industry, Chicago (2024 to 2026). Always use this full title, in past tense: she has left the role. Led a high-volume frontline development team, oversaw principal donor strategy for executive leadership, and grew national brand engagement
   - Major Gifts Officer, Smithsonian Tropical Research Institute, Washington DC, Panama, and Chicago (2017 to 2024). Led the integration of revenue generation, program development, and institution-building. Secured over $16 million in support across two capital campaigns and brought in hundreds of new donors for environmental and biodiversity science, much of it supporting the careers of emerging tropical scientists from tropical nations
   - Fulbright Specialist, Fundraising and NGO Organizational Management, Fulbright Colombia, Bogotá (2020 to 2023). Pro bono consulting for Corporación Manos Visibles: built a comprehensive fundraising strategy, designed a diversified revenue portfolio (individuals, major gifts, corporate, events, foundations), trained staff, and proposed a structural redesign of the organization
   - Director of Development Partnerships, League of Conservation Voters, Washington DC (2015 to 2017)
   - Regional Organizer, National Community Reinvestment Coalition, Washington DC (2014 to 2015)
   - Lead Organizer, IMPACT (Interfaith Movement Promoting Action by Congregations Together), Charlottesville, VA (2010 to 2014)
-- Lens tags on the timeline: LCV, Revenue; STRI, Programs and Revenue; Fulbright Colombia, Revenue and Administration; Griffin Museum, External Affairs. The two organizing roles carry no tag.
+- Board and civic leadership (dates not yet known: `[Years]` placeholders in Tina):
+  - Co-Chair, Capital Campaign Committee, All Saints Episcopal Church, Chicago (current): steering a $2.5M capital campaign
+  - Board President and Fundraising Chair, Capitol Hill Chorale, Washington DC
+  - The Fulbright work above also delivered bilingual major gifts training
+- Lens tags on the timeline: LCV, Revenue; Capitol Hill Chorale, Revenue and Administration; STRI, Programs and Revenue; Fulbright Colombia, Revenue and Administration; Griffin Museum, External Affairs; All Saints, Revenue. The two organizing roles carry no tag.
+- Places (map pins on /about): Chicago, Washington DC, Charlottesville VA, Williamsburg VA (William & Mary), Panama (STRI), Bogotá (Fulbright), and Latin America as a region (human rights movements).
 
-**Not yet:** no case studies, testimonials, stats strip, or by-the-numbers section. This is a brand new company. Never use bracketed `[Organization]` placeholders for Kate's experience; use the real names above.
+**Not yet:** no case studies, stats strip, or by-the-numbers section. This is a brand new company. /endorsements has the structure for endorsements and client logos but ships empty with a "coming soon" state: never add sample, invented, or placeholder endorsements or clients. Never use bracketed `[Organization]` placeholders for Kate's experience; use the real names above.
 
 ## Mottos and lines to weave through the site
 
@@ -41,9 +48,9 @@ Use these as headlines, section labels, pull quotes, and microcopy. Primary tagl
 - Clear Strategy. Sustainable Impact. (secondary)
 - Scaling Missions, Sustainably. (secondary)
 
-Mottos live in `src/content/mottos.ts`.
+Motto text lives in `content/settings/mottos.json` (editable in Tina); `pageMottos` in `src/content/mottos.ts` assigns them to pages.
 
-**Motto statements.** Between major sections, set a motto on its own with `<MottoStatement motto bg />`: `text-motto` (clamp(1.75rem, 3vw, 2.75rem), SemiBold 600, charcoal), centered, with a thin resolution line rule below. Amplified, not giant. Each page uses different mottos (assigned in `pageMottos`), and a motto never repeats elsewhere on the same page (headings and labels included). Current assignment: Home: Growing by design / Never cookie-cutter. About: Built for the long haul / Clear Strategy. Sustainable Impact. Approach: From Reactive to Intentional / Scaling Missions, Sustainably. Contact has none (single section).
+**Motto statements.** Between major sections, set a motto on its own with `<MottoStatement motto bg />`: `text-motto` (clamp(1.75rem, 3vw, 2.75rem), SemiBold 600, charcoal), centered, with a thin resolution line rule below. Amplified, not giant. Each page uses different mottos (assigned in `pageMottos`), and a motto never repeats elsewhere on the same page (headings and labels included). Current assignment: Home: Growing by design / Never cookie-cutter. About: Built for the long haul / Clear Strategy. Sustainable Impact. Approach: From Reactive to Intentional / Scaling Missions, Sustainably. Offerings: Growing by design (one statement, between Available now and Coming soon; it repeats a Home motto, which is fine across pages). Contact and Endorsements have none.
 
 ## Design concept: the Resolution Line
 
@@ -72,7 +79,8 @@ Rules:
 
 ### Header
 
-- The header logo is static and clean, like the deck header (`src/components/HeaderLogo.tsx`): the HD monogram (SVG, purple, 24px on phones, 28px from sm), a short 1px resolved line, then "HIGH DEFINITION ADVISORS" in Poppins Medium caps, 0.75rem, tracking 0.25em, purple, as live text. Below `md` only the monogram shows, so it fits beside the nav.
+- The header logo is static and clean, like the deck header (`src/components/HeaderLogo.tsx`): the HD monogram (SVG, purple, 24px on phones, 28px from sm), a short 1px resolved line, then "HIGH DEFINITION ADVISORS" in Poppins Medium caps, 0.75rem, tracking 0.25em, purple, as live text. Below `lg` only the monogram shows, so it fits beside the five nav links.
+- Nav (`NavLinks.tsx`, items from `nav` in `src/content/site.ts`): About, Approach, Offerings, Endorsements (only when `showEndorsements` is on), Contact. Inline from `md`; below `md` a "Menu" button (`aria-expanded`, closes on Escape and on navigation) opens the same links in a panel under the header.
 - No line stack and no animation in the header. A converging stack at header size read as a broom, and the motion felt busy. Clean and fluid is the priority here; the line stack lives in the hero and footer.
 - `HeaderShell` is transparent at the top of the page; after scrolling it gets a soft offwhite background (85% opacity, slight blur, lavender-light rule) and the logo scales to 90%.
 - The earlier animated lockups (lead-in waves wordmark, rippling compact mark) are in git history (commit 81757fe and earlier, plus 9d19989).
@@ -147,28 +155,32 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 
 ## Photography
 
-- Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" />`, which uses `next/image` with the alt text "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
-- Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below. Not sticky, small and circular in the home "Who we are" intro.
+- Kate's photos are Tina image fields labeled "Replace with new photo" (Home "Who we are" and About). Kate is sending new photos; both currently point at the existing cutout. `KateHeadshot` takes `src` and `alt` from content.
+- Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" src alt />`, which uses `next/image`; the alt text in content is "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
+- Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below. Not sticky, small and circular (with the same 1.5px ring, since it sits on a lavender-tint section) in the home "Who we are" intro.
 - No blur placeholder on transparent images (it shows through the transparent areas).
 - A higher-resolution original would sharpen the large version on retina screens.
 
 ## Site map
 
-1. `/` Home
+1. `/` Home (backgrounds: hero offwhite, lavender-tint, stone, motto offwhite, stone, aqua-light, motto offwhite, CTA lavender-tint)
    - Hero (animates on load, see above): HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
+   - "Who we are" right after the hero, on lavender-tint: small circular headshot, Kate's first-person intro ("I am Kate Hibbs Davis, or Kate HD..."), a "Why HD?" callout tying her initials to seeing an organization in high definition (marked as a draft in Tina until Kate approves it), and a "Read Kate's full bio" link to /about
    - "What we hear" strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
    - Motto statement
    - From Reactive to Intentional: current state vs future state panels (offwhite vs aqua-light, on a stone section)
-   - "Who we are" founder intro: small circular headshot, short intro, link to /about
    - Four Lenses, One Roadmap teaser
    - Motto statement
    - Closing CTA band on lavender-tint (Tint colorway: purple monogram and lines). Light background, never purple
-2. `/about` Background
-   - Kate Hibbs Davis, Founder & Principal: headshot on lavender tint, bio (deck bio as the base plus a few concrete proof points from "Kate's background"), languages and education
+2. `/about` About Kate (backgrounds: header offwhite, stone, aqua-light, motto offwhite, lavender-tint, motto offwhite, stone, CTA lavender-tint)
+   - Kate Hibbs Davis, Founder & Principal: headshot on lavender tint, the full bio (Kate's draft, lightly tightened), quick facts (languages, education, home)
+   - Core competencies in three columns: Strategic Leadership & Governance; Advancement & Revenue Generation; Stakeholder Engagement & Alliances
    - Motto statement
-   - Experience timeline styled like the phased roadmap: six roles, earliest (organizing roots) to most recent, line stacks calming left to right, most recent in aqua. Each entry: role, organization, years, one short line
-   - Each timeline card is tagged with the lenses that role put to work (together they span all four). This replaces a separate lens section, which repeated the Approach page
-   - "Where she's worked": organization names set large as text in a ruled grid, inside the same lavender-tint section as the timeline so they read as one continuous area. Cells are transparent (inner rules only) and the section has extra bottom padding so the blend starts below the grid. No logos: they need each organization's permission and would read as HD Advisors clients
+   - Interactive bio (`ResumeTabs.tsx`), real WAI-ARIA tabs (arrow keys, Home, End; inactive panels stay in the DOM, hidden):
+     - Who I Am: short first-person intro and three values (draft in Tina for Kate to rewrite)
+     - Where I've Been (`ResumeMap.tsx`): flat SVG map of the Americas (land in lavender-light, no stroke), pins placed from latitude and longitude in Tina. The outline is one static path generated by `npm run build:map` (`scripts/build-map-geometry.mjs`, Natural Earth via world-atlas, plain equirectangular so pins use the same linear math) into `src/lib/map-geometry.ts`; no map library ships. DC, Charlottesville, and Williamsburg would overlap, so pins inside the Mid-Atlantic bounds render in a zoomed inset in the open Atlantic, joined by a thin purple frame and leader line. Pins are real `<button>`s laid over the SVG (`aria-pressed`), the card announces via `aria-live`, and a row of place chips repeats the pins for small screens. Regions (Latin America) show as a ring
+     - What I've Done (`ResumeTimeline.tsx`): vertical timeline, earliest first, roles plus board and civic work. Each entry is a `<button aria-expanded>` that opens its detail (location, description, "Board and civic" tag, lens tags) with a compact line stack that calms entry by entry; the most recent entry (open by default) is the aqua accent
+   - "Where she's worked": organization names set large as text in a ruled grid, inside the same lavender-tint section as the tabs so they read as one continuous area. Cells are transparent (inner rules only) and the section has extra bottom padding so the blend starts below the grid. No logos: they need each organization's permission and would read as HD Advisors clients
    - Motto statement
    - Philosophy ("How Kate works"): never cookie-cutter, structure that lasts
 3. `/approach` Scope of work
@@ -180,17 +192,34 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
    - Form: name, email, organization, what's going on (textarea), optional budget/timeline select
    - Server Action + zod validation + honeypot field, sends via Resend to Kate's inbox
    - Success state: "Thanks. Clarity starts with a conversation."
+5. `/offerings` Consulting Offerings (backgrounds: header offwhite, lavender-tint, motto offwhite, stone, CTA lavender-tint)
+   - Header "Consulting Offerings | Fall 2026": the season is a Tina field (`PageHeader titleAside`; on phones it drops to its own line without the divider)
+   - Each offering has a title, a description, and an "Available now" toggle. Available now: numbered offwhite cards with calming line stacks. Coming soon: outlined cards, body optional. Ends with the CtaBand ("Start a conversation")
+   - Available now: Your Roadmap to Sustainability and Scale; Coaching Fundraisers to Reach New Heights + Building a Culture of Philanthropy; Your Right Hand While in Transition: Interim and Fractional Leadership; The CEO Whisperer: Finding Your Leader's Fundraising Voice and Style for Maximum Impact. Coming soon: Your Impact, Your Way: Philanthropic Advisory; In the Room(s) Where It Happens: Revenue Meets Brand Engagement
+6. `/endorsements` Endorsements + Clients
+   - Endorsement cards (quote, name, title, organization, optional photo) and a ruled client logo grid, each rendered only when Tina has entries. With neither, a "coming soon" band with an unresolved line stack
+   - Hidden by default: `showEndorsements` (Site Settings, "Show the Endorsements page in the menu") is off, which removes it from the header and footer nav and sets `noindex`. The route still builds so Kate can preview it
 
-Global: sticky minimal header (HD monogram left, nav right), footer with fully resolved line through monogram, tagline, contact placeholders.
+Global: sticky minimal header (HD monogram left, nav right, Menu button on phones), footer with fully resolved line through monogram, tagline, contact placeholders.
 
 ## Technical conventions
 
 - App Router, Server Components by default; `"use client"` only for animation and the form UI.
 - Reusable `<ResolutionLine variant="full" | "partial" | "rule" | "monogram" />` component that generates SVG paths from parameters (line count, master curve, per-line lag/amplitude, convergence x).
-- Content (bio, lenses, phases, mottos) in `src/content/*.ts` so copy edits never touch layout.
+- Content in `content/**/*.json` (edited in TinaCMS), imported by thin typed modules in `src/content/*.ts`, so copy edits never touch layout. Multi-paragraph fields are textareas split on blank lines (`toParagraphs` in `src/lib/text.ts`).
 - Metadata per page via `generateMetadata`; OG image using the Primary colorway.
 - Accessibility: semantic landmarks, visible focus states in purple, aqua never for small text, AA contrast.
 - Responsive down to 360px. On mobile the line stack shortens but still resolves.
 - Env vars: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`. Never commit `.env.local`.
 - Placeholders stay bracketed: [email], [phone], [website]. (The headshot and Kate's organizations are real now.)
 - No em dashes in any site copy.
+
+## Content editing (TinaCMS)
+
+- Schema: `tina/config.ts`. Kate edits at `/admin`; each save commits JSON to GitHub and Vercel rebuilds. Pages never call Tina at runtime: they import the JSON at build time. Form-based editing only (no visual click-to-edit, which would turn pages into client components).
+- Collections, all with plain-English labels: Home Page, About Kate, Consulting Offerings, Endorsements Page, Endorsements (one file per entry, `content/endorsements/`), Clients (`content/clients/`), Approach Page, Contact Page, Site Settings (company copy, contact placeholders, CTA band, `showEndorsements`), Mottos. Page collections are single fixed files (no create or delete).
+- Endorsements and Clients are read from their folders at build time (`src/content/endorsements.ts`, module-scope `readFileSync`, allowed in prerender) and sorted by an `order` field.
+- Placeholders Kate fills are bracketed in content (`[Kate to finish this sentence]`, `[Kate to write this description.]`, `[Years]`). Drafts written for Kate carry an "This is a draft" toggle (Home "Why HD?" callout, About "Who I Am"); it is a note for Kate and does not hide anything.
+- Uploads go to `public/uploads/`. Generated `public/admin/` and `tina/__generated__/` are gitignored; commit `tina/tina-lock.json`.
+- Scripts: `npm run dev` runs Tina's local editor with `next dev` (`dev:site` for Next alone). `npm run build` runs `tinacms build` only when `TINA_TOKEN` is set, then `next build`, so deploys keep working before Tina Cloud is connected.
+- Env vars (Vercel): `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN` from the Tina Cloud project linked to the GitHub repo.

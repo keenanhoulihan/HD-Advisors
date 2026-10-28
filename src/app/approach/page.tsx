@@ -11,6 +11,7 @@ import {
   approachIntro,
   audiences,
   audiencesIntro,
+  lensesIntro,
   phases,
   roadmapIntro,
 } from "@/content/approach";
@@ -33,9 +34,9 @@ export default function ApproachPage() {
 
       <Section bg="stone" blendTo="offwhite">
         <div className="page-wrap">
-          <SectionHeader label="The four lenses" title="Every part of the organization, in one view." />
+          <SectionHeader label={lensesIntro.label} title={lensesIntro.title} />
 
-          <p className="mt-8 max-w-2xl text-slate">Hover, tap, or tab through each lens to see how it feeds the plan.</p>
+          <p className="mt-8 max-w-2xl text-slate">{lensesIntro.hint}</p>
 
           <div className="mt-10">
             <LensDiagram />

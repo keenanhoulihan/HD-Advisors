@@ -1,0 +1,235 @@
+{
+  "intro": {
+    "label": "About Kate",
+    "title": "Strategy built for the organization in front of you.",
+    "intro": "High Definition Advisors was founded on a simple idea: mission-driven organizations deserve strategy that is custom-built, not pulled off a shelf."
+  },
+  "founder": {
+    "role": "Founder & Principal",
+    "name": "Kate Hibbs Davis",
+    "photo": "/images/kate-headshot.png",
+    "photoAlt": "Kate Hibbs Davis, Founder and Principal of High Definition Advisors",
+    "bio": "Kate Hibbs Davis is an accomplished public-sector and nonprofit leader with more than 15 years of experience in organizational growth, philanthropic strategy, and external relations across cultural, scientific, and civic institutions. Throughout her career, Kate has bridged local and global perspectives to address critical issues, including climate resilience, access to STE(A)M education, democracy, fair banking, affordable housing, human rights, and more. Her work has taken her from grassroots coalitions and federal advocacy in Washington, DC, to Central American rainforests and human rights movements across Latin America.\n\nMost recently, as Director of External Affairs for Major and Planned Gifts at the Griffin Museum of Science and Industry, Kate led a high-volume frontline development team, oversaw principal donor strategy for executive leadership, and grew national brand engagement. Across her career, she has earned a reputation not only as a seasoned fundraiser, but as a creative and empathetic collaborator driven to bring out the best in institutions and their benefactors.\n\nA passion for institutional maturation defines Kate's trajectory. She specializes in guiding organizations through major transitions: establishing strategic planning frameworks, building high-performing teams, and creating bespoke donor experiences that connect donor passion with institutional mission.\n\nBeyond her professional roles, Kate is active in board and civic leadership. She serves as Co-Chair of the Capital Campaign Committee for All Saints Episcopal Church in Chicago, steering a $2.5M capital campaign. Her global and community work also includes pro bono fundraising consulting through the Fulbright Specialist Program with Corporación Manos Visibles in Colombia, where she developed strategic fundraising plans and delivered bilingual major gifts training, and service as Board President and Fundraising Chair of the Capitol Hill Chorale in Washington, DC.\n\nKate holds Bachelor of Arts degrees in Immigration Studies and Hispanic Studies from The College of William & Mary, where she graduated magna cum laude and Phi Beta Kappa. She lives in her hometown of Chicago with her spouse, their two daughters, and their 90-pound doodle, Timber.",
+    "facts": [
+      { "label": "Languages", "value": "English and Spanish" },
+      { "label": "Education", "value": "The College of William & Mary, BA in Immigration Studies and Hispanic Studies" },
+      { "label": "Home", "value": "Chicago" }
+    ]
+  },
+  "competenciesIntro": {
+    "label": "Core competencies",
+    "title": "Where Kate brings the most."
+  },
+  "competencies": [
+    {
+      "title": "Strategic Leadership & Governance",
+      "items": [
+        "Executive & Board Advisory Management",
+        "Capital Campaign Strategy & Execution",
+        "Talent Development & Team Coaching",
+        "Institutional Change Management"
+      ]
+    },
+    {
+      "title": "Advancement & Revenue Generation",
+      "items": [
+        "Major ($100K+) & Planned Gifts Solicitations",
+        "Principal Donor Moves Management",
+        "National & Out-of-Market Donor Expansion",
+        "Planned Giving Program Revitalization"
+      ]
+    },
+    {
+      "title": "Stakeholder Engagement & Alliances",
+      "items": [
+        "Bespoke VIP Donor Experiences & Delegations",
+        "Public-Private Alliances & Coalition Building",
+        "National & Global Convenings",
+        "Fluent Spanish & Cross-Cultural Communications"
+      ]
+    }
+  ],
+  "resume": {
+    "label": "Interactive bio",
+    "title": "Get to know Kate.",
+    "intro": "Three ways in. Pick a tab to explore.",
+    "whoIAm": {
+      "tabLabel": "Who I Am",
+      "isDraft": true,
+      "title": "A Chicagoan and an organizer at heart.",
+      "body": "I live in my hometown of Chicago with my spouse, our two daughters, and Timber, our 90-pound doodle.\n\nMy career started in community organizing, and I still work like an organizer: I listen first, build relationships, and bring people together. I work in English and Spanish, and I have spent my career bridging local and global perspectives.",
+      "values": [
+        { "title": "Listen first", "body": "Every engagement starts with listening." },
+        { "title": "Bring out the best", "body": "In institutions, in their teams, and in the people who support them." },
+        { "title": "Bridge local and global", "body": "From grassroots coalitions to Central American rainforests." }
+      ]
+    },
+    "places": {
+      "tabLabel": "Where I've Been",
+      "intro": "Select a pin to see what brought me there.",
+      "mapLabel": "Map of the Americas showing places Kate has lived and worked",
+      "insetLabel": "Mid-Atlantic",
+      "pins": [
+        {
+          "place": "Chicago",
+          "lat": 41.88,
+          "lng": -87.63,
+          "isRegion": false,
+          "title": "Home",
+          "body": "My hometown. I directed external affairs for major and planned gifts at the Griffin Museum of Science and Industry, and I co-chair the Capital Campaign Committee at All Saints Episcopal Church."
+        },
+        {
+          "place": "Washington, DC",
+          "lat": 38.9,
+          "lng": -77.04,
+          "isRegion": false,
+          "title": "Grassroots coalitions and federal advocacy",
+          "body": "Organizing with the National Community Reinvestment Coalition, development partnerships at the League of Conservation Voters, and board leadership with the Capitol Hill Chorale."
+        },
+        {
+          "place": "Charlottesville, VA",
+          "lat": 38.03,
+          "lng": -78.48,
+          "isRegion": false,
+          "title": "Where organizing began",
+          "body": "Lead Organizer with IMPACT (Interfaith Movement Promoting Action by Congregations Together)."
+        },
+        {
+          "place": "Williamsburg, VA",
+          "lat": 37.27,
+          "lng": -76.71,
+          "isRegion": false,
+          "title": "The College of William & Mary",
+          "body": "Bachelor of Arts degrees in Immigration Studies and Hispanic Studies, magna cum laude and Phi Beta Kappa."
+        },
+        {
+          "place": "Panama",
+          "lat": 8.98,
+          "lng": -79.52,
+          "isRegion": false,
+          "title": "Central American rainforests",
+          "body": "Major Gifts Officer for the Smithsonian Tropical Research Institute, raising support for environmental and biodiversity science and the careers of emerging scientists from tropical nations."
+        },
+        {
+          "place": "Bogotá, Colombia",
+          "lat": 4.71,
+          "lng": -74.07,
+          "isRegion": false,
+          "title": "Fulbright Specialist",
+          "body": "Pro bono fundraising consulting with Corporación Manos Visibles: a strategic fundraising plan, bilingual major gifts training, and a proposed structural redesign."
+        },
+        {
+          "place": "Latin America",
+          "lat": -14,
+          "lng": -60,
+          "isRegion": true,
+          "title": "Human rights movements",
+          "body": "Work alongside human rights movements across Latin America, in English and Spanish."
+        }
+      ]
+    },
+    "timeline": {
+      "tabLabel": "What I've Done",
+      "intro": "Select a role to read more. The tags show which of the four lenses each role put to work.",
+      "entries": [
+        {
+          "role": "Lead Organizer",
+          "organization": "IMPACT (Interfaith Movement Promoting Action by Congregations Together)",
+          "location": "Charlottesville, VA",
+          "years": "2010 to 2014",
+          "isBoard": false,
+          "description": "Grassroots organizing with congregations across Charlottesville.",
+          "lenses": []
+        },
+        {
+          "role": "Regional Organizer",
+          "organization": "National Community Reinvestment Coalition",
+          "location": "Washington, DC",
+          "years": "2014 to 2015",
+          "isBoard": false,
+          "description": "Regional organizing for community reinvestment and fair banking.",
+          "lenses": []
+        },
+        {
+          "role": "Director of Development Partnerships",
+          "organization": "League of Conservation Voters",
+          "location": "Washington, DC",
+          "years": "2015 to 2017",
+          "isBoard": false,
+          "description": "Development partnerships for environmental advocacy.",
+          "lenses": ["Revenue"]
+        },
+        {
+          "role": "Board President and Fundraising Chair",
+          "organization": "Capitol Hill Chorale",
+          "location": "Washington, DC",
+          "years": "[Years]",
+          "isBoard": true,
+          "description": "Led the board and its fundraising.",
+          "lenses": ["Revenue", "Administration"]
+        },
+        {
+          "role": "Major Gifts Officer",
+          "organization": "Smithsonian Tropical Research Institute",
+          "location": "Washington, DC, Panama, and Chicago",
+          "years": "2017 to 2024",
+          "isBoard": false,
+          "description": "Integrated revenue, program development, and institution-building, securing over $16 million across two capital campaigns and bringing in hundreds of new donors for environmental and biodiversity science.",
+          "lenses": ["Programs", "Revenue"]
+        },
+        {
+          "role": "Fulbright Specialist, Fundraising and NGO Organizational Management",
+          "organization": "Fulbright Colombia",
+          "location": "Bogotá",
+          "years": "2020 to 2023",
+          "isBoard": false,
+          "description": "Pro bono consulting for Corporación Manos Visibles: a fundraising strategy, a diversified revenue portfolio, bilingual major gifts training, and a proposed structural redesign.",
+          "lenses": ["Revenue", "Administration"]
+        },
+        {
+          "role": "Director of External Affairs for Major and Planned Gifts",
+          "organization": "Griffin Museum of Science and Industry",
+          "location": "Chicago",
+          "years": "2024 to 2026",
+          "isBoard": false,
+          "description": "Led a high-volume frontline development team, oversaw principal donor strategy for executive leadership, and grew national brand engagement.",
+          "lenses": ["External Affairs"]
+        },
+        {
+          "role": "Co-Chair, Capital Campaign Committee",
+          "organization": "All Saints Episcopal Church",
+          "location": "Chicago",
+          "years": "[Years]",
+          "isBoard": true,
+          "description": "Steering a $2.5M capital campaign.",
+          "lenses": ["Revenue"]
+        }
+      ]
+    }
+  },
+  "workedAt": {
+    "label": "Where she's worked",
+    "organizations": [
+      "IMPACT",
+      "National Community Reinvestment Coalition",
+      "League of Conservation Voters",
+      "Smithsonian Tropical Research Institute",
+      "Fulbright Colombia",
+      "Griffin Museum of Science and Industry"
+    ]
+  },
+  "philosophyIntro": {
+    "label": "Philosophy",
+    "title": "How Kate works"
+  },
+  "philosophy": [
+    {
+      "title": "Never cookie-cutter",
+      "body": "No two organizations grow the same way. Every engagement starts with listening, and every roadmap is a custom-built foundation to scale a mission with purpose and precision."
+    },
+    {
+      "title": "Structure that lasts",
+      "body": "Quick wins fade. We focus on the structure underneath: the roles, systems, funding, and governance that let an organization keep growing without losing its footing."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderShell } from "./HeaderShell";
+import { nav } from "@/content/site";
 import { NavLinks } from "./NavLinks";
 
 export function SiteHeader() {
@@ -9,7 +10,7 @@ export function SiteHeader() {
         <div className="origin-left transition-transform duration-300 ease-out group-data-[scrolled=true]:scale-90 motion-reduce:transition-none">
           <HeaderLogo />
         </div>
-        <NavLinks />
+        <NavLinks items={nav} />
       </div>
     </HeaderShell>
   );

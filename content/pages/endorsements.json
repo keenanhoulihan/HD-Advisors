@@ -1,0 +1,13 @@
+{
+  "intro": {
+    "label": "Endorsements + Clients",
+    "title": "In their words.",
+    "intro": "What colleagues, partners, and clients say about working with Kate."
+  },
+  "endorsementsLabel": "Endorsements",
+  "clientsLabel": "Clients",
+  "comingSoon": {
+    "title": "Coming soon.",
+    "body": "Kate is gathering endorsements from the people she has worked alongside. Check back soon, or start a conversation in the meantime."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "intro": {
+    "label": "Work with Kate",
+    "title": "Consulting Offerings",
+    "season": "Fall 2026",
+    "intro": "Every engagement is custom-built. These are the places I can help most this season."
+  },
+  "available": {
+    "label": "Available now",
+    "title": "Ready when you are."
+  },
+  "comingSoon": {
+    "label": "Coming soon",
+    "title": "On the horizon.",
+    "intro": "In the works for future seasons. Interested? Start a conversation and I will keep you posted."
+  },
+  "offerings": [
+    {
+      "title": "Your Roadmap to Sustainability and Scale",
+      "availableNow": true,
+      "body": "Sure, you want to do a capital campaign. You want to grow. But you also want your organization to last. You need to build a fundraising and revenue program that is sustainable.\n\nI don't chase quick wins. My “secret sauce” is building systems and relationships for the long haul."
+    },
+    {
+      "title": "Coaching Fundraisers to Reach New Heights + Building a Culture of Philanthropy",
+      "availableNow": true,
+      "body": "I'm not an athlete. I only got a varsity letter in bowling. But it turns out that former community organizers make great coaches, too. My favorite part of leading a major gifts team, and of leading a team of organizers, is coaching fundraisers.\n\nEvery frontline fundraiser needs a mentor outside their organization: someone to challenge them, provide a fresh perspective, and help them [Kate to finish this sentence]."
+    },
+    {
+      "title": "Your Right Hand While in Transition: Interim and Fractional Leadership",
+      "availableNow": true,
+      "body": "[Kate to write this description.]"
+    },
+    {
+      "title": "The CEO Whisperer: Finding Your Leader's Fundraising Voice and Style for Maximum Impact",
+      "availableNow": true,
+      "body": "[Kate to write this description.]"
+    },
+    {
+      "title": "Your Impact, Your Way: Philanthropic Advisory",
+      "availableNow": false,
+      "body": ""
+    },
+    {
+      "title": "In the Room(s) Where It Happens: Revenue Meets Brand Engagement",
+      "availableNow": false,
+      "body": ""
+    }
+  ]
+}
