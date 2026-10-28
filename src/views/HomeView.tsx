@@ -52,6 +52,7 @@ export function HomeView({ data }: { data: HomeData }) {
               size="small"
               src={founderIntro.photo}
               alt={founderIntro.photoAlt}
+              position="center 25%"
               className="border-[1.5px] border-purple"
             />
           </RevealItem>

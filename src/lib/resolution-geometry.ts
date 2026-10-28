@@ -135,7 +135,7 @@ export const HERO_DESKTOP: StackParams = {
   endSpread: 0,
   endRipple: 0,
   seed: 0.6,
-  strokeWidth: 1.5,
+  strokeWidth: 1,
 };
 export const HERO_DESKTOP_MONOGRAM: MonogramPlacement = {
   height: 190,
@@ -153,7 +153,7 @@ export const HERO_MOBILE: StackParams = {
   endX: 800,
   holdX: 505,
   convergeX: 640,
-  strokeWidth: 1.25,
+  strokeWidth: 0.75,
 };
 export const HERO_MOBILE_MONOGRAM: MonogramPlacement = {
   height: 130,
@@ -177,7 +177,7 @@ export function partialParams(resolve: number, compact: boolean): StackParams {
       endSpread: 1 - resolve,
       endRipple: 0.3 * (1 - resolve),
       seed: 1.7,
-      strokeWidth: 1.25,
+      strokeWidth: 0.75,
     };
   }
   return {
@@ -194,7 +194,7 @@ export function partialParams(resolve: number, compact: boolean): StackParams {
     endSpread: 1 - resolve,
     endRipple: 0.2 * (1 - resolve),
     seed: 1.7,
-    strokeWidth: 1.5,
+    strokeWidth: 1,
   };
 }
 

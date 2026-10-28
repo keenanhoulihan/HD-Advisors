@@ -14,11 +14,14 @@ export function KateHeadshot({
   src,
   alt,
   className,
+  position,
 }: {
   size: "large" | "small";
   src: string | null | undefined;
   alt: string | null | undefined;
   className?: string;
+  /** Where the crop centers, for a full photo rather than the cutout (e.g. "center 25%"). Default: top. */
+  position?: string;
 }) {
   // While Kate swaps the photo in Tina the field can be briefly empty.
   src ||= DEFAULT_PHOTO;
@@ -26,7 +29,15 @@ export function KateHeadshot({
   if (size === "small") {
     return (
       <div className={cn("relative aspect-square w-36 overflow-hidden rounded-full bg-lavender-tint sm:w-44", className)}>
-        <Image src={src} alt={alt} fill sizes="176px" className="object-cover object-top" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="176px"
+          loading="lazy"
+          className={cn("object-cover", !position && "object-top")}
+          style={position ? { objectPosition: position } : undefined}
+        />
       </div>
     );
   }
@@ -38,7 +49,15 @@ export function KateHeadshot({
         className,
       )}
     >
-      <Image src={src} alt={alt} fill sizes="(min-width: 768px) 220px, 160px" className="object-cover object-top" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 768px) 220px, 160px"
+        loading="lazy"
+        className={cn("object-cover", !position && "object-top")}
+        style={position ? { objectPosition: position } : undefined}
+      />
     </div>
   );
 }

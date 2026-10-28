@@ -72,7 +72,7 @@ How the lines are built (important, avoid the "audio waveform" look):
 
 Rules:
 - Flat vector SVG only. No gradients, shadows, glows, or 3D.
-- Thin, consistent stroke: about 2px at 1920px wide; use `vector-effect="non-scaling-stroke"`.
+- Thin, consistent stroke with `vector-effect="non-scaling-stroke"`. Rippling stacks (`strokeWidth` in `src/lib/resolution-geometry.ts`): 1px for the hero and section dividers, 0.75px for the hero on mobile and the compact card stacks (thinned by 0.5px in Oct 2026). The single resolved rule under headings and the footer line stay 1.5px.
 - Lines in Deep Purple. Aqua only as the single accent where noted. (No lavender-on-dark treatment: the site has no dark backgrounds.)
 - Let it breathe. Never crowd text against the line stack.
 - Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
@@ -156,7 +156,8 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Photography
 
 - Kate's photos are Tina image fields labeled "Replace with new photo" (Home "Who we are" and About). Kate is sending new photos; both currently point at the existing cutout. `KateHeadshot` takes `src` and `alt` from content.
-- Kate's headshot: `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" src alt />`, which uses `next/image`; the alt text in content is "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
+- Home "Who we are" uses Kate's new portrait, `public/images/kate_1.webp` (960x1200 WebP from `kate_1.png`, which is the unused original), cropped into the circle with `position="center 25%"` on `KateHeadshot` so her face is centered and the necklace isn't cut. It is a full photo, not a cutout.
+- Kate's cutout headshot (still on /about): `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" src alt />`, which uses `next/image`; the alt text in content is "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
 - Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below. Not sticky, small and circular (with the same 1.5px ring, since it sits on a lavender-tint section) in the home "Who we are" intro.
 - No blur placeholder on transparent images (it shows through the transparent areas).
 - A higher-resolution original would sharpen the large version on retina screens.
