@@ -156,9 +156,9 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Photography
 
 - Kate's photos are Tina image fields labeled "Replace with new photo" (Home "Who we are" and About). Kate is sending new photos; both currently point at the existing cutout. `KateHeadshot` takes `src` and `alt` from content.
-- Home "Who we are" uses Kate's new portrait, `public/images/kate_1.webp` (960x1200 WebP from `kate_1.png`, which is the unused original), cropped into the circle with `position="center 25%"` on `KateHeadshot` so her face is centered and the necklace isn't cut. It is a full photo, not a cutout.
+- Home "Who we are" uses Kate's new portrait, `public/images/kate_1.webp` (960x1200 WebP from `kate_1.png`, which is the unused original), in a 4:5 frame with a 1.5px purple border (`<KateHeadshot size="portrait" position="center 30%">`): 240x300 beside the text from md, full content width (up to 24rem) stacked above it on phones. The photo is itself 4:5, so nothing is cropped. It is a full photo, not a cutout.
 - Kate's cutout headshot (still on /about): `public/images/kate-headshot.png`, a transparent cutout (background removed with rembg `isnet-general-use` + alpha matting from an 800x800 original on bright yellow). Render it with `<KateHeadshot size="large" | "small" src alt />`, which uses `next/image`; the alt text in content is "Kate Hibbs Davis, Founder and Principal of High Definition Advisors".
-- Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below. Not sticky, small and circular (with the same 1.5px ring, since it sits on a lavender-tint section) in the home "Who we are" intro.
+- Always place the cutout on a lavender-tint background. On /about as a circle (160px on mobile, 220px from md) with lavender tint inside and a 1.5px purple ring, vertically centered beside her title and name, bio below.
 - No blur placeholder on transparent images (it shows through the transparent areas).
 - A higher-resolution original would sharpen the large version on retina screens.
 

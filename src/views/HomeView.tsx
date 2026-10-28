@@ -47,12 +47,12 @@ export function HomeView({ data }: { data: HomeData }) {
       {/* Kate first: right after the hero, so the first look is the person behind the work. */}
       <Section bg="lavender-tint" blendTo="stone">
         <RevealGroup className="page-wrap flex flex-col items-start gap-10 md:flex-row md:items-start md:gap-16">
-          <RevealItem className="shrink-0" {...edit(founderIntro, "photo")}>
+          <RevealItem className="w-full shrink-0 md:w-auto" {...edit(founderIntro, "photo")}>
             <KateHeadshot
-              size="small"
+              size="portrait"
               src={founderIntro.photo}
               alt={founderIntro.photoAlt}
-              position="center 25%"
+              position="center 30%"
               className="border-[1.5px] border-purple"
             />
           </RevealItem>
