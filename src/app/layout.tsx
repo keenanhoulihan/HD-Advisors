@@ -36,7 +36,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${poppins.variable} h-full`}>
+    // The inline script adds "js" before first paint, so the hero logo can start in its unresolved state
+    // without a flash; without JavaScript it shows finished. suppressHydrationWarning covers that class.
+    <html lang="en" className={`${poppins.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"

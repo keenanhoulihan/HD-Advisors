@@ -60,7 +60,7 @@ Inspired by Jeanne Gang's Aqua Tower in Chicago. The rippling slab edges of the 
 
 | Where | Line treatment |
 | --- | --- |
-| Home hero | The full logo (its own rippling lines resolving through the HD mark), centered. Fades and rises in on load (see below) |
+| Home hero | The full logo, lines lengthened, centered on the HD. On load the right lines converge into one point and a single line draws out (see below) |
 | Section dividers | Calmer lines, only partly converged |
 | Content headers | Just the resolved single line, used as a thin rule under every H2 |
 | Footer | The horizontal logo, centered (its short resolved line sits between mark and wordmark) |
@@ -97,10 +97,12 @@ Rules:
 
 ### Home hero
 
-- `src/components/HomeHero.tsx`: the full logo (`public/brand/hd-full-logo.svg` via `next/image`, `priority`, decorative `alt=""` because the company name is the eyebrow right below it), centered in `page-wrap`, up to 36rem wide. On load it fades and rises in (`fadeUp`), then the eyebrow, headline, sentence, and CTA (RevealItems orchestrated by HomeHero) follow in turn (`HERO` in `src/lib/motion.ts`). Plays once per page load.
+- `src/components/HomeHero.tsx` + `HeroLogo.tsx` (client) + `HeroLogoArt.tsx` (server). The full logo with its lines lengthened 30% on each side (left stretched out from the H, right from where convergence starts), the HD centered in the viewBox and the same size as the original logo at 36rem (the logo box is `HERO_LOGO.maxWidthRem`, ~43rem). It sits outside `page-wrap`, so on phones it runs edge to edge and scales down.
+- Geometry: `src/lib/hero-logo.ts` (shared, small) and `src/lib/hero-logo-art.ts` (server only: clip outlines, wordmark, left lines; generated from `public/brand/hd-full-logo.svg`). The clip outlines keep the small gap before the H and after the D. All 22 right lines follow one fitted convergence profile (`convergence(u)`, zero slope at both ends) and stop exactly at `RIGHT.point`; ONE straight line carries on to `RIGHT.end`, outside the clip. Never let the converging lines continue past the point: stacked strokes look thick and jagged.
+- Motion (`HERO` in `src/lib/motion.ts`, same as the original line hero): after 0.225s, a 2.55s linear clock; each right line eases in-out with outer lines lagging up to 22%, and convergence sweeps from the point back toward the D. The straight line draws out of the point (pathLength, `LINE_DRAW_EASE`, 0.8s) from 1.7s as the lines finish arriving; the text fades in at 2.025s. When both finish, `data-hero-done` hands over to the static copy, so the last frame is exactly the static logo.
+- Static vs animated: the server renders a finished copy (`hero-static`) and the animated lines in their start state (`hero-anim`). An inline script in the layout's `<head>` adds `js` to `<html>` before first paint; `globals.css` shows `hero-anim` only with `js` and no reduced-motion preference. So the server render without JS, no-JS visitors, and `prefers-reduced-motion` all see the finished logo, and nothing flashes on hydration.
 - Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch. Scrolling must always feel normal.
-- `prefers-reduced-motion`: the logo and text are `[data-reveal]`, so they simply appear.
-- The earlier animated line-convergence hero (rippling stack resolving through the old monogram) was replaced by the full logo in Oct 2026; it is in git history.
+- Verify changes by recording frames in real Chrome (CDP screencast) and zooming on the convergence point; compare the final frame with the reduced-motion and no-JS renders.
 
 ## Color tokens
 
@@ -150,8 +152,8 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
   - `hd-horizontal-logo.svg`: horizontal logo (HD mark, short line, "High Definition / ADVISORS").
   - `hd-mark.svg`: the HD mark on its own.
   - `hd-badge.svg`: rounded purple square with the HD cut out, for favicon and app icon.
-- Which goes where: header = horizontal (mark only below `md`); home hero = full; footer = horizontal; small spots and icons = mark (`Monogram`, e.g. the CTA band) or badge (`src/app/icon.svg`, `src/app/apple-icon.png` 180x180). The social image `src/app/opengraph-image.png` (1200x630) is the full logo over "Clarity for Complex Growth" in Poppins Medium charcoal on offwhite; its alt text is `opengraph-image.alt.txt`.
-- On the site, logos are always single-color purple. `Monogram` and `HorizontalLogo` draw the outlines inline in currentColor from `src/lib/logo-paths.ts` (copied from the SVG files; update both together). The full logo is the SVG file itself.
+- Which goes where: header = horizontal (mark only below `md`); home hero = full (rebuilt inline with lengthened, animated lines, see "Home hero"); footer = horizontal; small spots and icons = mark (`Monogram`, e.g. the CTA band) or badge (`src/app/icon.svg`, `src/app/apple-icon.png` 180x180). The social image `src/app/opengraph-image.png` (1200x630) is the full logo over "Clarity for Complex Growth" in Poppins Medium charcoal on offwhite; its alt text is `opengraph-image.alt.txt`.
+- On the site, logos are always single-color purple. `Monogram` and `HorizontalLogo` draw the outlines inline in currentColor from `src/lib/logo-paths.ts` (copied from the SVG files; update both together). The full logo file is the source for the hero geometry and the social image.
 - Logo only on flat, light color. Never on photos, gradients, or busy patterns. Never redraw, recolor in parts, or re-space the wordmark.
 
 ## Photography

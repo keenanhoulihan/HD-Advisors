@@ -137,3 +137,32 @@
     stroke-dashoffset: 0 !important;
   }
 }
+
+/*
+ * Home hero logo (HeroLogo): the animated right-hand lines show only when
+ * JavaScript runs and motion is allowed. Otherwise (server render before the
+ * script, no JavaScript, reduced motion) the finished copy shows.
+ */
+.hero-anim {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-anim {
+    display: inline;
+  }
+
+  .js .hero-static {
+    display: none;
+  }
+
+  /* Finished: back to the static copy, identical geometry, so the swap is invisible. */
+  .js [data-hero-done] .hero-anim {
+    display: none;
+  }
+
+  .js [data-hero-done] .hero-static {
+    display: inline;
+  }
+}
+

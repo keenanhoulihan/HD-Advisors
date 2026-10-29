@@ -20,14 +20,15 @@ import { edit, list, liveQueries, useLive } from "@/lib/tina-live";
 
 type HomeData = { home: typeof homeJson; approach: typeof approachJson };
 
-export function HomeView({ data }: { data: HomeData }) {
+/** `heroLogoArt` is the static hero logo artwork, rendered on the server (HeroLogoArt). */
+export function HomeView({ data, heroLogoArt }: { data: HomeData; heroLogoArt: React.ReactNode }) {
   const { home, approach } = useLive(liveQueries.home, data, "pages/home");
   const { site, mottos } = useSite();
   const { founderIntro, challengesIntro, shift, lensesTeaser } = home;
 
   return (
     <>
-      <HomeHero blendTo="lavender-tint">
+      <HomeHero blendTo="lavender-tint" logoArt={heroLogoArt}>
         <div className="page-wrap text-center">
           <RevealItem as="p" className="eyebrow text-purple">
             {site.name}

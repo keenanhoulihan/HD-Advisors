@@ -20,6 +20,12 @@ export const DURATION = {
 /** Vertical travel for fade-ups, in px. */
 export const DISTANCE = 16;
 
+/**
+ * A gentler ease-out (easeOutCubic) for lines that draw themselves across a
+ * long distance: EASE_OUT front-loads so hard that a long line seems to pop in.
+ */
+export const LINE_DRAW_EASE = [0.33, 1, 0.68, 1] as const;
+
 /** Delay between siblings: header parts, list items. */
 export const STAGGER = 0.08;
 
@@ -46,13 +52,23 @@ export const drawLine: Variants = {
 };
 
 /**
- * Home hero: the full logo fades and rises in shortly after load, then the
- * eyebrow, headline, sentence, and button follow in turn.
+ * Home hero logo: the right-hand lines converge over ~2.8s (each line easing
+ * in-out, outer lines lagging so they arrive last), the single straight line
+ * draws out of the point as the last lines land, then the text fades in. Same
+ * timing as the original line hero.
  */
 export const HERO = {
-  sequence: { hidden: {}, visible: { transition: { delayChildren: 0.15, staggerChildren: 0.3 } } },
-  text: { hidden: {}, visible: { transition: { staggerChildren: STAGGER } } },
-} as const satisfies Record<string, Variants>;
+  delay: 0.225,
+  duration: 2.55,
+  /** Share of the clock the outermost lines wait before starting. */
+  lineLag: 0.22,
+  /**
+   * The straight line starts drawing as the lines finish arriving: the middle
+   * lines land at ~1.3s, the outermost at ~1.87s (0.225 + 0.646 x 2.55s).
+   */
+  lineDrawDelay: 1.7,
+  textDelay: 2.025,
+} as const;
 
 /** Route changes: a quick, soft fade. */
 export const pageFade = {

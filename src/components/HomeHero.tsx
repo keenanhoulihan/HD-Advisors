@@ -1,18 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { fadeUp, HERO } from "@/lib/motion";
+import { motion, type Variants } from "framer-motion";
+import { HERO_LOGO } from "@/lib/hero-logo";
+import { HERO, STAGGER } from "@/lib/motion";
+import { HeroLogo } from "./HeroLogo";
 import { sectionBackground, type SectionBg } from "./Section";
 
+/** The headline, sentence, and CTA wait until the lines have resolved. */
+const heroText: Variants = {
+  hidden: {},
+  visible: { transition: { delayChildren: HERO.textDelay, staggerChildren: STAGGER } },
+};
+
 /**
- * Home hero (CLAUDE.md "Home hero"). The full logo (public/brand/hd-full-logo.svg),
- * centered, fades and rises in on load, then the text follows. Plays once per
- * page load; under prefers-reduced-motion everything simply appears (globals.css
- * forces [data-reveal] to its final state). Children should be RevealItems; this
- * component orchestrates their timing.
+ * Home hero (CLAUDE.md "Home hero"). The full logo, centered on the HD, with
+ * its right-hand lines converging on load (HeroLogo). `logoArt` is the static
+ * logo artwork rendered on the server (HeroLogoArt). Children should be
+ * RevealItems; this component orchestrates their timing. Plays once per page
+ * load; under prefers-reduced-motion everything shows finished at once.
  */
-export function HomeHero({ blendTo, children }: { blendTo: SectionBg; children: React.ReactNode }) {
+export function HomeHero({
+  blendTo,
+  logoArt,
+  children,
+}: {
+  blendTo: SectionBg;
+  logoArt: React.ReactNode;
+  children: React.ReactNode;
+}) {
   const background = sectionBackground("offwhite", blendTo);
 
   return (
@@ -20,22 +35,12 @@ export function HomeHero({ blendTo, children }: { blendTo: SectionBg; children: 
       className={`w-full overflow-x-clip pt-12 pb-20 sm:pt-16 sm:pb-28 ${background.className}`}
       style={background.style}
     >
-      <motion.div initial="hidden" animate="visible" variants={HERO.sequence}>
-        <motion.div data-reveal="" variants={fadeUp} className="page-wrap">
-          {/* The company name is the eyebrow just below, so the logo itself is decorative. */}
-          <Image
-            src="/brand/hd-full-logo.svg"
-            alt=""
-            width={873}
-            height={420}
-            priority
-            unoptimized
-            className="mx-auto h-auto w-full max-w-xl"
-          />
-        </motion.div>
-        <motion.div variants={HERO.text} className="mt-10 sm:mt-12">
-          {children}
-        </motion.div>
+      {/* Wider than the text column so the lines can reach out; the HD stays the size it was. */}
+      <div className="mx-auto w-full text-purple" style={{ maxWidth: `${HERO_LOGO.maxWidthRem}rem` }}>
+        <HeroLogo art={logoArt} className="block h-auto w-full" />
+      </div>
+      <motion.div initial="hidden" animate="visible" variants={heroText} className="mt-10 sm:mt-12">
+        {children}
       </motion.div>
     </section>
   );
