@@ -2,15 +2,14 @@
 
 import type contactJson from "../../content/pages/contact.json";
 import { ContactForm } from "@/app/contact/ContactForm";
+import { ContactLinks } from "@/components/ContactLinks";
 import { PageHeader } from "@/components/PageHeader";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Section } from "@/components/Section";
-import { useSite } from "@/components/SiteLive";
 import { edit, list, liveQueries, useLive } from "@/lib/tina-live";
 
 export function ContactView({ data }: { data: { contact: typeof contactJson } }) {
   const { contact } = useLive(liveQueries.contact, data, "pages/contact");
-  const { site } = useSite();
   const { contactIntro, asideCopy } = contact;
 
   return (
@@ -48,9 +47,7 @@ export function ContactView({ data }: { data: { contact: typeof contactJson } })
                 {asideCopy.otherWaysLabel}
               </p>
               <ul className="mt-6 space-y-3 text-charcoal">
-                <li {...edit(site.contact, "email")}>{site.contact.email}</li>
-                <li {...edit(site.contact, "phone")}>{site.contact.phone}</li>
-                <li {...edit(site.contact, "website")}>{site.contact.website}</li>
+                <ContactLinks />
               </ul>
             </div>
           </aside>

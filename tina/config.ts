@@ -117,9 +117,9 @@ const siteSettings = page(
     "Leave this off until Kate has endorsements ready. While it is off, the page is hidden from the menu and from search engines.",
   ),
   group("contact", "Contact details", [
-    text("email", "Email", "Placeholder for now: [email]"),
-    text("phone", "Phone", "Placeholder for now: [phone]"),
-    text("website", "Website", "Placeholder for now: [website]"),
+    text("email", "Email", "Linked so visitors can tap to email."),
+    text("phone", "Phone", "Shown as typed, for example 773.405.0207. Linked so visitors can tap to call."),
+    text("website", "Website", "The full address, starting with https://. Shown without it, for example katehd.com."),
   ]),
   group(
     "cta",
