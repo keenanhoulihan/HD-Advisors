@@ -35,9 +35,22 @@ export function HomeHero({
       className={`w-full overflow-x-clip pt-12 pb-20 sm:pt-16 sm:pb-28 ${background.className}`}
       style={background.style}
     >
-      {/* Wider than the text column so the lines can reach out; the HD stays the size it was. */}
-      <div className="mx-auto w-full text-purple" style={{ maxWidth: `${HERO_LOGO.maxWidthRem}rem` }}>
-        <HeroLogo art={logoArt} className="block h-auto w-full" />
+      {/*
+        The logo box keeps the HD and wordmark at their size, centered on the screen. The drawing is
+        HERO_LOGO.bleed boxes wide around it, so the lines run off both edges; the band clips them.
+      */}
+      <div
+        className="relative mx-auto w-full text-purple"
+        style={{
+          maxWidth: `${HERO_LOGO.maxWidthRem}rem`,
+          aspectRatio: `${HERO_LOGO.box.width} / ${HERO_LOGO.box.height}`,
+        }}
+      >
+        <HeroLogo
+          art={logoArt}
+          className="absolute top-0 block h-full max-w-none"
+          style={{ left: `${(-(HERO_LOGO.bleed - 1) / 2) * 100}%`, width: `${HERO_LOGO.bleed * 100}%` }}
+        />
       </div>
       <motion.div initial="hidden" animate="visible" variants={heroText} className="mt-10 sm:mt-12">
         {children}

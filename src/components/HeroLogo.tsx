@@ -1,7 +1,7 @@
 "use client";
 
 import { animate, motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HERO_LOGO, LINE_STROKE, RIGHT, rightLinePath } from "@/lib/hero-logo";
 import { DURATION, HERO, LINE_DRAW_EASE } from "@/lib/motion";
 
@@ -38,7 +38,18 @@ function ConvergingLine({ offset, index, t }: { offset: number; index: number; t
  * JavaScript runs and motion is allowed (`hero-anim`, see globals.css);
  * otherwise the finished copy in `art` shows.
  */
-export function HeroLogo({ art, className }: { art: React.ReactNode; className?: string }) {
+export function HeroLogo({
+  art,
+  className,
+  style,
+}: {
+  art: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<SVGSVGElement>(null);
+  // The straight line draws only to the right edge of the screen, so it moves at the same pace at any width.
+  const [lineEnd, setLineEnd] = useState<number>(RIGHT.end);
   // Once it finishes, hand over to the static copy, so the last frame is exactly the static logo.
   const [done, setDone] = useState(false);
   const t = useMotionValue(0);
@@ -48,6 +59,13 @@ export function HeroLogo({ art, className }: { art: React.ReactNode; className?:
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const svg = ref.current;
+    if (svg) {
+      const box = svg.getBoundingClientRect();
+      const { x, width } = svg.viewBox.baseVal;
+      const screenRight = x + ((document.documentElement.clientWidth - box.left) * width) / box.width;
+      setLineEnd(Math.min(RIGHT.end, screenRight + 2));
+    }
     const lines = animate(t, 1, { delay: HERO.delay, duration: HERO.duration, ease: "linear" });
     const straight = animate(draw, 1, { delay: HERO.lineDrawDelay, duration: DURATION.slow, ease: LINE_DRAW_EASE });
     let active = true;
@@ -61,7 +79,9 @@ export function HeroLogo({ art, className }: { art: React.ReactNode; className?:
 
   return (
     <svg
+      ref={ref}
       viewBox={HERO_LOGO.viewBox}
+      style={style}
       fill="currentColor"
       className={className}
       data-hero-done={done || undefined}
@@ -75,7 +95,7 @@ export function HeroLogo({ art, className }: { art: React.ReactNode; className?:
             <ConvergingLine key={offset} offset={offset} index={i} t={t} />
           ))}
         </g>
-        <motion.path d={`M${RIGHT.point.x} ${RIGHT.point.y}H${RIGHT.end}`} style={{ pathLength: draw, opacity: drawOpacity }} />
+        <motion.path d={`M${RIGHT.point.x} ${RIGHT.point.y}H${lineEnd}`} style={{ pathLength: draw, opacity: drawOpacity }} />
       </g>
     </svg>
   );
