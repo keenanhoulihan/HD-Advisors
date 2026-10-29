@@ -60,30 +60,29 @@ Inspired by Jeanne Gang's Aqua Tower in Chicago. The rippling slab edges of the 
 
 | Where | Line treatment |
 | --- | --- |
-| Home hero | Full rippling stack (9 lines; 7 on mobile) bleeding off the left edge, passing through the HD monogram, resolving into one line on the right. Animates on load: converges into one line (see below) |
+| Home hero | The full logo (its own rippling lines resolving through the HD mark), centered. Fades and rises in on load (see below) |
 | Section dividers | Calmer lines, only partly converged |
 | Content headers | Just the resolved single line, used as a thin rule under every H2 |
-| Footer | Fully resolved. One line runs through the HD monogram |
+| Footer | The horizontal logo, centered (its short resolved line sits between mark and wordmark) |
 
 How the lines are built (important, avoid the "audio waveform" look):
 - One master gesture curve, duplicated across the line family.
 - Each line varies slightly in amplitude, horizontal lag, and small individual bulges, like Aqua Tower floor plates. NOT 9 independent random sine waves.
-- Lines run unbroken from the left edge, through the letterforms, to the right.
 
 Rules:
 - Flat vector SVG only. No gradients, shadows, glows, or 3D.
-- Thin, consistent stroke with `vector-effect="non-scaling-stroke"`. Rippling stacks (`strokeWidth` in `src/lib/resolution-geometry.ts`): 1px for the hero and section dividers, 0.75px for the hero on mobile and the compact card stacks (thinned by 0.5px in Oct 2026). The single resolved rule under headings and the footer line stay 1.5px.
+- Thin, consistent stroke with `vector-effect="non-scaling-stroke"`. Rippling stacks (`strokeWidth` in `src/lib/resolution-geometry.ts`): 1px for section dividers, 0.75px for the compact card stacks (thinned by 0.5px in Oct 2026). The single resolved rule under headings stays 1.5px.
 - Lines in Deep Purple. Aqua only as the single accent where noted. (No lavender-on-dark treatment: the site has no dark backgrounds.)
 - Let it breathe. Never crowd text against the line stack.
 - Motion: subtle and slow, never flashy. Fully respect `prefers-reduced-motion`.
 
 ### Header
 
-- The header logo is static and clean, like the deck header (`src/components/HeaderLogo.tsx`): the HD monogram (SVG, purple, 24px on phones, 28px from sm), a short 1px resolved line, then "HIGH DEFINITION ADVISORS" in Poppins Medium caps, 0.75rem, tracking 0.25em, purple, as live text. Below `lg` only the monogram shows, so it fits beside the five nav links.
+- The header logo is static and clean (`src/components/HeaderLogo.tsx`): the horizontal logo (`HorizontalLogo`, inline SVG in currentColor, purple) from `md` up, sized to fit the header without making it taller; below `md` just the HD mark (`Monogram`, 24px on phones, 28px from sm) beside the Menu button.
 - Nav (`NavLinks.tsx`, items from `navItems` in `src/components/SiteLive.tsx`, link names from Site Settings): About, Approach, Offerings, Endorsements (only when `showEndorsements` is on), Contact. Inline from `md`; below `md` a "Menu" button (`aria-expanded`, closes on Escape and on navigation) opens the same links in a panel under the header.
-- No line stack and no animation in the header. A converging stack at header size read as a broom, and the motion felt busy. Clean and fluid is the priority here; the line stack lives in the hero and footer.
+- No line stack and no animation in the header. A converging stack at header size read as a broom, and the motion felt busy. Clean and fluid is the priority here.
 - `HeaderShell` is transparent at the top of the page; after scrolling it gets a soft offwhite background (85% opacity, slight blur, lavender-light rule) and the logo scales to 90%.
-- The earlier animated lockups (lead-in waves wordmark, rippling compact mark) are in git history (commit 81757fe and earlier, plus 9d19989).
+- The earlier animated lockups and the /lab monogram explorations are in git history (commit 81757fe and earlier, 9d19989, 1a5bdff).
 
 ### Motion system
 
@@ -96,15 +95,13 @@ Rules:
 - Never give grid cells a solid fill that matches the section: inside a blending section they show a hard edge. Use transparent cells with border rules.
 - Testing tip: headless Chrome screenshots freeze these animations (virtual time stalls IntersectionObserver, real-time mode stalls animation frames), so verify reveals by scrolling with Playwright in real Chrome instead.
 
-### Hero animation (home)
+### Home hero
 
-- `src/components/HeroResolve.tsx`. On page load the rippling lines calm and converge into one resolved line through the monogram on their own, no scrolling (`HERO` in `src/lib/motion.ts`: 0.225s delay, 2.55s linear clock, each line easing in-out with outer lines lagging up to 22% so they finish last; about 2.8s total). The headline, tagline, and CTA (RevealItems orchestrated by HeroResolve) fade in once the lines are mostly resolved (2.025s). Sped up about 25% from the original 0.3 / 3.4 / 2.7 in Oct 2026. Plays once per page load.
-- Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch (the page seemed to stop). Scrolling must always feel normal.
-- framer-motion `useMotionValue` + `animate` drive a 0..1 resolve value; `useTransform` rebuilds each path. Resolution sweeps right to left (`resolvePoints` in `src/lib/resolution-geometry.ts`).
-- `prefers-reduced-motion`: CSS (`motion-reduce:`) renders the static resolved state and visible text instantly; the animation never starts.
-- Only the visible size (mobile or desktop) animates after hydration.
-- Full bleed: the hero lines and monogram span the full viewport width. The section is a direct full-width child of `main` (never inside `page-wrap`), the stacks run from x=0 to the viewBox's full width, and the section clips horizontal overflow. Use `w-full`, not `100vw` (100vw includes the scrollbar and causes horizontal scroll on Windows). Text below stays in `page-wrap`. Verified with no horizontal overflow at 360, 768, 1440, and 1920px.
-- All line math lives in `src/lib/resolution-geometry.ts`, shared by `<ResolutionLine>` (server) and `HeroResolve` (client).
+- `src/components/HomeHero.tsx`: the full logo (`public/brand/hd-full-logo.svg` via `next/image`, `priority`, decorative `alt=""` because the company name is the eyebrow right below it), centered in `page-wrap`, up to 36rem wide. On load it fades and rises in (`fadeUp`), then the eyebrow, headline, sentence, and CTA (RevealItems orchestrated by HomeHero) follow in turn (`HERO` in `src/lib/motion.ts`). Plays once per page load.
+- Do not tie it to scroll or pin the hero: scroll-driven pinning felt like a glitch. Scrolling must always feel normal.
+- `prefers-reduced-motion`: the logo and text are `[data-reveal]`, so they simply appear.
+- The earlier animated line-convergence hero (rippling stack resolving through the old monogram) was replaced by the full logo in Oct 2026; it is in git history.
+
 ## Color tokens
 
 Define as CSS variables in `globals.css` and map into Tailwind theme.
@@ -113,13 +110,13 @@ Define as CSS variables in `globals.css` and map into Tailwind theme.
 
 **Color blocking.** Alternate section backgrounds through offwhite, lavender-tint, stone, and aqua-light so every page has rhythm. Never put two identical backgrounds back to back (the footer is offwhite, so the last section is never offwhite; page headers are offwhite, so the first section after one is never offwhite). Use the `<Section bg="...">` component so each page's sequence is explicit, and check the full order whenever a section is added or moved. Cards and panels inside a section use a different light color from the section itself.
 
-Soft gradient blends are allowed only between section backgrounds. The logo, monogram, and resolution lines stay flat, no gradients.
+Soft gradient blends are allowed only between section backgrounds. The logos and resolution lines stay flat, no gradients.
 
-**Section blends.** Neighboring sections melt into each other instead of meeting at a hard edge. Every full-width band (`<Section>`, `PageHeader`, `HeroResolve`, `MottoStatement`, `CtaBand`) takes `blendTo`, the next band's background: its bottom `min(11rem, 45%)` fades from its own color to that color with a plain `linear-gradient`, so the next band starts on its own flat color with no seam. Set `blendTo` on every band and update it whenever the order changes. `CtaBand` always blends into the offwhite footer, and the footer has no top border. Only pastel tokens blend (offwhite, lavender-tint, lavender-light, stone, aqua-light). Keep it subtle: light shifting across a wall, never a rainbow. AA holds across every blend for charcoal, slate, and purple text; aqua large text passes on all blends in use but not on lavender-light, so never set aqua text on lavender-light.
+**Section blends.** Neighboring sections melt into each other instead of meeting at a hard edge. Every full-width band (`<Section>`, `PageHeader`, `HomeHero`, `MottoStatement`, `CtaBand`) takes `blendTo`, the next band's background: its bottom `min(11rem, 45%)` fades from its own color to that color with a plain `linear-gradient`, so the next band starts on its own flat color with no seam. Set `blendTo` on every band and update it whenever the order changes. `CtaBand` always blends into the offwhite footer, and the footer has no top border. Only pastel tokens blend (offwhite, lavender-tint, lavender-light, stone, aqua-light). Keep it subtle: light shifting across a wall, never a rainbow. AA holds across every blend for charcoal, slate, and purple text; aqua large text passes on all blends in use but not on lavender-light, so never set aqua text on lavender-light.
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| purple | #4B2E83 | Monogram, labels, rules, resolution line, buttons, text. Never a background |
+| purple | #4B2E83 | Logos, labels, rules, resolution line, buttons, text. Never a background |
 | aqua | #4F8F7C | One accent per section max. Large text (24px+) and graphics only |
 | lavender | #B8A9D6 | Form borders and subtle rules on tinted backgrounds |
 | lavender-light | #E6E0F0 | Dividers, borders, occasional light background |
@@ -148,10 +145,14 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 
 ## Logo usage
 
-- Files live in `public/brand/` (SVG preferred, PNG fallback).
-- Approved colorways: Primary (on off-white) and Tint (on lavender tint). Reverse (on purple) and Dark (on charcoal) exist for other media but never appear on the site, because the site has no dark backgrounds.
-- Logo only on flat color. Never on photos, gradients, or busy patterns.
-- Wordmark: "High Definition" in Poppins Medium charcoal, "ADVISORS" tracked wide in purple. Never redraw or re-space. The header sets it as live text to match the logo.
+- Files live in `public/brand/`, all single-color purple #4B2E83 with text already outlined:
+  - `hd-full-logo.svg`: full logo (the HD mark with the hidden K, rippling lines resolving through it, "High Definition / ADVISORS").
+  - `hd-horizontal-logo.svg`: horizontal logo (HD mark, short line, "High Definition / ADVISORS").
+  - `hd-mark.svg`: the HD mark on its own.
+  - `hd-badge.svg`: rounded purple square with the HD cut out, for favicon and app icon.
+- Which goes where: header = horizontal (mark only below `md`); home hero = full; footer = horizontal; small spots and icons = mark (`Monogram`, e.g. the CTA band) or badge (`src/app/icon.svg`, `src/app/apple-icon.png` 180x180). The social image `src/app/opengraph-image.png` (1200x630) is the full logo over "Clarity for Complex Growth" in Poppins Medium charcoal on offwhite; its alt text is `opengraph-image.alt.txt`.
+- On the site, logos are always single-color purple. `Monogram` and `HorizontalLogo` draw the outlines inline in currentColor from `src/lib/logo-paths.ts` (copied from the SVG files; update both together). The full logo is the SVG file itself.
+- Logo only on flat, light color. Never on photos, gradients, or busy patterns. Never redraw, recolor in parts, or re-space the wordmark.
 
 ## Photography
 
@@ -165,14 +166,14 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
 ## Site map
 
 1. `/` Home (backgrounds: hero offwhite, lavender-tint, stone, motto offwhite, stone, aqua-light, motto offwhite, CTA lavender-tint)
-   - Hero (animates on load, see above): HD monogram + full resolution line, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
+   - Hero (fades in on load, see above): the full logo, "Clarity for Complex Growth", one-sentence positioning, CTA "Start a conversation" to /contact
    - "Who we are" right after the hero, on lavender-tint: small circular headshot, Kate's first-person intro ("I am Kate Hibbs Davis, or Kate HD..."), a "Why HD?" callout tying her initials to seeing an organization in high definition (marked as a draft in Tina until Kate approves it), and a "Read Kate's full bio" link to /about
    - "What we hear" strip: the problem (growth outpaced structure, revenue concentrated, roles blurred, story scattered)
    - Motto statement
    - From Reactive to Intentional: current state vs future state panels (offwhite vs aqua-light, on a stone section)
    - Four Lenses, One Roadmap teaser
    - Motto statement
-   - Closing CTA band on lavender-tint (Tint colorway: purple monogram and lines). Light background, never purple
+   - Closing CTA band on lavender-tint (purple HD mark and lines). Light background, never purple
 2. `/about` About Kate (backgrounds: header offwhite, stone, aqua-light, motto offwhite, lavender-tint, motto offwhite, stone, CTA lavender-tint)
    - Kate Hibbs Davis, Founder & Principal: headshot on lavender tint, the full bio (Kate's draft, lightly tightened), quick facts (languages, education, home)
    - Core competencies in three columns: Strategic Leadership & Governance; Advancement & Revenue Generation; Stakeholder Engagement & Alliances
@@ -201,18 +202,18 @@ Pattern for every section: purple tracked label above, charcoal H2, single resol
    - Endorsement cards (quote, name, title, organization, optional photo) and a ruled client logo grid, each rendered only when Tina has entries. With neither, a "coming soon" band with an unresolved line stack
    - Hidden by default: `showEndorsements` (Site Settings, "Show the Endorsements page in the menu") is off, which removes it from the header and footer nav and sets `noindex`. The route still builds so Kate can preview it
 
-Global: sticky minimal header (HD monogram left, nav right, Menu button on phones), footer with fully resolved line through monogram, tagline, contact placeholders.
+Global: sticky minimal header (horizontal logo left, or the HD mark on phones; nav right, Menu button on phones), footer with the horizontal logo, tagline, and contact links.
 
 ## Technical conventions
 
 - App Router. Each `page.tsx` is a thin server file (metadata + JSON import) that renders a client view in `src/views/*View.tsx`, so Tina can preview edits live (see "Content editing"). Other components stay Server Components unless they animate or need state.
-- Reusable `<ResolutionLine variant="full" | "partial" | "rule" | "monogram" />` component that generates SVG paths from parameters (line count, master curve, per-line lag/amplitude, convergence x).
+- Reusable `<ResolutionLine variant="partial" | "rule" />` component that generates SVG paths from parameters (line count, master curve, per-line lag/amplitude, convergence x).
 - Content in `content/**/*.json` (edited in TinaCMS), imported by thin typed modules in `src/content/*.ts`, so copy edits never touch layout. Multi-paragraph fields are textareas split on blank lines (`toParagraphs` in `src/lib/text.ts`).
 - Metadata per page via `generateMetadata`; OG image using the Primary colorway.
 - Accessibility: semantic landmarks, visible focus states in purple, aqua never for small text, AA contrast.
 - Responsive down to 360px. On mobile the line stack shortens but still resolves.
 - Env vars: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`. Never commit `.env.local`.
-- Placeholders stay bracketed: [email], [phone], [website]. (The headshot and Kate's organizations are real now.)
+- Contact details are real (Site Settings): kate@katehd.com, 773.405.0207, https://www.katehd.com/. `ContactLinks` renders them as mailto, tel (+1), and website links in the footer and on /contact; a value still in [brackets] shows as plain text.
 - No em dashes in any site copy.
 
 ## Content editing (TinaCMS)

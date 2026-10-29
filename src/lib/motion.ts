@@ -46,17 +46,13 @@ export const drawLine: Variants = {
 };
 
 /**
- * Home hero: the lines resolve over ~2.8s total (ease-in-out per line, outer
- * lines lagging so they finish last), then the text fades in once the lines
- * are mostly resolved. About 25% faster than the original 0.3 / 3.4 / 2.7.
+ * Home hero: the full logo fades and rises in shortly after load, then the
+ * eyebrow, headline, sentence, and button follow in turn.
  */
 export const HERO = {
-  delay: 0.225,
-  duration: 2.55,
-  /** Share of the clock the outermost lines wait before starting. */
-  lineLag: 0.22,
-  textDelay: 2.025,
-} as const;
+  sequence: { hidden: {}, visible: { transition: { delayChildren: 0.15, staggerChildren: 0.3 } } },
+  text: { hidden: {}, visible: { transition: { staggerChildren: STAGGER } } },
+} as const satisfies Record<string, Variants>;
 
 /** Route changes: a quick, soft fade. */
 export const pageFade = {

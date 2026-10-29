@@ -1,11 +1,9 @@
-import { MONOGRAM_HEIGHT, MONOGRAM_WIDTH } from "@/components/Monogram";
-
 /*
  * Geometry for the Resolution Line (CLAUDE.md "Design concept"). Every line in
  * a stack is a copy of one master gesture curve with a small per-line lag,
  * amplitude and bulge, like Aqua Tower floor plates, so the family never reads
  * as a waveform. Left to right, the ripple calms and the spread converges.
- * Pure functions, shared by server-rendered lines and the animated hero.
+ * Pure functions, used by <ResolutionLine>.
  */
 
 export type StackParams = {
@@ -18,7 +16,7 @@ export type StackParams = {
   wavelength: number;
   startX: number;
   endX: number;
-  /** Lines stay mostly parallel until here (e.g. through the monogram). */
+  /** Lines stay mostly parallel until here. */
   holdX: number;
   /** Where the spread reaches endSpread and the ripple reaches endRipple. */
   convergeX: number;
@@ -29,8 +27,6 @@ export type StackParams = {
   seed: number;
   strokeWidth: number;
 };
-
-export type MonogramPlacement = { x: number; height: number };
 
 export type Point = [number, number];
 
@@ -104,61 +100,7 @@ export function toPath(points: Point[]) {
   return `${d}L${round(lx)} ${round(ly)}`;
 }
 
-/**
- * Pulls a line toward the center line as t goes 0 to 1. Resolution sweeps
- * right to left, so the convergence point travels back through the monogram.
- */
-export function resolvePoints(points: Point[], p: StackParams, t: number): Point[] {
-  const cy = p.height / 2;
-  const sweep = 0.6;
-  return points.map(([x, y]) => {
-    const fromRight = 1 - x / p.width;
-    const f = smooth(t * (1 + sweep) - fromRight * sweep);
-    return [x, y + (cy - y) * f];
-  });
-}
-
-/* Presets. The hero has a shorter stack on mobile that still resolves. */
-
-export const HERO_DESKTOP: StackParams = {
-  width: 1600,
-  height: 300,
-  lines: 9,
-  spread: 100,
-  amplitude: 20,
-  wavelength: 640,
-  startX: 0,
-  // Full bleed: lines run from the left edge of the screen to the right edge.
-  endX: 1600,
-  holdX: 950,
-  convergeX: 1230,
-  endSpread: 0,
-  endRipple: 0,
-  seed: 0.6,
-  strokeWidth: 1,
-};
-export const HERO_DESKTOP_MONOGRAM: MonogramPlacement = {
-  height: 190,
-  x: 800 - (190 * MONOGRAM_WIDTH) / MONOGRAM_HEIGHT / 2,
-};
-
-export const HERO_MOBILE: StackParams = {
-  ...HERO_DESKTOP,
-  width: 800,
-  height: 260,
-  lines: 7,
-  spread: 72,
-  amplitude: 14,
-  wavelength: 380,
-  endX: 800,
-  holdX: 505,
-  convergeX: 640,
-  strokeWidth: 0.75,
-};
-export const HERO_MOBILE_MONOGRAM: MonogramPlacement = {
-  height: 130,
-  x: 400 - (130 * MONOGRAM_WIDTH) / MONOGRAM_HEIGHT / 2,
-};
+/* Section dividers and card stacks. */
 
 export function partialParams(resolve: number, compact: boolean): StackParams {
   const calm = 1 - 0.65 * resolve;
@@ -196,8 +138,4 @@ export function partialParams(resolve: number, compact: boolean): StackParams {
     seed: 1.7,
     strokeWidth: 1,
   };
-}
-
-export function monogramTransform(p: StackParams, m: MonogramPlacement) {
-  return `translate(${m.x} ${(p.height - m.height) / 2}) scale(${m.height / MONOGRAM_HEIGHT})`;
 }

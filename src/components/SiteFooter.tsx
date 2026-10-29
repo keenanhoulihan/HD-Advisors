@@ -2,17 +2,18 @@
 
 import Link from "next/link";
 import { edit } from "@/lib/tina-live";
-import { ResolutionLine } from "./ResolutionLine";
+import { ContactLinks } from "./ContactLinks";
 import { navItems, useSite } from "./SiteLive";
 
-export function SiteFooter() {
+/** `logo` is the horizontal logo, rendered by the layout on the server so its paths stay out of the bundle. */
+export function SiteFooter({ logo }: { logo: React.ReactNode }) {
   const siteData = useSite();
   const { site, mottos } = siteData;
   const links = [{ href: "/", label: site.nav.home, field: "home" }, ...navItems(siteData)];
 
   return (
     <footer className="bg-offwhite">
-      <ResolutionLine variant="monogram" className="pt-16 sm:pt-20" />
+      <div className="page-wrap flex justify-center pt-16 text-purple sm:pt-20">{logo}</div>
 
       <div className="page-wrap grid gap-12 py-14 sm:grid-cols-2 sm:py-16 lg:grid-cols-[2fr_1fr_1fr]">
         <div>
@@ -48,9 +49,7 @@ export function SiteFooter() {
             {site.footer.contactLabel}
           </p>
           <ul className="mt-5 space-y-3 text-charcoal">
-            <li {...edit(site.contact, "email")}>{site.contact.email}</li>
-            <li {...edit(site.contact, "phone")}>{site.contact.phone}</li>
-            <li {...edit(site.contact, "website")}>{site.contact.website}</li>
+            <ContactLinks />
           </ul>
         </div>
       </div>

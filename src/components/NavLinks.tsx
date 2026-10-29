@@ -47,7 +47,7 @@ export function NavLinks() {
 
   return (
     <nav aria-label="Main">
-      <ul className="hidden items-center gap-7 md:flex lg:gap-9">
+      <ul className="hidden items-center gap-6 md:flex lg:gap-9">
         {items.map((item) => (
           <li key={item.href}>{link(item, "text-base")}</li>
         ))}

@@ -1,32 +1,19 @@
 import Link from "next/link";
 import { site } from "@/content/site";
+import { HorizontalLogo } from "./HorizontalLogo";
 import { Monogram } from "./Monogram";
 
 /**
- * Header logo (CLAUDE.md "Header"). Static and clean, like the deck header:
- * the HD monogram, a short thin resolved line, then "HIGH DEFINITION
- * ADVISORS" in tracked Poppins Medium caps. No line stack and no motion: at
- * header size a converging stack reads as a broom.
- *
- * The monogram is SVG and the name is live text, so both stay crisp on retina
- * screens. Below lg there isn't room beside the five nav links, so only the
- * monogram shows.
+ * Header logo (CLAUDE.md "Header" and "Logo usage"). Static and clean: the
+ * horizontal logo from md up, just the HD mark below md where the Menu button
+ * sits beside it. Both are inline SVG in currentColor (purple), so they stay
+ * crisp on retina screens. No motion here.
  */
 export function HeaderLogo() {
   return (
-    <Link
-      href="/"
-      aria-label={`${site.name}, home`}
-      className="-m-2 flex items-center gap-3 p-2 text-purple"
-    >
-      <Monogram className="block h-6 w-auto sm:h-7" />
-      <span aria-hidden="true" className="hidden h-px w-8 shrink-0 bg-current lg:block" />
-      <span
-        aria-hidden="true"
-        className="hidden text-[0.75rem] leading-none font-medium tracking-[0.25em] whitespace-nowrap uppercase lg:block"
-      >
-        High Definition Advisors
-      </span>
+    <Link href="/" aria-label={`${site.name}, home`} className="-m-2 flex items-center p-2 text-purple">
+      <Monogram className="block h-6 w-auto sm:h-7 md:hidden" />
+      <HorizontalLogo className="hidden h-7 w-auto md:block lg:h-10" />
     </Link>
   );
 }

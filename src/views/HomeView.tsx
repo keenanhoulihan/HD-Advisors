@@ -5,7 +5,7 @@ import type approachJson from "../../content/pages/approach.json";
 import type homeJson from "../../content/pages/home.json";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CtaBand } from "@/components/CtaBand";
-import { HeroResolve } from "@/components/HeroResolve";
+import { HomeHero } from "@/components/HomeHero";
 import { KateHeadshot } from "@/components/KateHeadshot";
 import { MottoStatement } from "@/components/MottoStatement";
 import { ResolutionLine } from "@/components/ResolutionLine";
@@ -27,7 +27,7 @@ export function HomeView({ data }: { data: HomeData }) {
 
   return (
     <>
-      <HeroResolve blendTo="lavender-tint">
+      <HomeHero blendTo="lavender-tint">
         <div className="page-wrap text-center">
           <RevealItem as="p" className="eyebrow text-purple">
             {site.name}
@@ -42,7 +42,7 @@ export function HomeView({ data }: { data: HomeData }) {
             <ButtonLink href="/contact">{home.heroButton}</ButtonLink>
           </RevealItem>
         </div>
-      </HeroResolve>
+      </HomeHero>
 
       {/* Kate first: right after the hero, so the first look is the person behind the work. */}
       <Section bg="lavender-tint" blendTo="stone">

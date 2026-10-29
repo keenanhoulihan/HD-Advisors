@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { HorizontalLogo } from "@/components/HorizontalLogo";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteLive } from "@/components/SiteLive";
@@ -48,7 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main id="main" className="flex-1">
             {children}
           </main>
-          <SiteFooter />
+          <SiteFooter logo={<HorizontalLogo className="h-10 w-auto max-w-full sm:h-12" />} />
         </SiteLive>
       </body>
     </html>

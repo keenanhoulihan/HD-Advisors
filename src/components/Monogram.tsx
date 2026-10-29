@@ -1,20 +1,14 @@
+import { MARK, MARK_PATH } from "@/lib/logo-paths";
+
 /*
- * HD monogram traced from public/brand/hd-logo.png. Replace these paths with
- * the official SVG once it exists in public/brand/.
+ * The HD mark (with the hidden K), from public/brand/hd-mark.svg. Fill comes
+ * from currentColor, so it is purple wherever its parent's text is purple.
  */
-export const MONOGRAM_WIDTH = 382;
-export const MONOGRAM_HEIGHT = 250;
+export const MONOGRAM_WIDTH = MARK.width;
+export const MONOGRAM_HEIGHT = MARK.height;
 
 export function MonogramShapes() {
-  return (
-    <>
-      <path d="M0 0H49V97H129V0H177V250H129V150H49V250H0Z" />
-      <path
-        fillRule="evenodd"
-        d="M197 0H277A105 125 0 0 1 277 250H197ZM245 47V203H277A58 78 0 0 0 277 47Z"
-      />
-    </>
-  );
+  return <path fillRule="evenodd" transform={MARK.transform} d={MARK_PATH} />;
 }
 
 type MonogramProps = {
