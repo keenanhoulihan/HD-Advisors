@@ -164,7 +164,10 @@
           "years": "",
           "isBoard": false,
           "description": "Spearheaded bank accountability campaigns around Community Reinvestment Act, fair banking, affordable housing and immigrant lending. ",
-          "lenses": []
+          "lenses": [
+            "Programs",
+            "Revenue"
+          ]
         },
         {
           "role": "Director of Development Partnerships",
