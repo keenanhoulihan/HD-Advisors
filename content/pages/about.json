@@ -210,12 +210,12 @@
           "role": "Fulbright Specialist, Fundraising and NGO Organizational Management",
           "organization": "Fulbright Colombia",
           "location": "Bogotá",
-          "years": "2020 to 2023",
-          "isBoard": false,
-          "description": "Pro bono consulting for Corporación Manos Visibles: a fundraising strategy, a diversified revenue portfolio, bilingual major gifts training, and a proposed structural redesign.",
+          "years": "",
+          "isBoard": true,
+          "description": "Pro bono consulting for Corporación Manos Visibles: a diversified revenue strategy and fundraising training, all delivered in Spanish, as the organization faced a major funding and leadership transition.",
           "lenses": [
             "Revenue",
-            "Administration"
+            "Programs"
           ]
         },
         {
