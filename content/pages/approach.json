@@ -70,19 +70,5 @@
   "audiencesIntro": {
     "label": "Who we work with",
     "title": "Mission-driven organizations ready to grow on purpose."
-  },
-  "audiences": [
-    {
-      "name": "Mission-driven organizations",
-      "body": "Social enterprises and purpose-led teams whose growth has outpaced their structure."
-    },
-    {
-      "name": "Nonprofits",
-      "body": "Organizations ready to move from patchwork funding and stretched staff to a plan that holds."
-    },
-    {
-      "name": "Philanthropic Sector",
-      "body": "Funders who want stronger, more sustainable grantees, or a clearer strategy of their own."
-    }
-  ]
+  }
 }
