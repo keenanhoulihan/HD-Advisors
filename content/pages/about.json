@@ -65,7 +65,7 @@
     "intro": "Three ways in. Pick a tab to explore.",
     "whoIAm": {
       "tabLabel": "Who I Am",
-      "isDraft": true,
+      "isDraft": false,
       "title": "A Chicagoan and an organizer at heart.",
       "body": "I live in my hometown of Chicago with my fellow changemaker spouse, our two daughters, and Timber, our 90-pound doodle dog. I grew up as a proud South Sider and White Sox fan. \n\nMy career started in community organizing, and I still work like an organizer: I listen first, build relationships, and bring people together around a shared purpose. I work in English and Spanish, and I have spent my career bridging local and global perspectives.",
       "values": [
