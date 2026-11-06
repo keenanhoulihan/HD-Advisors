@@ -145,12 +145,17 @@
       "entries": [
         {
           "role": "Lead Organizer",
-          "organization": "IMPACT (Interfaith Movement Promoting Action by Congregations Together)",
+          "organization": "IMPACT | Affiliate of the DART Network",
           "location": "Charlottesville, VA",
-          "years": "2010 to 2014",
+          "years": "",
           "isBoard": false,
-          "description": "Grassroots organizing with congregations across Charlottesville.",
-          "lenses": []
+          "description": "Grassroots organizing an interfaith coalition across Charlottesville and Central Virginia.",
+          "lenses": [
+            "External Affairs",
+            "Administration",
+            "Revenue",
+            "Programs"
+          ]
         },
         {
           "role": "Regional Organizer",
