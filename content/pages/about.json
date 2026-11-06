@@ -182,12 +182,12 @@
           ]
         },
         {
-          "role": "Board President and Fundraising Chair",
+          "role": "Capitol Hill Chorale",
           "organization": "Capitol Hill Chorale",
           "location": "Washington, DC",
-          "years": "[Years]",
+          "years": "",
           "isBoard": true,
-          "description": "Led the board and its fundraising.",
+          "description": "Led the board and its fundraising during a critical moment of transition in the Chorale's history. ",
           "lenses": [
             "Revenue",
             "Administration"
