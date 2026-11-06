@@ -235,9 +235,9 @@
           "role": "Co-Chair, Capital Campaign Committee",
           "organization": "All Saints Episcopal Church",
           "location": "Chicago",
-          "years": "[Years]",
+          "years": "",
           "isBoard": true,
-          "description": "Steering a $2.5M capital campaign.",
+          "description": "Steering a $2M capital campaign.",
           "lenses": [
             "Revenue"
           ]
