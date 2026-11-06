@@ -177,7 +177,8 @@
           "isBoard": false,
           "description": "Fundraising across political and nonpartisan entities to elect climate champions and advance environmental policies.",
           "lenses": [
-            "Revenue"
+            "Revenue",
+            "Programs"
           ]
         },
         {
