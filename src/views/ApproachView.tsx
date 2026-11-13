@@ -1,6 +1,7 @@
 "use client";
 
 import type approachJson from "../../content/pages/approach.json";
+import type { Audience } from "@/content/approach";
 import { CtaBand } from "@/components/CtaBand";
 import { LensDiagram } from "@/components/LensDiagram";
 import { MottoStatement } from "@/components/MottoStatement";
@@ -14,10 +15,11 @@ import { cn } from "@/lib/cn";
 import { CARD_STAGGER } from "@/lib/motion";
 import { edit, list, liveQueries, useLive } from "@/lib/tina-live";
 
-export function ApproachView({ data }: { data: { approach: typeof approachJson } }) {
+export function ApproachView({ data }: { data: { approach: typeof approachJson & { audiences?: Audience[] } } }) {
   const { approach } = useLive(liveQueries.approach, data, "pages/approach");
   const { approachIntro, lensesIntro, roadmapIntro, audiencesIntro } = approach;
   const phases = list(approach.phases);
+  const audiences = list(approach.audiences);
 
   return (
     <>
@@ -75,11 +77,12 @@ export function ApproachView({ data }: { data: { approach: typeof approachJson }
 
       <MottoStatement motto={pageMottos.approach[1]} bg="offwhite" blendTo="aqua-light" />
 
+      {audiences.length > 0 && (
       <Section bg="aqua-light" blendTo="lavender-tint">
         <div className="page-wrap">
           <SectionHeader {...audiencesIntro} source={audiencesIntro} />
           <RevealGroup as="ul" className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
-            {list(approach.audiences).map((audience, i) => (
+            {audiences.map((audience, i) => (
               <RevealItem as="li" key={i} className="border-t border-lavender-light pt-6">
                 <h3 className="text-h3 text-charcoal" {...edit(audience, "name")}>
                   {audience.name}
@@ -92,6 +95,7 @@ export function ApproachView({ data }: { data: { approach: typeof approachJson }
           </RevealGroup>
         </div>
       </Section>
+      )}
 
       <CtaBand />
     </>
