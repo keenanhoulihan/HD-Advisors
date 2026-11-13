@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
  * a thin purple ring. No blur placeholder: it would show through transparent
  * areas.
  */
-const DEFAULT_PHOTO = "/images/kate-headshot.png";
+const DEFAULT_PHOTO = "/uploads/images/kate-headshot.png";
 
 export function KateHeadshot({
   size,
