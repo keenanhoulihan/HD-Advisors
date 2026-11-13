@@ -151,10 +151,8 @@
       "intro": "Select a role to read more. The tags show which of the four lenses each role put to work.",
       "entries": [
         {
-          "role": "IMPACT | Affiliate of the DART Network",
           "organization": "IMPACT | Affiliate of the DART Network",
           "location": "Charlottesville, VA",
-          "years": "",
           "isBoard": false,
           "description": "Grassroots organizing of an interfaith coalition across Charlottesville and Central Virginia.",
           "lenses": [
@@ -165,10 +163,8 @@
           ]
         },
         {
-          "role": "NCRC | National Community Reinvestment Coalition",
           "organization": "NCRC | National Community Reinvestment Coalition",
           "location": "Washington, DC",
-          "years": "",
           "isBoard": false,
           "description": "Spearheaded bank accountability campaigns around Community Reinvestment Act, fair banking, affordable housing and immigrant lending. ",
           "lenses": [
@@ -177,10 +173,8 @@
           ]
         },
         {
-          "role": "LCV | League of Conservation Voters",
           "organization": "LCV | League of Conservation Voters",
           "location": "Washington, DC",
-          "years": "",
           "isBoard": false,
           "description": "Fundraising across political and nonpartisan entities to elect climate champions and advance environmental policies.",
           "lenses": [
@@ -189,10 +183,8 @@
           ]
         },
         {
-          "role": "Capitol Hill Chorale",
           "organization": "Capitol Hill Chorale",
           "location": "Washington, DC",
-          "years": "",
           "isBoard": true,
           "description": "Led the board and its fundraising during a critical moment of transition in the Chorale's history. ",
           "lenses": [
@@ -201,10 +193,8 @@
           ]
         },
         {
-          "role": "Smithsonian Institution",
           "organization": "Smithsonian Tropical Research Institute",
           "location": "Washington, DC & Republic of Panama",
-          "years": "",
           "isBoard": false,
           "description": "Integrated revenue, program development, and institution-building, securing over $16 million across two capital campaigns and bringing in hundreds of new donors for environmental and biodiversity science.",
           "lenses": [
@@ -214,10 +204,8 @@
           ]
         },
         {
-          "role": "Fulbright Specialist, Fundraising and NGO Organizational Management",
           "organization": "Fulbright Colombia",
           "location": "Bogotá",
-          "years": "",
           "isBoard": true,
           "description": "Pro bono consulting for Corporación Manos Visibles: a diversified revenue strategy and fundraising training, all delivered in Spanish, as the organization faced a major funding and leadership transition.",
           "lenses": [
@@ -226,10 +214,8 @@
           ]
         },
         {
-          "role": "Griffin Museum of Science and Industry",
           "organization": "Griffin Museum of Science and Industry",
           "location": "Chicago",
-          "years": "",
           "isBoard": false,
           "description": "Led a high-volume frontline development team, oversaw principal donor strategy for executive leadership, and grew national brand engagement.",
           "lenses": [
@@ -239,10 +225,8 @@
           ]
         },
         {
-          "role": "Co-Chair, Capital Campaign Committee",
           "organization": "All Saints Episcopal Church",
           "location": "Chicago",
-          "years": "",
           "isBoard": true,
           "description": "Steering a $2M capital campaign of a historic church in Chicago.",
           "lenses": [

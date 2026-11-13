@@ -33,7 +33,7 @@ export function ResumeTimeline({ content }: { content: (typeof resume)["timeline
               <span
                 aria-hidden="true"
                 className={cn(
-                  "absolute top-[1.6rem] -left-[calc(1.5rem+5.75px)] size-2.5 rounded-full ring-4 ring-offwhite sm:-left-[calc(2.5rem+5.75px)]",
+                  "absolute top-[1.55rem] -left-[calc(1.5rem+5.75px)] size-2.5 rounded-full ring-4 ring-offwhite sm:-left-[calc(2.5rem+5.75px)]",
                   latest ? "bg-aqua" : "bg-purple",
                 )}
               />
@@ -45,24 +45,16 @@ export function ResumeTimeline({ content }: { content: (typeof resume)["timeline
                   onClick={() => setOpen(expanded ? null : i)}
                   className="group flex w-full items-start justify-between gap-6 py-4 text-left"
                 >
-                  <span>
-                    <span className="eyebrow block text-purple" {...edit(entry, "years")}>
-                      {entry.years}
-                    </span>
-                    <span
-                      {...edit(entry, "role")}
-                      className="mt-2 block text-lg leading-snug font-semibold text-charcoal transition-colors duration-200 ease-out group-hover:text-purple sm:text-xl"
-                    >
-                      {entry.role}
-                    </span>
-                    <span className="mt-1 block text-slate" {...edit(entry, "organization")}>
-                      {entry.organization}
-                    </span>
+                  <span
+                    {...edit(entry, "organization")}
+                    className="block text-lg leading-snug font-semibold text-charcoal transition-colors duration-200 ease-out group-hover:text-purple sm:text-xl"
+                  >
+                    {entry.organization}
                   </span>
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "mt-8 text-xl leading-none text-purple transition-transform duration-200 ease-out motion-reduce:transition-none",
+                      "mt-1 text-xl leading-none text-purple transition-transform duration-200 ease-out motion-reduce:transition-none",
                       expanded && "rotate-45",
                     )}
                   >

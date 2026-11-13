@@ -1,0 +1,21 @@
+{
+  "intro": {
+    "label": "Partner Projects",
+    "title": "Better, together.",
+    "intro": "As Jack Johnson sings, we're better together. These are the partners I team up with to go further for the organizations we serve."
+  },
+  "projects": [
+    {
+      "name": "Fun(d) Camp",
+      "url": "https://www.fundcamp.net/",
+      "body": "I've joined two former colleagues to bring high-ROI major gift training to organizations launching or rebuilding a major gifts program.",
+      "linkLabel": "Visit Fun(d) Camp"
+    },
+    {
+      "name": "Curmudgeon Group",
+      "url": "https://curmudgeongroup.co/",
+      "body": "I've partnered with Curmudgeon Group, a creative agency dedicated to climate and environmental storytelling, on nonprofit partnerships and executive visibility.",
+      "linkLabel": "Visit Curmudgeon Group"
+    }
+  ]
+}

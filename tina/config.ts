@@ -140,10 +140,18 @@ const siteSettings = page(
       text("about", "About"),
       text("approach", "Approach"),
       text("offerings", "Offerings"),
+      text("partners", "Partner Projects"),
       text("endorsements", "Endorsements"),
       text("contact", "Contact"),
+      text("espanol", "Español", "Sits at the far right of the menu and opens the Spanish page."),
     ],
     "The words in the top menu and the footer. Each one always links to the same page.",
+  ),
+  group(
+    "espanolPage",
+    "Spanish page (Español)",
+    [text("title", "Heading"), longText("body", "Text"), text("button", "Button back to the home page")],
+    "The page the Español link opens. A placeholder until the Spanish site is built.",
   ),
   group("footer", "Footer", [
     text("exploreLabel", "Heading above the page links"),
@@ -151,6 +159,28 @@ const siteSettings = page(
   ]),
   ],
   "/",
+);
+
+const partners = page(
+  "partners",
+  "Partner Projects Page",
+  "pages/partners",
+  [
+    sectionHeader("intro", "Page heading"),
+    itemList(
+      "projects",
+      "Partner projects",
+      "name",
+      [
+        text("name", "Name"),
+        text("url", "Website", "The full address, starting with https://."),
+        longText("body", "What Kate does with them"),
+        text("linkLabel", "Link text", "For example: Visit Fun(d) Camp"),
+      ],
+      "Shown in this order.",
+    ),
+  ],
+  "/partner-projects",
 );
 
 const mottos = page(
@@ -283,12 +313,10 @@ const about = page(
         itemList(
           "entries",
           "Timeline entries",
-          "role",
+          "organization",
           [
-            text("role", "Role"),
             text("organization", "Organization"),
             text("location", "Location"),
-            text("years", "Years", "For example: 2015 to 2017. Board roles still need dates: replace [Years]."),
             toggle("isBoard", "Board or civic role", "Shows a “Board and civic” tag."),
             longText("description", "Short description"),
             {
@@ -478,6 +506,7 @@ export default defineConfig({
       endorsement,
       client,
       approach,
+      partners,
       contact,
       siteSettings,
       mottos,

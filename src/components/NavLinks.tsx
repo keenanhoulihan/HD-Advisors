@@ -10,7 +10,7 @@ import { navItems, useSite } from "./SiteLive";
 type NavItem = ReturnType<typeof navItems>[number];
 
 /**
- * Inline links from md up. Below md there isn't room beside the monogram, so a
+ * Inline links from xl up. Below xl seven links don't fit beside the logo, so a
  * Menu button opens the same links in a simple panel under the header.
  */
 export function NavLinks() {
@@ -37,6 +37,8 @@ export function NavLinks() {
       <Link
         href={item.href}
         aria-current={active ? "page" : undefined}
+        lang={item.lang}
+        hrefLang={item.lang}
         {...edit(siteData.site.nav, item.field)}
         className={cn("link-underline font-medium", active ? "text-purple" : "text-charcoal hover:text-purple", className)}
       >
@@ -47,7 +49,7 @@ export function NavLinks() {
 
   return (
     <nav aria-label="Main">
-      <ul className="hidden items-center gap-6 md:flex lg:gap-9">
+      <ul className="hidden items-center gap-8 whitespace-nowrap xl:flex">
         {items.map((item) => (
           <li key={item.href}>{link(item, "text-base")}</li>
         ))}
@@ -61,7 +63,7 @@ export function NavLinks() {
           setOpenedAt(pathname);
           setOpen((value) => !value);
         }}
-        className="-mr-2 flex items-center gap-3 p-2 font-medium text-charcoal md:hidden"
+        className="-mr-2 flex items-center gap-3 p-2 font-medium text-charcoal xl:hidden"
       >
         {open ? "Close" : "Menu"}
         <span aria-hidden="true" className="flex w-5 flex-col gap-[5px]">
@@ -73,7 +75,7 @@ export function NavLinks() {
       <div
         id={panelId}
         hidden={!open}
-        className="absolute inset-x-0 top-full border-b border-lavender-light bg-offwhite md:hidden"
+        className="absolute inset-x-0 top-full border-b border-lavender-light bg-offwhite xl:hidden"
       >
         <ul className="page-wrap py-4">
           {items.map((item) => (

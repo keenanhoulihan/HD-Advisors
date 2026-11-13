@@ -19,8 +19,15 @@
     "about": "About",
     "approach": "Approach",
     "offerings": "Offerings",
+    "partners": "Partner Projects",
     "endorsements": "Endorsements",
-    "contact": "Contact"
+    "contact": "Contact",
+    "espanol": "Español"
+  },
+  "espanolPage": {
+    "title": "Próximamente",
+    "body": "La versión en español de este sitio llegará muy pronto.",
+    "button": "Volver al inicio"
   },
   "footer": {
     "exploreLabel": "Explore",

@@ -34,6 +34,8 @@ export function SiteFooter({ logo }: { logo: React.ReactNode }) {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  lang={"lang" in item ? item.lang : undefined}
+                  hrefLang={"lang" in item ? item.lang : undefined}
                   className="link-underline text-charcoal hover:text-purple"
                   {...edit(site.nav, item.field)}
                 >

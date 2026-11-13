@@ -25,13 +25,22 @@ export function useSite(): SiteData {
   return value;
 }
 
-const PAGES = ["about", "approach", "offerings", "endorsements", "contact"] as const;
+const PAGES = [
+  { field: "about", href: "/about" },
+  { field: "approach", href: "/approach" },
+  { field: "offerings", href: "/offerings" },
+  { field: "partners", href: "/partner-projects" },
+  { field: "endorsements", href: "/endorsements" },
+  { field: "contact", href: "/contact" },
+  { field: "espanol", href: "/espanol", lang: "es" },
+] as const;
 
-/** Header and footer links. Endorsements stays out until Kate turns it on. */
+/** Header and footer links. Endorsements stays out until Kate turns it on. Español sits last. */
 export function navItems({ site }: SiteData) {
-  return PAGES.filter((page) => page !== "endorsements" || site.showEndorsements).map((page) => ({
-    href: `/${page}`,
-    label: site.nav[page],
-    field: page,
+  return PAGES.filter((page) => page.field !== "endorsements" || site.showEndorsements).map((page) => ({
+    href: page.href,
+    label: site.nav[page.field],
+    field: page.field,
+    lang: "lang" in page ? page.lang : undefined,
   }));
 }

@@ -9,6 +9,7 @@ import {
   HomePartsFragmentDoc,
   MottosPartsFragmentDoc,
   OfferingsPartsFragmentDoc,
+  PartnersPartsFragmentDoc,
   SitePartsFragmentDoc,
 } from "../../tina/__generated__/types";
 
@@ -45,6 +46,7 @@ export const liveQueries = {
   approach: query("approachLive", [doc("approach", "approach", "ApproachParts")], [ApproachPartsFragmentDoc]),
   contact: query("contactLive", [doc("contact", "contact", "ContactParts")], [ContactPartsFragmentDoc]),
   offerings: query("offeringsLive", [doc("offerings", "offerings", "OfferingsParts")], [OfferingsPartsFragmentDoc]),
+  partners: query("partnersLive", [doc("partners", "partners", "PartnersParts")], [PartnersPartsFragmentDoc]),
   endorsements: query(
     "endorsementsLive",
     [doc("endorsementsPage", "endorsements", "EndorsementsPageParts")],
