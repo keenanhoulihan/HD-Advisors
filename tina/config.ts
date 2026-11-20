@@ -174,6 +174,7 @@ const partners = page(
       [
         text("name", "Name"),
         text("url", "Website", "The full address, starting with https://."),
+        photo("badge", "Badge or logo", "The partner's logo, shown at the top of the card. Leave empty for none."),
         longText("body", "What Kate does with them"),
         text("linkLabel", "Link text", "For example: Visit Fun(d) Camp"),
       ],

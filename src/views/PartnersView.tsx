@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import type partnersJson from "../../content/pages/partners.json";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHeader } from "@/components/PageHeader";
-import { ResolutionLine } from "@/components/ResolutionLine";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { CARD_STAGGER } from "@/lib/motion";
@@ -28,8 +28,35 @@ export function PartnersView({ data }: { data: { partners: typeof partnersJson }
           <RevealGroup as="ul" stagger={CARD_STAGGER} className="grid gap-4 md:grid-cols-2">
             {projects.map((project, i) => (
               <RevealItem as="li" key={i} className="flex flex-col bg-offwhite p-6 sm:p-10">
-                <ResolutionLine variant="partial" compact resolve={(i + 1) / projects.length} />
-                <h2 className="mt-6 text-h3 text-charcoal" {...edit(project, "name")}>
+                {/*
+                 * The partner's own logo, in its own colors, linking to their site.
+                 * Every logo fits one shared box (64px tall on phones, 80px from sm; 15rem
+                 * wide, 18.75rem from lg), so a tall, chunky logo fills the height and a
+                 * wide, thin wordmark fills the width: they read as the same size. The row
+                 * keeps a fixed height so titles line up across the cards.
+                 */}
+                {project.badge && (
+                  <div className="flex h-16 items-center sm:h-20">
+                    <a
+                      href={project.url || undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                      {...edit(project, "badge")}
+                    >
+                      <Image
+                        src={project.badge}
+                        alt={`${project.name} logo`}
+                        width={0}
+                        height={0}
+                        sizes="(min-width: 1024px) 300px, 240px"
+                        className="h-auto max-h-16 w-auto max-w-60 sm:max-h-20 lg:max-w-75"
+                      />
+                      {project.url && <span className="sr-only"> (opens in a new tab)</span>}
+                    </a>
+                  </div>
+                )}
+                <h2 className={`${project.badge ? "mt-8" : ""} text-h3 text-charcoal`} {...edit(project, "name")}>
                   {project.name}
                 </h2>
                 <div className="mt-4 flex-1 space-y-4 text-slate" {...edit(project, "body")}>

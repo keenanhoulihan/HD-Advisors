@@ -71,6 +71,7 @@ The Endorsements page stays hidden until you're ready.
 | The big statements between sections | Mottos |
 | The four lenses or the roadmap phases | Approach Page |
 | Your offerings | Consulting Offerings |
+| A partner's name, text, link, or logo | Partner Projects Page > Partner projects |
 | The contact form choices or "thank you" message | Contact Page |
 
 ## What you can't break
